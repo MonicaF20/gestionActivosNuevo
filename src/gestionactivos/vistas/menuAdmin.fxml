@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorMenu" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.AdminController">
+   <children>
+      <Text fill="#42325e" layoutX="92.0" layoutY="41.0" stroke="#1b08cd" strokeType="OUTSIDE" strokeWidth="0.0" text="ELIJA UNA OPCION ">
+         <font>
+            <Font name="Ebrima Bold" size="27.0" />
+         </font>
+      </Text>
+      <StackPane layoutX="103.0" layoutY="85.0" prefHeight="150.0" prefWidth="200.0" styleClass="image">
+         <children>
+            <ImageView id="ingresoActivo" fx:id="ingresoActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
+               <image>
+                  <Image url="@../css/registrar.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane layoutX="382.0" layoutY="85.0" prefHeight="150.0" prefWidth="200.0" styleClass="image">
+         <children>
+            <ImageView id="solitarActivo" fx:id="solicitarActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../css/asignar.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane layoutX="650.0" layoutY="95.0" prefHeight="150.0" prefWidth="220.0" styleClass="image">
+         <children>
+            <ImageView id="reparacionActivo" fx:id="reparacionActivo" fitHeight="144.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/mantenimiento.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane layoutX="158.0" layoutY="327.0" prefHeight="150.0" prefWidth="20.0" styleClass="image">
+         <children>
+            <ImageView id="bajaActivo" fx:id="bajaActivo" fitHeight="150.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/baja.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Label layoutX="100.0" layoutY="265.0" text="Ingreso de un Nuevo Activo" />
+      <Label layoutX="404.0" layoutY="265.0" text="Solicitudes de  Activo" />
+      <Label layoutX="661.0" layoutY="265.0" text="Reparacion de un Activo" />
+      <Label layoutX="172.0" layoutY="497.0" text="Dar de Baja un Activo" />
+      <StackPane layoutX="390.0" layoutY="325.0" prefHeight="150.0" prefWidth="200.0" styleClass="image">
+         <children>
+            <ImageView fx:id="mantenimientoRubros" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/catalogoRubros.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Label layoutX="375.0" layoutY="497.0" text="Mantenimiento de Catalogo de Rubros" />
+      <StackPane layoutX="676.0" layoutY="323.0" prefHeight="159.0" prefWidth="184.0" styleClass="image">
+         <children>
+            <ImageView fx:id="reportes" fitHeight="150.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/reporte.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Label layoutX="689.0" layoutY="497.0" text="Generacion de Reportes" />
+      <StackPane layoutX="651.0" prefHeight="47.0" prefWidth="220.0" styleClass="bandeja">
+         <children>
+            <Label fx:id="lblSolicitudes" prefHeight="21.0" prefWidth="248.0" styleClass="bandejaLabel" text="Solicitudes Pendientes :  0" />
+            <ImageView fitHeight="21.0" fitWidth="247.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+               <image>
+                  <Image url="@../css/msjs.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

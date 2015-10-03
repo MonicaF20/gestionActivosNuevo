@@ -1,0 +1,142 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07-29-2015, 06:04:17 PM
+    Author     : MariaJose
+*/
+.label{
+     -fx-font-size: 16px;
+ -fx-font-family: Impact, fantasy;
+  -fx-text-fill: #000080;
+ 
+}
+   
+.button{
+   
+  -fx-background-color: linear-gradient(to bottom, #33a8b0, #377da8);
+ -fx-border-radius: 4px;
+ -fx-font-family: Impact,fantasy;
+ -fx-text-fill:#1c1c8a;
+ -fx-font-size: 16px;
+  -fx-padding: 8px 20px 10px 20px;
+  -fx-border: dotted #3a789e 2px;
+  
+}
+
+.button:hover {
+  -fx-background-color: linear-gradient(to bottom, #45c998, #4fb8af);
+ 
+}
+.comboTextField {
+    -fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1 0 1 1;
+    -fx-padding: 1 3 1 3;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+
+.comboTextField:focused {
+   -fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+   -fx-background-insets: 0, 1 0 1 1;
+    
+}
+
+.comboButton {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 5 5 0, 0 4 4 0, 0 3 3 0;
+}
+
+.comboButton:focused {
+    -fx-color: -fx-focused-base;
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 5 5 0, 0 4 4 0, 0 3 3 0;
+}
+
+.combo-down-arrow {
+    -fx-background-color: #919191;
+    -fx-padding: 0.666667em 0.416667em 0.0em 0.416667em;  /* 8 5 0 5 */
+    -fx-shape: "M0 0 L1 0 L.5 1 Z";
+    -fx-effect: innershadow( two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 1 );
+}
+
+.comboFocus{
+        -fx-border-color:-fx-focus-color;       
+        -fx-border-insets: -1;
+        -fx-border-radius: 0 5 5 0
+}
+.comboFocusOut{
+        -fx-border-color:transparent;   
+        -fx-border-insets: 0;
+        -fx-border-radius: 0 5 5 0
+}
+
+#codigo{
+   -fx-text-fill: firebrick;
+}
+
+.container{
+-fx-border-color:darkblue ; 
+ -fx-border-insets:3;
+ -fx-border-radius:7;
+ -fx-border-width:1.0;
+}
+
+.image{
+    -fx-padding: 10;
+-fx-background-color: firebrick;
+	
+}
+
+.image:hover{
+   -fx-rotate:4;
+}
+
+.anchorPane{
+  
+   
+}
+
+.opciones{
+    -fx-font-size: 12px;
+ -fx-font-family: Arial;
+ -fx-text-fill: #072676;
+}
+
+.menuLateral{
+    -fx-float: left;
+    -fx-background-color:#41BDC9;
+   -fx-border-color: #3366CC;
+
+}
+
+.menuItem{
+     -fx-background-color: gray;
+    
+    -fx-font-family: Arial;
+     -fx-text-fill: black;
+    -fx-font-size: 12px;
+  
+}
+
+.menuItem:hover{
+   -fx-rotate:4;
+}
+
+.cerrarSesion:hover{
+    -fx-text-emphasis: circle;
+    -fx-text-fill:red;
+    
+}
+
+.bandeja{
+   -fx-border-color: #42325e;
+   -fx-background-color: #9F81F7;}
+
+.bandejaLabel:hover{
+    -fx-text-fill: firebrick;
+}
