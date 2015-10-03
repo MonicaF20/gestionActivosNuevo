@@ -34,6 +34,7 @@ public class MenuLateralController implements Initializable {
     @FXML
     private Button reporteIngreso;
     @FXML Button modificarRubro;
+    @FXML Button agregarRubro;
     
     
     
@@ -60,6 +61,13 @@ public class MenuLateralController implements Initializable {
             @Override
             public void handle(Event event) {
                 itemSelected(modificarRubro);
+            }
+        });
+  agregarRubro.setOnMouseClicked(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                itemSelected(agregarRubro);
             }
         });
     }    
@@ -106,6 +114,14 @@ switch(selected.getText())
              
             }catch(Exception e){System.out.print(e);}
         break; 
+     case "Agregar Nuevo Rubro":
+         try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ingresarRubro.fxml"));
+             primaryStage.setTitle("Ingresar Un Nuevo Rubro");
+             
+            }catch(Exception e){System.out.print(e);}
+        break; 
+     
         
 }
 
