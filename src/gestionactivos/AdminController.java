@@ -167,7 +167,8 @@ switch(imagenSeleccionada)
     case "modificarRubro":
         try{
             loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/modificarRubro.fxml"));
-        }catch(Exception e){System.out.println(e);};
+        }catch(Exception e){System.out.println(e);}
+    break;
     case "ingresarRubro":
         try{
             loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ingresarRubro.fxml"));
