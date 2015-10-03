@@ -1,0 +1,41 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.root{
+    -fx-background-color: ivory;
+}    
+
+.headerFooter{
+-fx-background-color: #3CA9BC;
+-fx-border-width: 2.5px;
+-fx-border-color: #4b0082;
+-fx-border-style: dashed ;
+
+}
+.tituloLabel{
+
+ -fx-font-size: 50px;
+ -fx-font-family: Impact, fantasy;
+ -fx-text-fill: #000080;
+  -fx-effect: dropshadow( gaussian , #04B4AE,  1,1,1,2 );
+ 
+    
+}
+
+.secundario{
+    -fx-font-size: 30px;
+     -fx-font-family: Impact, fantasy;
+ -fx-text-fill: #000080;
+    
+}
+ 
+.center{
+   
+}
+ 
+
+
+
+
+  

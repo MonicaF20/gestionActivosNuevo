@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorMenu" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.DocenteController">
+   <children>
+      <Text fill="#42325e" layoutX="63.0" layoutY="54.0" stroke="#1b08cd" strokeType="OUTSIDE" strokeWidth="0.0" text="ELIJA UNA OPCION ">
+         <font>
+            <Font name="Ebrima Bold" size="27.0" />
+         </font>
+      </Text>
+      <StackPane layoutX="200.0" layoutY="181.0" prefHeight="150.0" prefWidth="200.0" styleClass="image2">
+         <children>
+            <ImageView id="solitarActivo" fx:id="solicitarActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../css/asignar.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane layoutX="580.0" layoutY="181.0" prefHeight="150.0" prefWidth="220.0" styleClass="image2">
+         <children>
+            <ImageView id="reparacionActivo" fx:id="reparacionActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/mantenimiento.jpg" />
+               </image>
+            </ImageView>
+         </children></StackPane>
+      <Label layoutX="230.0" layoutY="383.0" text="Solicitar de  Activo" />
+      <Label layoutX="580.0" layoutY="383.0" text="Solicitud de Reparacion de un Activo" />
+   </children>
+</AnchorPane>
