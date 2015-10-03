@@ -59,7 +59,7 @@
       <Label layoutX="172.0" layoutY="497.0" text="Dar de Baja un Activo" />
       <StackPane layoutX="390.0" layoutY="325.0" prefHeight="150.0" prefWidth="200.0" styleClass="image">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="mantenimientoRubros" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../css/catalogoRubros.jpg" />
                </image>

@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -38,6 +39,7 @@ public class AdminController extends GestionActivos implements Initializable{
       @FXML private ImageView reparacionActivo;
       @FXML private ImageView bajaActivo;  
       @FXML private ImageView reportes;
+      @FXML private ImageView mantenimientoRubros;
     List lista= new ArrayList<>();
     String imagenSeleccionada="";
     
@@ -88,14 +90,40 @@ public class AdminController extends GestionActivos implements Initializable{
        MenuItem item1= new MenuItem("Modificar Rubro");
        MenuItem item2= new MenuItem("Agregar Nuevo Rubro");
        cm.getItems().addAll(item1,item2);
-       reportes.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+     
+       mantenimientoRubros.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
         @Override 
         public void handle(MouseEvent e) {
             if (e.getButton() == MouseButton.PRIMARY)  
-                cm.show(reportes,e.getScreenX(),e.getScreenY());
+                cm.show(mantenimientoRubros,e.getScreenX(),e.getScreenY());
         }
 });
+       item1.setOnAction(new EventHandler() {
+
+              @Override
+              public void handle(Event event) {
+                  imagenSeleccionada="modificarRubro";
+                  llamarInterfaces();
+              }
+          });
+       item2.setOnAction(new EventHandler() {
+
+              @Override
+              public void handle(Event event) {
+              imagenSeleccionada="ingresarRubro";
+              llamarInterfaces();
+              }
+          });
+            
+    
        
+ /*mantenimientoRubros.setOnMouseClicked(new EventHandler() {
+
+              @Override
+              public void handle(Event event) {
+              capturarClick(mantenimientoRubros);
+              }
+          });*/
     }
     
     
@@ -104,7 +132,7 @@ public class AdminController extends GestionActivos implements Initializable{
         this.Principal=Principal;
     }
 
-public void llamarInterfaces(String seleccionado){
+public void llamarInterfaces(){
 Parent loader = null;
 AnchorPane loader2 = null;
 AnchorPane loader3 = null;
@@ -136,6 +164,15 @@ switch(imagenSeleccionada)
              
             }catch(Exception e){}
         break;
+    case "modificarRubro":
+        try{
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/modificarRubro.fxml"));
+        }catch(Exception e){System.out.println(e);};
+    case "ingresarRubro":
+        try{
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ingresarRubro.fxml"));
+        }catch(Exception e){}
+    break;
     
 }
 
@@ -148,7 +185,7 @@ switch(imagenSeleccionada)
     public void capturarClick(ImageView iv) {
        imagenSeleccionada=iv.getId();
        System.out.println(imagenSeleccionada);
-       llamarInterfaces(imagenSeleccionada);
+       llamarInterfaces();
        
     }
 
