@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="skin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.InicioController">
+   <top>
+      <Pane prefHeight="130.0" prefWidth="1000.0" styleClass="headerFooter" stylesheets="@../css/inicio.css" BorderPane.alignment="CENTER">
+         <children>
+            
+            <ImageView fx:id="logo" fitHeight="140.0" fitWidth="110.0" layoutX="26.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" styleClass="logoheader">
+               <image>
+                  <Image url="@../css/logo.jpg" />
+               </image>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </ImageView>
+            <Label layoutX="152.0" layoutY="5.0" styleClass="tituloLabel" stylesheets="@../css/inicio.css" text="CENTRO ESCOLAR CATOLICO SAN ANTONIO " textAlignment="CENTER" textFill="#1e1e21">
+               <font>
+                  <Font name="Bodoni MT" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="152.0" layoutY="67.0" styleClass="secundario" stylesheets="@../css/inicio.css" text="SISTEMA PARA LA GESTION DE ACTIVOS FIJOS" />
+      
+   </children>
+         
+      </Pane>
+   </top>
+   <bottom>
+      <Pane prefHeight="50.0" prefWidth="1000.0" styleClass="headerFooter" stylesheets="@../css/inicio.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="30.0" layoutY="17.0" text=" Desarrollado Por: Grupo 16 " textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+         </children></Pane>
+   </bottom>
+</BorderPane>

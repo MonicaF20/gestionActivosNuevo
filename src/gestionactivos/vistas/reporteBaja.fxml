@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.ReporteBajaController">
+   <children>
+      <Label layoutX="265.0" layoutY="54.0" stylesheets="@../css/form.css" text="Reporte Baja de Activos" />
+      <ChoiceBox layoutX="289.0" layoutY="126.0" prefWidth="150.0" />
+      <Label layoutX="245.0" layoutY="132.0" stylesheets="@../css/form.css" text="Año:" />
+      <TableView layoutX="101.0" layoutY="169.0" prefHeight="237.0" prefWidth="507.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Código Activo" />
+          <TableColumn prefWidth="75.0" text="Nombre" />
+            <TableColumn prefWidth="97.0" text="Fecha de Baja" />
+            <TableColumn prefWidth="150.0" text="Descripción de Baja" />
+        </columns>
+      </TableView>
+      <Button layoutX="301.0" layoutY="435.0" mnemonicParsing="false" styleClass="bu" text="Imprimir" />
+   </children>
+</AnchorPane>

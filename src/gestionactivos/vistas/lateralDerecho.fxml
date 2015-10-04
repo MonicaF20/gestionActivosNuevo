@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane layoutX="780.0" prefHeight="500.0" prefWidth="213.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.LateralDerechoController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="16.0" prefHeight="500.0" prefWidth="204.0" stylesheets="@../css/form.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fitHeight="54.0" fitWidth="51.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/user.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblUserLogeado" layoutX="67.0" layoutY="15.0" styleClass="opciones" />
+            <Label fx:id="lblCerrarSesion" layoutX="67.0" layoutY="35.0" onMouseClicked="#cerrarSesion" styleClass="cerrarSesion" stylesheets="@../css/form.css" text="Cerrar Sesion" underline="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

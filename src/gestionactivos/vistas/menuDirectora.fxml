@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionactivos.DirectoraController">
+    <stylesheets>
+        <URL value="@/gestionactivos/css/form.css" />
+    </stylesheets>
+   <children>
+      <Text fill="#42325e" layoutX="124.0" layoutY="90.0" stroke="#1b08cd" strokeType="OUTSIDE" strokeWidth="0.0" text="ELIJA UNA OPCION ">
+         <font>
+            <Font name="Ebrima Bold" size="27.0" />
+         </font>
+      </Text>
+      <StackPane layoutX="168.0" layoutY="110.0" prefHeight="159.0" prefWidth="184.0" styleClass="image">
+         <children>
+            <ImageView fx:id="reportes" fitHeight="180.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/reporte.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Label layoutX="202.0" layoutY="309.0" text="Generacion de Reportes" textAlignment="CENTER" />
+      <StackPane layoutX="617.0" layoutY="104.0" prefHeight="193.0" prefWidth="194.0" styleClass="image">
+         <children>
+            <ImageView fx:id="solicitudes" fitHeight="181.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/asignar.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Label layoutX="670.0" layoutY="309.0" text="Ver Solicitudes" textAlignment="CENTER" />
+      <StackPane layoutX="391.0" layoutY="330.0" prefHeight="150.0" prefWidth="200.0" styleClass="image">
+         <children>
+            <ImageView fx:id="planificacion" fitHeight="158.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/nuevoAnio.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Label layoutX="407.0" layoutY="505.0" text="Planificación Nuevo Año Escolar" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

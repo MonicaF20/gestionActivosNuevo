@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="672.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.BajaActivoController">
+    <stylesheets>
+        <URL value="@/gestionactivos/css/form.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="78.0" layoutY="111.0" stylesheets="@../css/form.css" text="Nombre:" />
+      <TextField layoutX="181.0" layoutY="109.0" />
+      <Label layoutX="78.0" layoutY="183.0" stylesheets="@../css/form.css" text="Descripción" />
+      <TextArea layoutX="181.0" layoutY="170.0" prefHeight="119.0" prefWidth="192.0" />
+      <Label layoutX="398.0" layoutY="113.0" stylesheets="@../css/form.css" text="Código:" />
+      <ComboBox layoutX="465.0" layoutY="109.0" prefWidth="150.0" />
+      <Button layoutX="219.0" layoutY="398.0" mnemonicParsing="false" stylesheets="@../css/form.css" text="Dar de Baja" />
+      <Label layoutX="326.0" layoutY="47.0" stylesheets="@../css/form.css" text="Baja de Activo" />
+      <Button layoutX="373.0" layoutY="398.0" mnemonicParsing="false" stylesheets="@../css/form.css" text="Cancelar" />
+      <DatePicker layoutX="465.0" layoutY="170.0" />
+      <Label layoutX="405.0" layoutY="172.0" stylesheets="@../css/form.css" text="Fecha" />
+   </children>
+</AnchorPane>
