@@ -140,7 +140,7 @@ public class DirectoraController extends GestionActivos implements Initializable
     }
  public void capturarClick(ImageView imageV){
      seleccion=imageV.getId();
-     System.out.println(seleccion);
+     System.out.println("Esto selecciono: "+seleccion);
      
      llamarInterfaces();
  }
@@ -189,6 +189,16 @@ switch(seleccion)
              loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reporteBaja.fxml"));
              
              primaryStage.setTitle("Reporte Baja de Activos");
+             
+            }catch(Exception e){}
+        break;
+    
+    //Vista de Marcela diredi    
+    case "planificacion":
+        try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ActivosInicio.fxml"));
+             
+             primaryStage.setTitle("Planificacion Inicio de Año");
              
             }catch(Exception e){}
         break;

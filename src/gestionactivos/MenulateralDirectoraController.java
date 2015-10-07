@@ -53,6 +53,26 @@ public class MenulateralDirectoraController implements Initializable {
        }
         
         });
+        
+        //Marcela agrego esto 
+        replanificacion.setOnMouseClicked(new EventHandler() {
+        @Override
+        public void handle(Event event) {
+           itemSelected(replanificacion);
+           
+       }
+        
+        });
+        
+        verplanificacion.setOnMouseClicked(new EventHandler() {
+        @Override
+        public void handle(Event event) {
+           itemSelected(verplanificacion);
+           
+       }
+        
+        });
+      
       
     }
     
@@ -74,7 +94,7 @@ public class MenulateralDirectoraController implements Initializable {
         } catch (Exception e) {
         }
         String prueba=seleccion.getText();
-        System.out.println(prueba); 
+        System.out.println("Esto captura: "+prueba); 
         switch(seleccion.getText()){
                
             case "Activos Ingresados":
@@ -87,6 +107,21 @@ public class MenulateralDirectoraController implements Initializable {
                 try{
                 loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reporteBaja.fxml"));
                 primaryStage.setTitle("Reporte de Baja de Activos");
+                }catch(Exception e) {}
+            break;
+                
+            //Vista de Marce
+            case "Realizar Planificación":
+                try{
+                loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
+                primaryStage.setTitle("Realizar Planificacion Inicio de Año");
+                }catch(Exception e) {}
+            break;
+                
+            case "Ver Planificación":
+                try{
+                loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ActivosInicio.fxml"));
+                primaryStage.setTitle("Planificacion Inicio de Año");
                 }catch(Exception e) {}
             break;
         
