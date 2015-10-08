@@ -54,6 +54,8 @@ public class LateralDerechoController implements Initializable {
    GestionActivos.rootPane.setLeft(null);
    GestionActivos.rootPane.setRight(null);
    InicioController.logeado="";
+   mainWindow.setTitle("Sistema para la Gestion de Activos Fijos");
+//   primaryStage.setTitle("Reporte Baja de Activos");
 
     
     }

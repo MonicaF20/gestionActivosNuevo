@@ -6,30 +6,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane layoutX="220.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.RepararActivoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="600.0" prefHeight="500.0" prefWidth="600.0" styleClass="anchorPane" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.RepararActivoController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="672.0" styleClass="anchorPane" stylesheets="@../css/form.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="51.0" layoutY="128.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="146.0">
          <children>
-            <Label layoutY="366.0" text="Fecha de reporte:" />
-            <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
-            <Label layoutY="147.0" text="Nombre Activo: " />
-            <Label layoutY="182.0" text="Rubro:" />
-            <Label layoutY="220.0" text="Ubicacion:" />
-            <TextField fx:id="nombre" focusTraversable="false" layoutX="126.0" layoutY="180.0" />
+            <Label layoutY="2.0" text="Nombre Activo: " />
+            <Label layoutY="37.0" text="Rubro:" />
+            <Label layoutY="122.0" prefHeight="53.0" prefWidth="101.0" text="Descripcion de daño:" wrapText="true" />
+            <TextField focusTraversable="false" layoutX="126.0" />
+            <Label layoutY="75.0" text="Ubicacion:" />
+            <TextArea layoutX="128.0" layoutY="122.0" prefHeight="81.0" prefWidth="275.0" />
+            <TextField fx:id="nombre" focusTraversable="false" layoutX="126.0" layoutY="35.0" />
+            <TextField focusTraversable="false" layoutX="126.0" layoutY="73.0" />
+            <Label layoutY="221.0" text="Fecha de reporte:" />
+            <DatePicker fx:id="fecha" layoutX="126.0" layoutY="219.0" />
+         </children>
+      </Pane>
+      <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
+      <HBox layoutX="67.0" layoutY="412.0" spacing="20.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="316.0">
+         <children>
             <Button fx:id="ingresarBoton" defaultButton="true" layoutX="67.0" layoutY="412.0" mnemonicParsing="false" onAction="#ingresarActivoDañado" text="Ingresar" textFill="#0d831d" />
             <Button fx:id="cancelarBoton" layoutX="207.0" layoutY="412.0" mnemonicParsing="false" text="Cancelar" textFill="#cd0d0d" />
-            <DatePicker fx:id="fecha" layoutX="126.0" layoutY="364.0" />
-            <Label alignment="CENTER" layoutX="177.0" layoutY="34.0" text="REPARACION DE  ACTIVO" />
-            <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
-            <Label layoutX="35.0" layoutY="77.0" text="Ingrese ID del activo:" />
-            <TextField focusTraversable="false" layoutX="126.0" layoutY="145.0" />
-            <TextField focusTraversable="false" layoutX="126.0" layoutY="218.0" />
-            <Label layoutY="267.0" prefHeight="53.0" prefWidth="101.0" text="Descripcion de daño:" wrapText="true" />
-            <TextArea layoutX="128.0" layoutY="267.0" prefHeight="81.0" prefWidth="275.0" />
-            <Button fx:id="buscarBoton" layoutX="376.0" layoutY="68.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
-            <ComboBox fx:id="idactivo" editable="true" layoutX="182.0" layoutY="75.0" prefHeight="25.0" prefWidth="168.0" promptText="--Ingrese ID" />
          </children>
-      </AnchorPane>
+      </HBox>
+      <Label alignment="CENTER" layoutX="177.0" layoutY="34.0" text="REPARACION DE  ACTIVO" />
+      <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
+      <Pane layoutX="51.0" layoutY="68.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="121.0">
+         <children>
+            <Button fx:id="buscarBoton" layoutX="341.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+            <Label layoutY="9.0" text="Ingrese ID del activo:" />
+            <ComboBox fx:id="idactivo" editable="true" layoutX="147.0" layoutY="7.0" prefHeight="25.0" prefWidth="168.0" promptText="--Ingrese ID" />
+         </children>
+      </Pane>
    </children>
-    
 </AnchorPane>

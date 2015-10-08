@@ -19,7 +19,7 @@
       </Text>
       <StackPane layoutX="200.0" layoutY="181.0" prefHeight="150.0" prefWidth="200.0" styleClass="image2">
          <children>
-            <ImageView id="solitarActivo" fx:id="solicitarActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
+            <ImageView id="socilitarActivo" fx:id="solicitarActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
                <image>
                   <Image url="@../css/asignar.jpg" />
                </image>

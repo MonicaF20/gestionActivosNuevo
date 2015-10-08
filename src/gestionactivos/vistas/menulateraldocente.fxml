@@ -11,7 +11,7 @@
    <children>
   <Accordion fx:id="acordion" layoutX="14.0" layoutY="93.0" prefHeight="407.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
     <panes>
-      <TitledPane fx:id="peticiones" animated="false" text="Solicitudes de Peticion de Activos">
+      <TitledPane fx:id="peticiones" animated="false" prefHeight="169.0" prefWidth="269.0" text="Solicitudes de Peticion de Activos">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -53,6 +53,7 @@
             </TitledPane>
     </panes>
   </Accordion>
-      <Label layoutX="6.0" layoutY="50.0" text="Menu Docente / Administrador" />
+      <Label layoutX="6.0" layoutY="50.0" text="Menu Docente / Administrativo" />
+      <Label alignment="CENTER" layoutX="40.0" layoutY="414.0" prefHeight="47.0" prefWidth="164.0" styleClass="cerrarSesion" text="Regresar al Menu " textAlignment="CENTER" underline="true" />
  </children>
 </AnchorPane>

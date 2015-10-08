@@ -95,6 +95,14 @@ switch(imagenSeleccionada)
              
             }catch(Exception e){}
         break;
+        case "socilitarActivo":
+        try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/SolicitarActivo.fxml"));
+             
+             primaryStage.setTitle("Solicitar Activo");
+             
+            }catch(Exception e){}
+        break;
     
                 }
 GestionActivos.rootPane.setCenter(loader);
@@ -105,7 +113,7 @@ GestionActivos.rootPane.setCenter(loader);
 
 public void capturarClick(ImageView iv) {
        imagenSeleccionada=iv.getId();
-       System.out.println(imagenSeleccionada);
+       System.out.println("Seleccion: "+imagenSeleccionada);
        llamarInterfaces(imagenSeleccionada);
        
     }  

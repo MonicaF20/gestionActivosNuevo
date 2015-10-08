@@ -14,10 +14,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -39,6 +41,30 @@ public class MenuLateralDocenteController implements Initializable {
     @FXML
     private Button reporteReparacion;
     
+     @FXML
+    private Accordion acordion;
+
+    @FXML
+    private Button solicitudesReparacion;
+
+    @FXML
+    private TitledPane baja;
+
+    @FXML
+    private TitledPane reparacion;
+
+    @FXML
+    private Button reporteBaja;
+
+    @FXML
+    private TitledPane peticiones;
+
+    @FXML
+    private Button reportePeticiones;
+
+    @FXML
+    private Button solicitudesBaja;
+    
     
     
     @Override
@@ -59,6 +85,16 @@ public class MenuLateralDocenteController implements Initializable {
            
        }
    });
+  
+  reportePeticiones.setOnMouseClicked(new EventHandler() {
+
+       @Override
+       public void handle(Event event) {
+           itemSelected(reportePeticiones);
+           
+       }
+   });
+  
     }    
 
     public void itemSelected(Button selected) {
@@ -78,11 +114,20 @@ try{
 loader2= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menulateraldocente.fxml"));
 loader3= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/lateralDerecho.fxml"));
 }catch(Exception e){}
+System.out.println("Seleccion: "+selected.getText());
 switch(selected.getText())
 {
     case "Generar Solicitud de Reparacion":
         try{
              loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/RepararActivo.fxml"));
+             
+             primaryStage.setTitle("Reparar Activo");
+             
+            }catch(Exception e){System.out.print(e);}
+        break;
+    case "Generar Solicitud de Peticion":
+        try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/SolicitarActivo.fxml"));
              
              primaryStage.setTitle("Reparar Activo");
              

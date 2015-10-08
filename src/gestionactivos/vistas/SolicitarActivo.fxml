@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minWidth="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.SolicitarActivoController">
+   <children>
+      <AnchorPane layoutX="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="554.0" prefHeight="500.0" prefWidth="554.0" styleClass="anchorPane" stylesheets="@../css/form.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="3.0" layoutY="276.0" text="Fecha:" />
+            <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
+            <Label layoutX="3.0" layoutY="181.0" text="Rubro:" />
+            <ComboBox fx:id="rubro" layoutX="171.0" layoutY="190.0" prefWidth="150.0" promptText="--Seleccione  Rubro" />
+            <Label layoutX="3.0" layoutY="148.0" text="Nombre Activo: " />
+            <Label layoutY="341.0" text="Descripcion de Solicitud:" />
+            <Label layoutY="230.0" text="Ubicacion a Asignar:" />
+            <TextField fx:id="nombre" layoutX="171.0" layoutY="146.0" />
+            <TextArea fx:id="descripcion" layoutX="173.0" layoutY="324.0" prefHeight="55.0" prefWidth="268.0" />
+            <Button fx:id="ingresarBoton" defaultButton="true" layoutX="67.0" layoutY="412.0" mnemonicParsing="false" text="Ingresar" textFill="#0d831d" />
+            <Button fx:id="cancelarBoton" layoutX="207.0" layoutY="412.0" mnemonicParsing="false" text="Cancelar" textFill="#cd0d0d" />
+            <DatePicker fx:id="fecha" layoutX="170.0" layoutY="274.0" />
+            <Label alignment="CENTER" layoutX="177.0" layoutY="34.0" text="SOLICITUD DE  ACTIVO" />
+            <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
+            <ComboBox fx:id="ubicacion" editable="true" layoutX="170.0" layoutY="228.0" prefHeight="25.0" prefWidth="174.0" promptText="--Seleccione Ubicacion" />
+            <Label layoutX="3.0" layoutY="113.0" text="Nombre de solicitante:" />
+            <TextField layoutX="171.0" layoutY="111.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
