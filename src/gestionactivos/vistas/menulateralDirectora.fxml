@@ -20,9 +20,9 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="191.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="actingresado" mnemonicParsing="false" prefHeight="33.0" prefWidth="159.0" styleClass="menuItem" text="Activos Ingresados" />
-                              <Button fx:id="actreparacion" mnemonicParsing="false" styleClass="menuItem" text="Activos en Reparación" />
-                              <Button fx:id="actbaja" mnemonicParsing="false" prefHeight="33.0" prefWidth="163.0" styleClass="menuItem" text="Activos de Baja" />
+                              <Button fx:id="actingresado" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Activos Ingresados" />
+                              <Button fx:id="actreparacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Activos en Reparación" />
+                              <Button fx:id="actbaja" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Activos de Baja" />
                            </children>
                         </VBox>
                      </children>
@@ -35,9 +35,9 @@
                      <children>
                         <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="188.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="solpeticion" mnemonicParsing="false" prefHeight="33.0" prefWidth="159.0" styleClass="menuItem" text="Peteción de Activos" />
-                              <Button fx:id="solreparacion" mnemonicParsing="false" styleClass="menuItem" text="Reparación de Activos" />
-                              <Button fx:id="solbaja" mnemonicParsing="false" prefHeight="33.0" prefWidth="159.0" styleClass="menuItem" text="Baja de Activos" />
+                              <Button fx:id="solpeticion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Peteción de Activos" />
+                              <Button fx:id="solreparacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Reparación de Activos" />
+                              <Button fx:id="solbaja" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Baja de Activos" />
                            </children>
                         </VBox>
                      </children>
@@ -50,8 +50,8 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="replanificacion" mnemonicParsing="false" styleClass="menuItem" text="Realizar Planificación" />
-                              <Button fx:id="verplanificacion" mnemonicParsing="false" prefHeight="33.0" prefWidth="157.0" styleClass="menuItem" text="Ver Planificación" />
+                              <Button fx:id="replanificacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Realizar Planificación" />
+                              <Button fx:id="verplanificacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Ver Planificación" />
                            </children>
                         </VBox>
                      </children>

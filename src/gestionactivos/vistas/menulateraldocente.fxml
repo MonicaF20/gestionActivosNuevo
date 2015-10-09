@@ -9,13 +9,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="269.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.MenuLateralDocenteController">
    <children>
-  <Accordion fx:id="acordion" layoutX="14.0" layoutY="93.0" prefHeight="407.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
+  <Accordion fx:id="acordion" layoutX="14.0" layoutY="93.0" prefHeight="262.0" prefWidth="269.0" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
     <panes>
-      <TitledPane fx:id="peticiones" animated="false" prefHeight="169.0" prefWidth="269.0" text="Solicitudes de Peticion de Activos">
+      <TitledPane fx:id="peticiones" animated="false" maxHeight="100.0" minHeight="75.0" prefHeight="90.0" prefWidth="269.0" text="Solicitudes de Peticion de Activos">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="267.0">
                      <children>
-                        <VBox layoutX="20.0" prefHeight="200.0" prefWidth="230.0">
+                        <VBox layoutX="20.0" prefHeight="111.0" prefWidth="230.0">
                            <children>
                               <Button fx:id="reportePeticiones" mnemonicParsing="false" prefHeight="33.0" prefWidth="253.0" styleClass="menuItem" text="Generar Solicitud de Peticion" />
                               <Button fx:id="solicitudesPeticion" mnemonicParsing="false" prefHeight="33.0" prefWidth="230.0" styleClass="menuItem" text="Estado de Solicitudes de Peticion" />
@@ -24,7 +24,7 @@
                      </children></AnchorPane>
         </content>
       </TitledPane>
-      <TitledPane fx:id="reparacion" animated="false" text="Solicitudes de Reparacion">
+      <TitledPane fx:id="reparacion" animated="false" maxHeight="100.0" minHeight="50.0" prefHeight="75.0" prefWidth="269.0" text="Solicitudes de Reparacion">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -53,7 +53,7 @@
             </TitledPane>
     </panes>
   </Accordion>
-      <Label layoutX="6.0" layoutY="50.0" text="Menu Docente / Administrativo" />
+      <Label layoutX="6.0" layoutY="50.0" text="Menu Docente " />
       <Label alignment="CENTER" layoutX="40.0" layoutY="414.0" prefHeight="47.0" prefWidth="164.0" styleClass="cerrarSesion" text="Regresar al Menu " textAlignment="CENTER" underline="true" />
  </children>
 </AnchorPane>
