@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.ReportePeticionAdminController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="186.0" layoutY="150.0" prefHeight="700.0" prefWidth="999.0" stylesheets="@../css/form.css">
+         <children>
+            <Label fx:id="lblTituloReporte" layoutX="331.0" layoutY="45.0" text="REPORTE DE PETICION DE ACTIVOS" />
+            <ComboBox fx:id="cmbOpcReporte" layoutX="216.0" layoutY="99.0" prefHeight="25.0" prefWidth="195.0" promptText="--Seleccione otra modalidad" />
+            <Button fx:id="btnImprimir" layoutX="411.0" layoutY="432.0" mnemonicParsing="false"  text="Imprimir " />
+            <TableView fx:id="tableReportePeticion" layoutX="151.0" layoutY="143.0" prefHeight="258.0" prefWidth="592.0">
+              <columns>
+                <TableColumn fx:id="tableColRubro" prefWidth="120.0" text="Codigo de Rubro" />
+                <TableColumn fx:id="tableColActivo" prefWidth="120.0" text="Codigo de Activo" />
+                  <TableColumn fx:id="tableColNombre" prefWidth="79.0" text="Nombre" />
+                  <TableColumn fx:id="tableUbiAnterior" prefWidth="132.0" text="Ubicacion Anterior" />
+                  <TableColumn fx:id="tableUbiActual" prefWidth="159.0" text="Ubicacion Actual " />
+              </columns>
+            </TableView>
+            
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

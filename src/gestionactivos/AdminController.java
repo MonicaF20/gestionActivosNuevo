@@ -114,8 +114,42 @@ public class AdminController extends GestionActivos implements Initializable{
               llamarInterfaces();
               }
           });
-            
-    
+final ContextMenu cm2= new ContextMenu();
+       MenuItem item3= new MenuItem("Reporte de Activos Ingresados");
+       MenuItem item4= new MenuItem("Reporte de Activos en Reparacion");
+       MenuItem item5= new MenuItem("Reporte de Activos dados de Baja");
+       cm2.getItems().addAll(item3,item4,item5);
+         
+       reportes.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+        @Override 
+        public void handle(MouseEvent e) {
+            if (e.getButton() == MouseButton.PRIMARY)  
+                cm2.show(reportes,e.getScreenX(),e.getScreenY());
+        }
+});
+       item3.setOnAction(new EventHandler(){
+
+              @Override
+              public void handle(Event event) {
+                imagenSeleccionada="reporteIngreso";
+                  llamarInterfaces();              }
+          });
+       
+       item4.setOnAction(new EventHandler(){
+
+              @Override
+              public void handle(Event event) {
+                imagenSeleccionada="reporteReparacionAdmin";
+                  llamarInterfaces();              }
+          });
+       
+       item5.setOnAction(new EventHandler(){
+
+              @Override
+              public void handle(Event event) {
+                imagenSeleccionada="reporteBajaAdmin";
+                  llamarInterfaces();              }
+          });
        
  /*mantenimientoRubros.setOnMouseClicked(new EventHandler() {
 
@@ -167,24 +201,67 @@ switch(imagenSeleccionada)
     case "modificarRubro":
         try{
             loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/modificarRubro.fxml"));
+            primaryStage.setTitle("Modificar Rubro Existente");
         }catch(Exception e){System.out.println(e);}
     break;
     case "ingresarRubro":
         try{
             loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ingresarRubro.fxml"));
+            primaryStage.setTitle("Agregar Nuevo Rubro");
         }catch(Exception e){}
     break;
-    //******* Mónica Baja activo **********
+    case "reparacionActivo":
+        try{
+            
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesReparacionAdmin.fxml"));
+            primaryStage.setTitle("Solicitudes de Reparacion de Activos");
+        }catch(Exception e){}
+    break;
+        case "solicitarActivo":
+        try{
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesAsignacionAdmin.fxml"));
+            primaryStage.setTitle("Solicitudes de Asignación de Activos");
+        }catch(Exception e){ System.out.println(e);}
+    break;
+        case "bajaActivo":
+        try{
+            
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesBajaAdmin.fxml"));
+            primaryStage.setTitle("Solicitudes de Baja de Activos");
+        }catch(Exception e){}
+    break;
+    case "reporteIngreso":
+        try{
+            
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reporteIngreso.fxml"));
+            primaryStage.setTitle("Reporte de Activos Ingresados");
+        }catch(Exception e){}
+    break;
+        case "reporteBajaAdmin":
+        try{
+            
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesBajaAdmin.fxml"));
+            primaryStage.setTitle("Reporte de Activos dados de Baja");
+        }catch(Exception e){}
+        break;
+        case "reporteReparacionAdmin":
+        try{
+            
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesReparacionAdmin.fxml"));
+            primaryStage.setTitle("Reporte de Activos en Reparacion");
+        }catch(Exception e){}
+      
+    break;
+   /* //******* Mónica Baja activo **********
     case "bajaActivo":
         try{
             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/bajaActivo.fxml"));
              
              primaryStage.setTitle("Baja de un Activo");
         }catch(Exception e){
-        
+        break;*/
         }
-    
-}
+
 
    GestionActivos.rootPane.setCenter(loader);
    GestionActivos.rootPane.setLeft(loader2);
@@ -199,19 +276,6 @@ switch(imagenSeleccionada)
        
     }
 
-   public void cargarSubMenu(){
-       final ContextMenu cm= new ContextMenu();
-       MenuItem item1= new MenuItem("Modificar Rubro");
-       MenuItem item2= new MenuItem("Agregar Nuevo Rubro");
-       cm.getItems().addAll(item1,item2);
-       reportes.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-        @Override 
-        public void handle(MouseEvent e) {
-            if (e.getButton() == MouseButton.PRIMARY)  
-                cm.show(reportes,e.getScreenX(),e.getScreenY());
-        }
-});
-   }
 
     
 

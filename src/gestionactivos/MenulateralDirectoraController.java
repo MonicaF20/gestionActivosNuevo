@@ -5,8 +5,11 @@
  */
 package gestionactivos;
 import static gestionactivos.GestionActivos.primaryStage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -31,7 +35,7 @@ public class MenulateralDirectoraController implements Initializable {
      @FXML private Button solbaja;
      @FXML private Button replanificacion;
      @FXML private Button verplanificacion;
-     
+     @FXML private Label lblRegresar;
      
     
     @Override
@@ -73,7 +77,47 @@ public class MenulateralDirectoraController implements Initializable {
         
         });
       
-      
+      lblRegresar.setOnMouseClicked(new EventHandler(){
+
+            @Override
+            public void handle(Event event) {
+                try {
+                    regresarMenu();
+                } catch (IOException ex) {
+                    Logger.getLogger(MenulateralDirectoraController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+ }
+        });
+         actreparacion.setOnMouseClicked(new EventHandler() {
+        @Override
+        public void handle(Event event) {
+           itemSelected(actreparacion);
+           
+       }
+        
+        });
+        solpeticion.setOnMouseClicked(new EventHandler() {
+        @Override
+        public void handle(Event event) {
+           itemSelected(solpeticion);
+           
+       }
+        
+        });
+        solreparacion.setOnMouseClicked(new EventHandler() {
+        @Override
+        public void handle(Event event) {
+           itemSelected(solreparacion);
+           
+       }
+        });
+        solbaja.setOnMouseClicked(new EventHandler() {
+        @Override
+        public void handle(Event event) {
+           itemSelected(solbaja);
+           
+       }
+        });
     }
     
     public void itemSelected(Button seleccion){
@@ -124,13 +168,46 @@ public class MenulateralDirectoraController implements Initializable {
                 primaryStage.setTitle("Planificacion Inicio de Año");
                 }catch(Exception e) {}
             break;
-        
+            
+            case "Activos en Reparación":
+                try{
+                loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesReparacionAdmin.fxml"));
+                primaryStage.setTitle("Activos en Reparación");
+                }catch(Exception e) {}
+            break;
+               case "Peteción de Activos":
+                try{
+                loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesPeticionDirectora.fxml"));
+                primaryStage.setTitle("Solicitudes de Petición");
+                }catch(Exception e) {}
+            break;
+               case "Reparación de Activos":
+                try{
+                loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesReparacionDirectora.fxml"));
+                primaryStage.setTitle("Reparacion de Activos");
+                }catch(Exception e) {}
+            break;
+                     case "Baja de Activos":
+                try{
+                loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesBajaDirectora.fxml"));
+                primaryStage.setTitle("Solicitudes de Baja");
+                }catch(Exception e) {}
+            break;
+              
         }//fin switch
   GestionActivos.rootPane.setCenter(loader);
   GestionActivos.rootPane.setLeft(loader2);
   GestionActivos.rootPane.setRight(loader3); 
     
     
+    }
+     public void regresarMenu() throws IOException{
+   AnchorPane loader= null;
+    loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menuDirectora.fxml"));
+   GestionActivos.rootPane.setCenter(loader);
+   GestionActivos.rootPane.setLeft(null);
+   GestionActivos.rootPane.setRight(null);
+   
     }
     
 }

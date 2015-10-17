@@ -61,6 +61,6 @@
         </panes>
       </Accordion>
       <Label layoutX="14.0" layoutY="56.0" text="Menú Directora" />
-      <Label alignment="CENTER" layoutX="40.0" layoutY="414.0" prefHeight="47.0" prefWidth="164.0" styleClass="cerrarSesion" text="Regresar al Menu " textAlignment="CENTER" underline="true" />
+      <Label fx:id="lblRegresar" alignment="CENTER" layoutX="40.0" layoutY="414.0" prefHeight="47.0" prefWidth="164.0" styleClass="cerrarSesion" text="Regresar al Menu " textAlignment="CENTER" underline="true" />
    </children>
 </AnchorPane>

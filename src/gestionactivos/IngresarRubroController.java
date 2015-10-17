@@ -12,7 +12,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -20,6 +23,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -79,6 +84,7 @@ public class IngresarRubroController implements Initializable {
                 lblCodRubro.setText(rubro.getIdrubro());
                 lblCodRubro.setVisible(true);
                 btnIngresarRubro.setDisable(true);
+                refresh();
             }
             }
             else{
@@ -115,5 +121,27 @@ public class IngresarRubroController implements Initializable {
     rubro.setIdrubro("CSAR"+numeroActivo);
     }
 
+    }
+    public void refresh(){
+        Parent loader = null;
+        AnchorPane loader2 = null;
+        AnchorPane loader3 = null;
+
+Scene newScene; //haciendo referencia al scene de la pagina principal
+newScene = GestionActivos.scene;
+Stage mainWindow; //Haciendo referencia al primaryStage
+mainWindow = GestionActivos.primaryStage;
+mainWindow.setScene(newScene);     
+
+//cargando el menulateral
+try {
+            loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ingresarRubro.fxml"));
+            loader2= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menuLateral.fxml"));
+            loader3= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/lateralDerecho.fxml"));
+        } catch (Exception e) {
+    }
+ GestionActivos.rootPane.setCenter(loader);
+  GestionActivos.rootPane.setLeft(loader2);
+  GestionActivos.rootPane.setRight(loader3); 
     }
 }

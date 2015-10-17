@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionactivos.SolicitudesBajaDirectoraController">
+    <children>
+      <Label layoutX="93.0" layoutY="143.0" styleClass="opciones" stylesheets="@../css/form.css" text="Nombre:" />
+      <TextField editable="false" layoutX="217.0" layoutY="138.0" />
+      <Label layoutX="98.0" layoutY="253.0" styleClass="opciones" stylesheets="@../css/form.css" text="Descripción" />
+      <TextArea layoutX="206.0" layoutY="260.0" prefHeight="39.0" prefWidth="262.0" />
+      <Label layoutX="93.0" layoutY="71.0" stylesheets="@../css/form.css" text="Solicitud de Baja" />
+      <ComboBox editable="true" layoutX="250.0" layoutY="69.0" prefHeight="25.0" prefWidth="166.0" promptText="--Seleccione Solicitud" />
+      <Button layoutX="35.0" layoutY="320.0" mnemonicParsing="false" stylesheets="@../css/form.css" text="Aceptar Solicitud" />
+      <Label layoutX="151.0" layoutY="28.0" stylesheets="@../css/form.css" text="SOLICITUDES DE BAJA DE ACTIVOS" />
+      <Label layoutX="95.0" layoutY="217.0" styleClass="opciones" stylesheets="@../css/form.css" text="Fecha" />
+      <Label layoutX="96.0" layoutY="173.0" styleClass="opciones" stylesheets="@../css/form.css" text="Código:" />
+      <TextField editable="false" layoutX="217.0" layoutY="212.0" />
+      <TextField editable="false" layoutX="217.0" layoutY="168.0" />
+      <Label layoutX="93.0" layoutY="111.0" stylesheets="@../css/form.css" text="DATOS GENERALES DE SOLICITUD" />
+      <Button layoutX="400.0" layoutY="320.0" mnemonicParsing="false" stylesheets="@../css/form.css" text="Reparar Activo" />
+      <Button layoutX="210.0" layoutY="320.0" mnemonicParsing="false" stylesheets="@../css/form.css" text="Rechazar Solicitud" />
+   </children>
+</AnchorPane>

@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionactivos.DirectoraController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.DirectoraController">
     <stylesheets>
         <URL value="@/gestionactivos/css/form.css" />
     </stylesheets>
@@ -49,5 +49,15 @@
          </children>
       </StackPane>
       <Label layoutX="407.0" layoutY="505.0" text="Planificación Nuevo Año Escolar" textAlignment="CENTER" />
+      <StackPane layoutX="600.0" prefHeight="47.0" prefWidth="220.0" styleClass="bandeja">
+         <children>
+            <Label fx:id="lblSolicitudes" prefHeight="47.0" prefWidth="220.0" styleClass="bandejaLabel" text="Solicitudes Pendientes :  0" />
+            <ImageView fitHeight="21.0" fitWidth="247.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+               <image>
+                  <Image url="@../css/msjs.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

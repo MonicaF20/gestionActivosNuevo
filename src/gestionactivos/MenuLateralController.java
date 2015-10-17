@@ -6,15 +6,21 @@
 package gestionactivos;
 
 import static gestionactivos.GestionActivos.primaryStage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -35,9 +41,13 @@ public class MenuLateralController implements Initializable {
     private Button reporteIngreso;
     @FXML Button modificarRubro;
     @FXML Button agregarRubro;
-    
-    
-    
+    @FXML Label lblRegresar;
+    @FXML Button solicitudesPeticion;
+    @FXML Button reportePeticiones;
+    @FXML Button solicitudesReparacion;
+    @FXML Button reporteReparacion;
+    @FXML  Button solicitudesBaja;
+    @FXML Button reporteBaja;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ingreso.setOnMouseClicked(new EventHandler() {
@@ -68,6 +78,60 @@ public class MenuLateralController implements Initializable {
             @Override
             public void handle(Event event) {
                 itemSelected(agregarRubro);
+            }
+        });
+ lblRegresar.setOnMouseClicked(new EventHandler(){
+
+            @Override
+            public void handle(Event event) {
+                try {
+                    regresarMenu();
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuLateralController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    solicitudesPeticion.setOnMouseClicked(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                itemSelected(solicitudesPeticion);
+            }
+        });
+    
+    reportePeticiones.setOnMouseClicked(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                itemSelected(reportePeticiones);
+            }
+        });
+    solicitudesReparacion.setOnMouseClicked(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                itemSelected(solicitudesReparacion);
+            }
+        });
+    reporteReparacion.setOnMouseClicked(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                itemSelected(reporteReparacion);
+            }
+        });
+     solicitudesBaja.setOnMouseClicked(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                itemSelected(solicitudesBaja);
+            }
+        });
+     reporteBaja.setOnMouseClicked(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                itemSelected(reporteBaja);
             }
         });
     }    
@@ -121,8 +185,45 @@ switch(selected.getText())
              
             }catch(Exception e){System.out.print(e);}
         break; 
-     
-        
+     case "Ver Solicitudes de Peticion":
+     try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesAsignacionAdmin.fxml"));
+             primaryStage.setTitle("Ver Solicitudes de Petición");
+             
+            }catch(Exception e){System.out.print(e);}
+        break;
+     case "Generar Reporte : Peticiones":
+          try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportePeticionAdmin.fxml"));
+             primaryStage.setTitle("Reporte de Solicitudes de Petición de Activos");
+             
+            }catch(Exception e){System.out.print(e);}
+        break;
+    case "Ver Solcitudes Reparacion":
+          try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesReparacionAdmin.fxml"));
+             primaryStage.setTitle("Solicitudes de Reparación");
+            }catch(Exception e){System.out.print(e);}
+        break;
+        case "Generar Reporte: Reparacion":
+          try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesReparacionAdmin.fxml"));
+             primaryStage.setTitle("Reportes de Reparacion Reparacion");
+            }catch(Exception e){System.out.print(e);}
+        break;
+        case "Ver Solicitudes de Baja":
+          try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesBajaAdmin.fxml"));
+             primaryStage.setTitle("Solicitudes de Baja de Activo");
+            }catch(Exception e){System.out.print(e);}
+        break;
+         case "Generar Reporte: Baja":
+          try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesBajaAdmin.fxml"));
+             primaryStage.setTitle("Reportes de Baja de Activo");
+            }catch(Exception e){System.out.print(e);}
+        break;
+         
 }
 
    GestionActivos.rootPane.setCenter(loader);
@@ -132,7 +233,13 @@ switch(selected.getText())
 
    
 }
-    
+    public void regresarMenu() throws IOException{
+   AnchorPane loader= null;
+    loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menuAdmin.fxml"));
+   GestionActivos.rootPane.setCenter(loader);
+   GestionActivos.rootPane.setLeft(null);
+   GestionActivos.rootPane.setRight(null);
+   
     }
-    
+}
 

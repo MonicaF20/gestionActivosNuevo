@@ -176,14 +176,14 @@ switch(seleccion)
              
             }catch(Exception e){}
         break;
-    /*case "reporteRepa":
+    case "reporteRepa":
         try{
-             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reporteBaja.fxml"));
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesReparacionAdmin.fxml"));
              
-             primaryStage.setTitle("Reporte Baja de Activos");
+             primaryStage.setTitle("Reporte Reparacion de Activos ");
              
             }catch(Exception e){}
-        break;*/
+        break;
     case "reporteBaja":
         try{
              loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reporteBaja.fxml"));
@@ -203,8 +203,30 @@ switch(seleccion)
             }catch(Exception e){}
         break;
     
-    
-    
+    case "solicitudreparacion":
+        try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesReparacionDirectora.fxml"));
+             
+             primaryStage.setTitle("Solicitudes de Reparación de Activos");
+             
+            }catch(Exception e){}
+        break;
+    case "solicitudpeticion": 
+    try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesPeticionDirectora.fxml"));
+             
+             primaryStage.setTitle("Solicitud de Peticion de Activos");
+             
+            }catch(Exception e){}
+        break;
+      case  "solicitudbaja":
+           try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesBajaDirectora.fxml"));
+             
+             primaryStage.setTitle("Solicitud de Baja de Activos");
+             
+            }catch(Exception e){}
+        break;
 }
 
    GestionActivos.rootPane.setCenter(loader);

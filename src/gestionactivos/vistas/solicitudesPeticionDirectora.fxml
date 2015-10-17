@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionactivos.SolicitudesPeticionDirectoraController">
+     <children>
+      <AnchorPane layoutX="-18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="554.0" prefHeight="500.0" prefWidth="500.0" styleClass="anchorPane" stylesheets="@../css/form.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-18.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="60.0" layoutY="312.0" prefHeight="32.0" prefWidth="149.0" styleClass="opciones" text="Fecha de la solicutd:" />
+            <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
+            <Label layoutX="60.0" layoutY="217.0" styleClass="opciones" text="Rubro:" />
+            <Label layoutX="60.0" layoutY="184.0" styleClass="opciones" text="Nombre Activo: " />
+            <Label layoutX="69.0" layoutY="388.0" styleClass="opciones" text="Descripcion de Solicitud:" />
+            <Label layoutX="57.0" layoutY="266.0" styleClass="opciones" text="Ubicacion a Asignar:" />
+            <TextField fx:id="nombre" editable="false" layoutX="228.0" layoutY="182.0" />
+            <TextArea fx:id="descripcion" editable="false" layoutX="230.0" layoutY="360.0" prefHeight="55.0" prefWidth="268.0" />
+            <Button fx:id="ingresarBoton" defaultButton="true" layoutX="100.0" layoutY="429.0" mnemonicParsing="false" text="Aceptar Solicitud" textFill="#0d831d" />
+            <Label alignment="CENTER" layoutX="177.0" layoutY="34.0" text="SOLICITUD DE PETICION DE  ACTIVO" />
+            <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
+            <Label layoutX="60.0" layoutY="149.0" styleClass="opciones" text="Nombre de solicitante:" />
+            <TextField editable="false" layoutX="228.0" layoutY="147.0" />
+            <TextField editable="false" layoutX="228.0" layoutY="226.0" />
+            <TextField editable="false" layoutX="228.0" layoutY="264.0" />
+            <TextField editable="false" layoutX="228.0" layoutY="310.0" />
+            <ComboBox editable="true" layoutX="269.0" layoutY="64.0" prefHeight="25.0" prefWidth="176.0" promptText="--Seleccione solicitud" />
+            <Label layoutX="45.0" layoutY="68.0" text="Solicitud de Asignacion de activo" />
+            <Label layoutX="57.0" layoutY="123.0" text="Datos Generales de la Solicitud" />
+            <Button layoutX="285.0" layoutY="429.0" mnemonicParsing="false" text="Rechazar Solicitud" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -28,7 +28,7 @@
       </StackPane>
       <StackPane layoutX="382.0" layoutY="85.0" prefHeight="150.0" prefWidth="200.0" styleClass="image">
          <children>
-            <ImageView id="solitarActivo" fx:id="solicitarActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
+            <ImageView id="solicitarActivo" fx:id="solicitarActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
                <image>
                   <Image url="@../css/asignar.jpg" />
                </image>
@@ -55,8 +55,8 @@
       </StackPane>
       <Label layoutX="100.0" layoutY="265.0" text="Ingreso de un Nuevo Activo" />
       <Label layoutX="404.0" layoutY="265.0" text="Solicitudes de  Activo" />
-      <Label layoutX="661.0" layoutY="265.0" text="Reparacion de un Activo" />
-      <Label layoutX="172.0" layoutY="497.0" text="Dar de Baja un Activo" />
+      <Label layoutX="634.0" layoutY="265.0" text="Solicitudes de Reparacion de un Activo" />
+      <Label layoutX="145.0" layoutY="497.0" text="Solicitudes de  Baja un Activo" />
       <StackPane layoutX="390.0" layoutY="325.0" prefHeight="150.0" prefWidth="200.0" styleClass="image">
          <children>
             <ImageView fx:id="mantenimientoRubros" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">

@@ -21,7 +21,7 @@
             <TextField fx:id="nombre" layoutX="172.0" layoutY="175.0" />
             <TextArea fx:id="descripcion" layoutX="171.0" layoutY="233.0" prefHeight="55.0" prefWidth="268.0" />
             <Button fx:id="ingresarBoton" defaultButton="true" layoutX="67.0" layoutY="412.0" mnemonicParsing="false" onAction="#ingresarActivo" text="Ingresar" textFill="#0d831d" />
-            <Button fx:id="cancelarBoton" layoutX="207.0" layoutY="412.0" mnemonicParsing="false" text="Cancelar" textFill="#cd0d0d" />
+            <Button fx:id="cancelarBoton" layoutX="207.0" layoutY="412.0" mnemonicParsing="false" onAction="#refresh" text="Cancelar" textFill="#cd0d0d" />
             <DatePicker fx:id="fecha" layoutX="171.0" layoutY="83.0" />
             <Label alignment="CENTER" layoutX="177.0" layoutY="34.0" text="INGRESO DE UN NUEVO ACTIVO" />
             <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />

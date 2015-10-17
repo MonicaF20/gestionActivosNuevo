@@ -18,9 +18,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -62,15 +67,16 @@ public class FXMLDocumentController implements Initializable {
    Activo activo= new Activo();
    Ubicacion location= new Ubicacion();
    
-     static final EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
-    static EntityManager em=emf.createEntityManager();
-   
-    // static final EntityManagerFactory emf2= Persistence.createEntityManagerFactory("GestionActivosPU");
-     static EntityManager em2=emf.createEntityManager();
+  
    
    @FXML
    public void ingresarActivo(ActionEvent event){
-       
+       EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
+     EntityManager em=emf.createEntityManager();
+      
+    EntityManagerFactory emf2= Persistence.createEntityManagerFactory("GestionActivosPU");
+     EntityManager em2=emf2.createEntityManager();
+   
        LocalDate localDate=fecha.getValue();
        Instant instant=Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
        Date date= Date.from(instant);
@@ -112,7 +118,7 @@ public class FXMLDocumentController implements Initializable {
         alert.setContentText("Codigo Generado: "+activo.getIdactivo());
 
         alert.showAndWait();
-        
+        refresh();
    
      }
      catch (RuntimeException e) {
@@ -170,7 +176,26 @@ alert.showAndWait();
     }    
     
     public void refresh(){
-        ga.addAnchorCenter();
+        Parent loader = null;
+        AnchorPane loader2 = null;
+        AnchorPane loader3 = null;
+
+Scene newScene; //haciendo referencia al scene de la pagina principal
+newScene = GestionActivos.scene;
+Stage mainWindow; //Haciendo referencia al primaryStage
+mainWindow = GestionActivos.primaryStage;
+mainWindow.setScene(newScene);     
+
+//cargando el menulateral
+try {
+            loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/FXMLDocument.fxml"));
+            loader2= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menuLateral.fxml"));
+            loader3= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/lateralDerecho.fxml"));
+        } catch (Exception e) {
+    }
+ GestionActivos.rootPane.setCenter(loader);
+  GestionActivos.rootPane.setLeft(loader2);
+  GestionActivos.rootPane.setRight(loader3); 
     }
    
     @FXML

@@ -103,6 +103,10 @@ public class InicioController extends GestionActivos  implements Initializable {
         case "directora":
              loader = (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menuDirectora.fxml"));
              break;
+        case "administrativo":
+            loader = (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menudocente.fxml"));
+        
+            break;
     }
     GestionActivos.rootPane.setCenter(loader);
 }
