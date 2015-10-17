@@ -17,7 +17,7 @@
             <Font name="Ebrima Bold" size="27.0" />
          </font>
       </Text>
-      <StackPane layoutX="200.0" layoutY="181.0" prefHeight="150.0" prefWidth="200.0" styleClass="image2">
+      <StackPane layoutX="192.0" layoutY="96.0" prefHeight="150.0" prefWidth="200.0" styleClass="image2">
          <children>
             <ImageView id="socilitarActivo" fx:id="solicitarActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
                <image>
@@ -26,7 +26,7 @@
             </ImageView>
          </children>
       </StackPane>
-      <StackPane layoutX="580.0" layoutY="181.0" prefHeight="150.0" prefWidth="220.0" styleClass="image2">
+      <StackPane layoutX="580.0" layoutY="96.0" prefHeight="150.0" prefWidth="220.0" styleClass="image2">
          <children>
             <ImageView id="reparacionActivo" fx:id="reparacionActivo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -34,8 +34,8 @@
                </image>
             </ImageView>
          </children></StackPane>
-      <Label layoutX="230.0" layoutY="383.0" text="Solicitar de  Activo" />
-      <Label layoutX="580.0" layoutY="383.0" text="Solicitud de Reparacion de un Activo" />
+      <Label layoutX="241.0" layoutY="279.0" text="Solicitar de  Activo" />
+      <Label layoutX="570.0" layoutY="269.0" text="Solicitud de Reparacion de un Activo" />
        <StackPane layoutX="600.0" prefHeight="47.0" prefWidth="220.0" styleClass="bandeja">
          <children>
             <Label fx:id="lblSolicitudes" prefHeight="47.0" prefWidth="220.0" styleClass="bandejaLabel" text="Solicitudes Pendientes :  0" />
@@ -46,5 +46,15 @@
             </ImageView>
          </children>
       </StackPane>
+      <StackPane layoutX="418.0" layoutY="310.0" prefHeight="150.0" prefWidth="20.0" styleClass="image">
+         <children>
+            <ImageView id="bajaActivo" fx:id="bajaActivo" fitHeight="150.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/baja.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Label layoutX="405.0" layoutY="492.0" text="Solicitudes de  Baja un Activo" />
    </children>
 </AnchorPane>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="672.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.SolicitarBajaController">
+    <stylesheets>
+        <URL value="@/gestionactivos/css/form.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="249.0" layoutY="55.0" text="Solicitud de Baja de Activo" />
+      <Label layoutX="83.0" layoutY="148.0" text="Nombre del Activo:" />
+      <Label layoutX="83.0" layoutY="184.0" text="Código Activo:" />
+      <TextArea layoutX="223.0" layoutY="231.0" prefHeight="117.0" prefWidth="188.0" />
+      <TextField layoutX="223.0" layoutY="182.0" />
+      <TextField layoutX="223.0" layoutY="146.0" />
+      <Label layoutX="83.0" layoutY="231.0" text="Detalle del daño:" />
+      <Button layoutX="493.0" layoutY="392.0" mnemonicParsing="false" text="Enviar" />
+      <Button layoutX="350.0" layoutY="392.0" mnemonicParsing="false" text="Limpiar" />
+      <Label layoutX="419.0" layoutY="148.0" text="Fecha " />
+      <DatePicker layoutX="468.0" layoutY="146.0" />
+   </children>
+</AnchorPane>

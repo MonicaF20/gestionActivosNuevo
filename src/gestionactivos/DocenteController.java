@@ -34,6 +34,8 @@ public class DocenteController implements Initializable {
        @FXML
       private ImageView reparacionActivo;
        @FXML
+       private ImageView bajaActivo;
+       @FXML
        List lista= new ArrayList<>();
     String imagenSeleccionada="";
     
@@ -47,7 +49,14 @@ public class DocenteController implements Initializable {
            
        }
    });
-   
+       bajaActivo.setOnMouseClicked(new EventHandler() {
+
+       @Override
+       public void handle(Event event) {
+           capturarClick(bajaActivo);
+           
+       }
+   });
         reparacionActivo.setOnMouseClicked(new EventHandler() {
 
        @Override
@@ -103,6 +112,14 @@ switch(imagenSeleccionada)
              
             }catch(Exception e){}
         break;
+        case "bajaActivo":
+            try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/SolicitarBaja.fxml"));
+             
+             primaryStage.setTitle("Solicitar Baja de Activo");
+             
+            }catch(Exception e){}
+            break;
     
                 }
 GestionActivos.rootPane.setCenter(loader);

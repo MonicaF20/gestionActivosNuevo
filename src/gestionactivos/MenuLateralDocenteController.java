@@ -177,7 +177,7 @@ switch(selected.getText())
         break;
         case "Generar Solicitud de baja":
         try{
-             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/bajaActivo.fxml"));
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/SolicitarBaja.fxml"));
              
              primaryStage.setTitle("Solicitud de Baja de Activo");
              
