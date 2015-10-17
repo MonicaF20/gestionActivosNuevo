@@ -7,12 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" minHeight="500.0" minWidth="600.0" prefHeight="500.0" prefWidth="600.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.PlanificacionInicioController">
+<AnchorPane id="AnchorPane" minHeight="500.0" minWidth="600.0" prefHeight="500.0" prefWidth="600.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.ActivosInicioController">
    <children>
       <Label alignment="CENTER" layoutX="47.0" layoutY="50.0" prefHeight="35.0" prefWidth="506.0" text="Activos al incio del año" textAlignment="CENTER" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="50.0" />
       <Pane layoutX="78.0" layoutY="99.0" prefHeight="48.0" prefWidth="461.0" AnchorPane.bottomAnchor="353.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="99.0">
          <children>
-            <ComboBox fx:id="cmb_Ubicacion" layoutY="20.0" prefHeight="25.0" prefWidth="184.0" />
+            <ComboBox fx:id="cmb_Ubicacion" layoutY="20.0" prefHeight="25.0" prefWidth="184.0" promptText="--Grado y Seccion--" />
             <Button fx:id="btn_Buscar" layoutX="338.0" layoutY="6.0" mnemonicParsing="false" text="Buscar" />
             <Label prefHeight="21.0" prefWidth="105.0" text="Ubiacion" />
          </children>

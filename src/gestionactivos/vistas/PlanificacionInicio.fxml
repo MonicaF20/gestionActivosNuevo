@@ -12,7 +12,7 @@
       <Label alignment="CENTER" layoutX="47.0" layoutY="50.0" prefHeight="35.0" prefWidth="506.0" text="Asignacion de Activos al Incio del año" textAlignment="CENTER" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="50.0" />
       <Pane layoutX="79.0" layoutY="111.0" prefHeight="48.0" prefWidth="461.0" AnchorPane.bottomAnchor="341.0" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="111.0">
          <children>
-            <ComboBox fx:id="cmb_Grado" layoutY="20.0" prefHeight="25.0" prefWidth="184.0" />
+            <ComboBox fx:id="cmb_Grado" layoutY="20.0" prefHeight="25.0" prefWidth="184.0" promptText="--Grado y Seccion--" />
             <Button fx:id="btn_Buscar" layoutX="338.0" layoutY="6.0" mnemonicParsing="false" text="Buscar" />
             <Label prefHeight="21.0" prefWidth="105.0" text="Ubiacion" />
          </children>

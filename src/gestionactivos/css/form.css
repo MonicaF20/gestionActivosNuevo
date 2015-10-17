@@ -8,28 +8,28 @@ and open the template in the editor.
     Author     : MariaJose
 */
 .label{
-     -fx-font-size: 16px;
- -fx-font-family: Impact, fantasy;
-  /*-fx-text-fill: #000080;*/
-  -fx-text-fill: #2F3640;
- 
+    -fx-font-size: 16px;
+    -fx-font-family: Impact, fantasy;
+    /*-fx-text-fill: #000080;*/
+    -fx-text-fill: #2F3640;
+
 }
-   
+
 .button{
-   
- -fx-background-color: linear-gradient(to bottom, #2E95BF, #1F637F);
- -fx-background-radius: 10;
- -fx-font-family: Impact,fantasy;
- -fx-text-fill:#F2F2F2;
- -fx-font-size: 16px;
- -fx-padding: 8px 20px 10px 20px;
- -fx-border: dotted #3a789e 2px;
-  
+
+    -fx-background-color: linear-gradient(to bottom, #2E95BF, #1F637F);
+    -fx-background-radius: 10;
+    -fx-font-family: Impact,fantasy;
+    -fx-text-fill:#F2F2F2;
+    -fx-font-size: 16px;
+    -fx-padding: 8px 20px 10px 20px;
+    -fx-border: dotted #3a789e 2px;
+
 }
 
 .button:hover {
-  -fx-background-color: linear-gradient(to bottom, #45c998, #4fb8af);
- 
+    -fx-background-color: linear-gradient(to bottom, #45c998, #4fb8af);
+
 }
 .comboTextField {
     -fx-background-color: -fx-text-box-border, -fx-control-inner-background;
@@ -40,9 +40,9 @@ and open the template in the editor.
 }
 
 .comboTextField:focused {
-   -fx-background-color: -fx-text-box-border, -fx-control-inner-background;
-   -fx-background-insets: 0, 1 0 1 1;
-    
+    -fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1 0 1 1;
+
 }
 
 .comboButton {
@@ -66,120 +66,130 @@ and open the template in the editor.
 }
 
 .comboFocus{
-        -fx-border-color:-fx-focus-color;       
-        -fx-border-insets: -1;
-        -fx-border-radius: 0 5 5 0
+    -fx-border-color:-fx-focus-color;       
+    -fx-border-insets: -1;
+    -fx-border-radius: 0 5 5 0
 }
 .comboFocusOut{
-        -fx-border-color:transparent;   
-        -fx-border-insets: 0;
-        -fx-border-radius: 0 5 5 0
+    -fx-border-color:transparent;   
+    -fx-border-insets: 0;
+    -fx-border-radius: 0 5 5 0
 }
 
 #codigo{
-/*   -fx-text-fill: firebrick;*/
--fx-text-fill:#CC1000;
+    /*   -fx-text-fill: firebrick;*/
+    -fx-text-fill:#CC1000;
 }
 
 .container{
--fx-border-color:darkblue ; 
- -fx-border-insets:3;
- -fx-border-radius:7;
- -fx-border-width:1.0;
+    -fx-border-color:darkblue ; 
+    -fx-border-insets:3;
+    -fx-border-radius:7;
+    -fx-border-width:1.0;
 }
 
 .image{
--fx-padding: 10;
-/*-fx-background-color: firebrick;*/
--fx-background-color: #A61103;
--fx-background-radius: 5;
--fx-effect: dropshadow( three-pass-box , #000000  , 5, 0.0 , 1 , 1 );
-	
+    -fx-padding: 10;
+    /*-fx-background-color: firebrick;*/
+    -fx-background-color: #A61103;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow( three-pass-box , #000000  , 5, 0.0 , 1 , 1 );
+
 }
 
 .image:hover{
-   -fx-rotate:4;
-   
+    /*-fx-rotate:4;*/
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-cursor: hand;
+
 }
 
 .anchorPane{
-  
-   
+
+
 }
 
 .opciones{
     -fx-font-size: 12px;
- -fx-font-family: Arial;
- -fx-text-fill: #072676;
+    -fx-font-family: Arial;
+    -fx-text-fill: #072676;
 }
 
 .menuLateral{
     -fx-float: left;
     -fx-background-color:#41BDC9;
-   -fx-border-color: #3366CC;
+    -fx-border-color: #3366CC;
 
 }
 
 .menuItem{
-     -fx-background-color: gray;
-    
+    -fx-background-color: gray;
+
     -fx-font-family: Arial;
-     -fx-text-fill: black;
+    -fx-text-fill: black;
     -fx-font-size: 12px;
-  
+
 }
 
 .menuItem:hover{
-   -fx-rotate:4;
+    -fx-rotate:4;
 }
 
 .cerrarSesion:hover{
     -fx-text-emphasis: circle;
     -fx-text-fill: #FF1400;
-    
+
 }
 
 .bandeja{
-   /*-fx-border-color: #7F0A00;*/
-   -fx-background-color: #A61103;
-   -fx-background-radius: 0 0 10 10;
-   -fx-border-radius: 0 0 10 10;
-   -fx-padding: 0.5;
-   
+    /*-fx-border-color: #7F0A00;*/
+    -fx-background-color: #A61103;
+    -fx-background-radius: 0 0 10 10;
+    -fx-border-radius: 0 0 10 10;
+    -fx-padding: 0.5;
+
 }
 
 .bandejaLabel{
--fx-text-fill: #F7F7F7;
--fx-padding: 5;
+    -fx-text-fill: #F7F7F7;
+    -fx-padding: 5;
 }
 
 .bandejaLabel:hover{
-/*-fx-text-fill: #F5DB73;*/
-/*-fx-background-color: #F5DB73;*/
--fx-background-color: #F24C27;
--fx-border-insets:3;
--fx-background-radius: 0 0 10 10;
-/*-fx-border-radius:7;*/
--fx-border-width:1.0;
+    /*-fx-text-fill: #F5DB73;*/
+    /*-fx-background-color: #F5DB73;*/
+    -fx-background-color: #F24C27;
+    -fx-border-insets:3;
+    -fx-background-radius: 0 0 10 10;
+    /*-fx-border-radius:7;*/
+    -fx-border-width:1.0;
 }
 
 .image2{
-  -fx-padding: 10;
-  -fx-background-color: #A61103;
-  -fx-background-radius: 5;
-  -fx-effect: dropshadow( three-pass-box , #000000  , 5, 0.0 , 1 , 1 );
+    -fx-padding: 10;
+    -fx-background-color: #A61103;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow( three-pass-box , #000000  , 5, 0.0 , 1 , 1 );
+    /*-fx-opacity: 1.0;*/
 }
 
 .image2:hover{
-   -fx-rotate:4;
+    /*-fx-rotate:4;*/
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-cursor: hand;
+    /*-fx-opacity: 0.9;*/
+
 }
 
+
 .anchorPane{
-  
-   
+
+
 }
 
 .opciones{
     -fx-font-size: 12px;
- -fx-font-family: Arial;
+    -fx-font-family: Arial;
 }
