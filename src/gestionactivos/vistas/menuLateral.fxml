@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="220.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.MenuLateralController">
    <children>
-  <Accordion fx:id="acordion" layoutX="14.0" layoutY="93.0" prefHeight="407.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
+  <Accordion fx:id="acordion" layoutX="14.0" layoutY="93.0" prefHeight="316.0" prefWidth="220.0" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
     <panes>
       <TitledPane animated="false" text="Ingreso de un Nuevo Activo">
         <content>
@@ -64,7 +64,7 @@
                   </AnchorPane>
               </content>
             </TitledPane>
-            <TitledPane animated="false" prefHeight="307.0" prefWidth="235.0" text="Mantenimiento- Catalogo de Rubros">
+            <TitledPane animated="false" prefHeight="229.0" prefWidth="220.0" text="Mantenimiento- Catalogo de Rubros">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -81,5 +81,6 @@
     </panes>
   </Accordion>
       <Label layoutX="6.0" layoutY="50.0" text="Menu Administrador" />
+    <Label alignment="CENTER" layoutX="40.0" layoutY="414.0" prefHeight="47.0" prefWidth="164.0" styleClass="cerrarSesion" text="Regresar al Menu " textAlignment="CENTER" underline="true" />
  </children>
 </AnchorPane>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionactivos.ReportesReparacionAdminController">
+    <children>
+      <AnchorPane id="AnchorPane" layoutX="186.0" layoutY="150.0" prefHeight="700.0" prefWidth="999.0" stylesheets="@../css/form.css">
+         <children>
+            <Label fx:id="lblTituloReporte" layoutX="331.0" layoutY="45.0" text="REPORTE DE ACTIVOS EN REPARACION" />
+            <DatePicker fx:id="dtPickerReporte" layoutX="467.0" layoutY="100.0" prefHeight="25.0" prefWidth="136.0" visible="false" />
+            <Button fx:id="btnImprimir" layoutX="412.0" layoutY="389.0" mnemonicParsing="false" text="Imprimir " />
+            <TableView fx:id="tableReporteIngreso" layoutX="194.0" layoutY="100.0" prefHeight="258.0" prefWidth="536.0">
+              <columns>
+                <TableColumn fx:id="tableColRubro" prefWidth="120.0" text="Codigo de Rubro" />
+                <TableColumn fx:id="tableColActivo" prefWidth="120.0" text="Codigo de Activo" />
+                  <TableColumn fx:id="tableColNombre" prefWidth="79.0" text="Nombre" />
+                  <TableColumn fx:id="tableColDescrip" prefWidth="216.0" text="Descripcion " />
+              </columns>
+            </TableView>
+            <ComboBox fx:id="cmbBuscarRubros" editable="true" layoutX="469.0" layoutY="100.0" prefHeight="25.0" prefWidth="150.0" visible="false" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
