@@ -176,6 +176,7 @@ return ubicaciones;
       
       
   }
+  
   ObservableList<String> getIdactivo() {
       ObservableList<String> idactivos = FXCollections.observableArrayList();
          Statement stmt= null;
