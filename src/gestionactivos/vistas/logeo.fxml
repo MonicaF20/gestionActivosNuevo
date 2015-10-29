@@ -13,7 +13,7 @@
    <children>
       <AnchorPane fx:id="anchorLogeo" layoutX="257.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="500.0" styleClass="anchorPane" stylesheets="@../css/form.css" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="36.0" styleClass="secundario" stylesheets="@../css/inicio.css" text="AUTENTIFICACION DE USUARIOS" textAlignment="CENTER" AnchorPane.bottomAnchor="426.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="36.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="36.0" styleClass="secundario" stylesheets="@../css/inicio.css" text="AUTENTIFICACIÓN DE USUARIOS" textAlignment="CENTER" AnchorPane.bottomAnchor="426.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="36.0" />
             <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" layoutX="175.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="262.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="88.0">
                <image>
                   <Image url="@../css/lock.png" />

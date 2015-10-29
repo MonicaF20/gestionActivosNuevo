@@ -5,18 +5,42 @@
  */
 package gestionactivos;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.Writer;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+
 import gestionactivos.modelo.*;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import java.net.URL;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,9 +48,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -42,35 +72,33 @@ public class FXMLDocumentController implements Initializable {
     y se le da el nombre al objeto segun se le puso  en el id
     */
     GestionActivos ga;
-   @FXML
-   private Label codigo;
-    @FXML
-   private Label codigoLabel;
-   @FXML
-   private ComboBox<String> rubro;
-   @FXML
-   private TextField nombre;
-   @FXML
-   private TextArea descripcion;
-   @FXML
-   private ComboBox ubicacion;
-    @FXML
-   private TextField ubi;
-   @FXML
-   private Button ingresarBoton;
-   @FXML
-   private Button cancelarBoton;
-   @FXML 
-   private DatePicker fecha;
-   
+   @FXML private Label codigo;
+   @FXML private Label codigoLabel;
+   @FXML private ComboBox<String> rubro;
+   @FXML  private TextField nombre;
+   @FXML private TextArea descripcion;
+   @FXML  private ComboBox ubicacion;
+   @FXML private TextField ubi;
+   @FXML private Button ingresarBoton;
+   @FXML private Button cancelarBoton;
+   @FXML private DatePicker fecha;
+   @FXML private ImageView imageViewCargar;
    BDConexion db= BDConexion.getInstance();
    Activo activo= new Activo();
    Ubicacion location= new Ubicacion();
    
-  
+  //variables para la generacion de QR
+  private static final String FORMATO_IMAGEN = "png"; 
+  private static String RUTA_IMAGEN = System.getProperty("user.home"); 
+  private static String RUTA_IMAGEN2 = System.getProperty("user.home"); 
+  private static final int ancho = 500; 
+  private static final int alto = 500; 
+  private static final int ancho2 = 500; 
+  private static final int alto2 = 70; 
+  private static String datos = "";
    
    @FXML
-   public void ingresarActivo(ActionEvent event){
+   public void ingresarActivo(ActionEvent event) {
        EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
      EntityManager em=emf.createEntityManager();
       
@@ -112,15 +140,29 @@ public class FXMLDocumentController implements Initializable {
       em2.getTransaction().commit();
       em2.close();//cerrar el objeto del entitymanager
       emf.close();//cerrar la conexion a la base de datos
-      Alert alert = new Alert(AlertType.INFORMATION);
+      Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Activo Ingresado Exitosamente");
         alert.setHeaderText(null);
         alert.setContentText("Codigo Generado: "+activo.getIdactivo());
-
-        alert.showAndWait();
-        refresh();
-   
-     }
+        
+        ButtonType buttonTypeOne = new ButtonType("IMPRIMIR CODIGO");
+        ButtonType buttonTypeAceptar = new ButtonType("Aceptar", ButtonData.YES);
+        alert.getButtonTypes().setAll(buttonTypeOne,buttonTypeAceptar);
+        Optional<ButtonType> result= alert.showAndWait();
+        
+        
+        if (result.get()==buttonTypeOne){
+        //imprimir la etiqueta
+            System.out.println("Imprimir imagen");  
+           crearPNG();
+        }
+        generarQR();
+        refresh(); 
+        RUTA_IMAGEN=System.getProperty("user.home"); 
+        RUTA_IMAGEN2=System.getProperty("user.home");
+       }
+        
+     
      catch (RuntimeException e) {
     Alert alert = new Alert(AlertType.ERROR);
 alert.setTitle("Error Dialog");
@@ -172,6 +214,29 @@ alert.showAndWait();
           }
       });
    
+    imageViewCargar.setOnMouseClicked(new EventHandler(){
+
+        @Override
+        public void handle(Event event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Buscar Imagen");
+
+        // Agregar filtros para facilitar la busqueda
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        // Obtener la imagen seleccionada
+        File imgFile = fileChooser.showOpenDialog(GestionActivos.primaryStage);
+
+        // Mostar la imagen
+        if (imgFile != null) {
+            Image image = new Image("file:" + imgFile.getAbsolutePath());
+            imageViewCargar.setImage(image);
+        }        }
+    });
      
     }    
     
@@ -234,7 +299,123 @@ try {
    AutoCompleteComboBoxListener combobox= new AutoCompleteComboBoxListener<>(ubicacion);
      
      }
+
+    private void generarQR()   {
+    BitMatrix bm = null;
+        Writer writer= new QRCodeWriter();
+        datos="Codigo de Activo: "+activo.getIdactivo()+"\n"
+                +"Rubro de Activo: "+activo.getIdrubro().getIdrubro()+"\n"
+                + "Nombre de Activo: "+activo.getNombreactivo()+"\n"
+                + "Descripcion de Activo: "+activo.getDescripcionactivo()+" \n"
+                + "Ubicacion de Activo: "+ubicacion.getValue()+"\n"
+                + "Estado de Activo: "+activo.getEstadogeneral();
+               
+                
+        try {
+            bm=writer.encode(datos, BarcodeFormat.QR_CODE, ancho, alto);
+        } catch (WriterException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    BufferedImage image = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB); 
+       for (int y = 0; y < ancho; y++) { 
+       for (int x = 0; x < alto; x++) { 
+           int grayValue = (bm.get(x, y) ? 1 : 0) & 0xff; 
+           image.setRGB(x, y, (grayValue == 0 ? 0 : 0xFFFFFF)); 
+       } 
+    } 
+       image= invertirColores(image,ancho,alto);
+       File dir = new File(RUTA_IMAGEN, "CodigosQR-SISGE");
+        if (!dir.exists() && !dir.mkdirs()) {
+        try {
+            throw new IOException("Unable to create " + dir.getAbsolutePath());
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+       RUTA_IMAGEN=dir+ "/"+activo.getIdactivo()+".png";
+    FileOutputStream qrCode = null; 
+        try {
+            qrCode = new FileOutputStream(RUTA_IMAGEN);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try { 
+            ImageIO.write(image, FORMATO_IMAGEN, qrCode);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            qrCode.close();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     Desktop d = Desktop.getDesktop(); 
+        try {
+            d.open(new File(RUTA_IMAGEN));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
         
-        
+       private static  BufferedImage invertirColores(BufferedImage imagen,int anchoX, int altoX) { 
+        for (int x = 0; x < anchoX; x++) { 
+            for (int y = 0; y < altoX; y++) { 
+                int rgb = imagen.getRGB(x, y); 
+                if (rgb == -16777216) { 
+                    imagen.setRGB(x, y, -1); 
+                } else { 
+                    imagen.setRGB(x, y, -16777216); 
+                } 
+            } 
+        } 
+        return imagen; 
+    } 
     
+    public void crearPNG() {
+        FileOutputStream labels= null;
+ try {  
+     //creando un directorio para guardar las etiquetas
+     File dir= new File(RUTA_IMAGEN2,"Etiquetas-SISGE");
+     if (!dir.exists() && !dir.mkdirs()) {
+         try {
+             throw new IOException("Unable to create " + dir.getAbsolutePath());
+         } catch (IOException ex) {
+             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+         }
+     }
+     //generando la imagen 
+     BufferedImage image = new BufferedImage(ancho2, alto2, BufferedImage.TYPE_INT_RGB);
+     Graphics g = image.getGraphics();
+         g.setFont(new Font("TimesRoman", Font.BOLD, 55));
+     g.drawString(activo.getIdactivo(),50,50);
+ 
+     RUTA_IMAGEN2=dir+"/"+activo.getIdactivo()+".png";
+     labels = new FileOutputStream(RUTA_IMAGEN2);
+     image= invertirColores(image,ancho2, alto2);
+            try {  
+                ImageIO.write(image, "png", labels);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                labels.close();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Desktop desktop= Desktop.getDesktop();
+            try {
+                desktop.open(new File(RUTA_IMAGEN2));
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ } catch (FileNotFoundException ex) {  
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex); 
+ } finally {
+            try {
+                labels.close();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

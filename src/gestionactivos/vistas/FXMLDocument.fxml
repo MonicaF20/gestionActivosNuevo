@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -12,20 +14,28 @@
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="672.0" styleClass="anchorPane" stylesheets="@../css/form.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="1.0" layoutY="83.0" text="Fecha:" />
-            <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
+            <Label fx:id="codigoLabel" layoutX="10.0" layoutY="364.0" prefHeight="31.0" prefWidth="160.0" text="Codigo de Activo:" visible="false" />
             <Label layoutX="1.0" layoutY="125.0" text="Rubro:" />
             <ComboBox fx:id="rubro" layoutX="169.0" layoutY="123.0" onMouseClicked="#cargarRubros" prefWidth="150.0" promptText="--Seleccione  Rubro" />
             <Label layoutY="167.0" text="Nombre Activo: " />
-            <Label layoutX="1.0" layoutY="233.0" text="Descripcion del Activo:" />
+            <Label layoutY="240.0" text="Descripcion del Activo:" />
             <Label layoutY="295.0" text="Ubicacion a Asignar:" />
             <TextField fx:id="nombre" layoutX="172.0" layoutY="175.0" />
-            <TextArea fx:id="descripcion" layoutX="171.0" layoutY="233.0" prefHeight="55.0" prefWidth="268.0" />
+            <TextArea fx:id="descripcion" layoutX="171.0" layoutY="242.0" prefHeight="46.0" prefWidth="237.0" />
             <Button fx:id="ingresarBoton" defaultButton="true" layoutX="67.0" layoutY="412.0" mnemonicParsing="false" onAction="#ingresarActivo" text="Ingresar" textFill="#0d831d" />
             <Button fx:id="cancelarBoton" layoutX="207.0" layoutY="412.0" mnemonicParsing="false" onAction="#refresh" text="Cancelar" textFill="#cd0d0d" />
-            <DatePicker fx:id="fecha" layoutX="171.0" layoutY="83.0" />
-            <Label alignment="CENTER" layoutX="177.0" layoutY="34.0" text="INGRESO DE UN NUEVO ACTIVO" />
-            <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
+            <DatePicker fx:id="fecha" layoutX="171.0" layoutY="83.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label alignment="CENTER" layoutX="8.0" layoutY="34.0" text="INGRESO DE UN NUEVO ACTIVO" />
+            <Label id="codigo" fx:id="codigo" layoutX="176.0" layoutY="368.0" prefHeight="31.0" prefWidth="160.0" visible="false" />
             <ComboBox fx:id="ubicacion" editable="true" layoutX="171.0" layoutY="301.0" onMouseEntered="#cargarUbicaciones" prefHeight="25.0" prefWidth="174.0" promptText="--Seleccione Ubicacion" />
+            <ImageView fx:id="imageViewCargar" fitHeight="150.0" fitWidth="160.0" layoutX="345.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/cargarImagen.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
