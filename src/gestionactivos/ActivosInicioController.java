@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javax.persistence.EntityManager;
@@ -63,6 +64,8 @@ public class ActivosInicioController implements Initializable {
     private int posicionActivoEnTabla;
 
     BDConexion db = BDConexion.getInstance();
+    
+    Alert alert = new Alert(Alert.AlertType.ERROR);
 
     static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionActivosPU");
     static EntityManager em = emf.createEntityManager();
@@ -94,46 +97,57 @@ public class ActivosInicioController implements Initializable {
         System.out.println("Valor selecionado:" + valor);
 
         data = FXCollections.observableArrayList();
-        try {
+        if (valor != null) {
+            try {
 
-            String SQL = null;
-            if (valor == "Todo") {
-                SQL = "Select to_char(a.fechaingres,'DD/MM/YYYY') as fecha ,a.idactivo as idActivo,a.idrubro as idRubro,\n"
-                        + "a.nombreactivo as nombre,a.estadogeneral as estado, b.nombrelugar as ubicacion\n"
-                        + "from activo as a, ubicacion as b\n"
-                        + "where a.idubicacion = b.idubicacion\n"
-                        + "and to_char(a.fechaingres,'YYYY') < to_char(now(),'YYYY');";
+                String SQL = null;
+                if (valor == "Todo") {
+                    SQL = "Select to_char(a.fechaingres,'DD/MM/YYYY') as fecha ,a.idactivo as idActivo,a.idrubro as idRubro,\n"
+                            + "a.nombreactivo as nombre,a.estadogeneral as estado, b.nombrelugar as ubicacion\n"
+                            + "from activo as a, ubicacion as b\n"
+                            + "where a.idubicacion = b.idubicacion\n"
+                            + "and to_char(a.fechaingres,'YYYY') < to_char(now(),'YYYY');";
 
-            } else {
+                } else {
 
-                SQL = "Select to_char(a.fechaingres,'DD/MM/YYYY') as fecha ,a.idactivo as idActivo,a.idrubro as idRubro,\n"
-                        + "a.nombreactivo as nombre,a.estadogeneral as estado, b.nombrelugar as ubicacion\n"
-                        + "from activo as a, ubicacion as b\n"
-                        + "where a.idubicacion = b.idubicacion\n"
-                        + "and b.nombrelugar= '" + valor + "' \n"
-                        + "and to_char(a.fechaingres,'YYYY') < to_char(now(),'YYYY');";
+                    SQL = "Select to_char(a.fechaingres,'DD/MM/YYYY') as fecha ,a.idactivo as idActivo,a.idrubro as idRubro,\n"
+                            + "a.nombreactivo as nombre,a.estadogeneral as estado, b.nombrelugar as ubicacion\n"
+                            + "from activo as a, ubicacion as b\n"
+                            + "where a.idubicacion = b.idubicacion\n"
+                            + "and b.nombrelugar= '" + valor + "' \n"
+                            + "and to_char(a.fechaingres,'YYYY') < to_char(now(),'YYYY');";
 
-            }
+                }
 
-            //Mi consulta         
-            ResultSet rs = con.createStatement().executeQuery(SQL);
-            while (rs.next()) {
-                ActivoC act = new ActivoC();
+                ResultSet rs = con.createStatement().executeQuery(SQL);
+                while (rs.next()) {
+                    ActivoC act = new ActivoC();
 //            Usermaster cm = new Usermaster();
-                act.estado.set(rs.getString("estado"));
-                act.nombre.set(rs.getString("nombre"));
-                act.fechaIngreso.set(rs.getString("fecha"));
-                act.codigo.set(rs.getString("idactivo"));
-                act.rubro.set(rs.getString("idrubro"));
-                act.ubicacion.set(rs.getString("ubicacion"));
+                    act.estado.set(rs.getString("estado"));
+                    act.nombre.set(rs.getString("nombre"));
+                    act.fechaIngreso.set(rs.getString("fecha"));
+                    act.codigo.set(rs.getString("idactivo"));
+                    act.rubro.set(rs.getString("idrubro"));
+                    act.ubicacion.set(rs.getString("ubicacion"));
 
-                data.add(act);
-            }
-            tb_ActInicio.setItems(data);
+                    data.add(act);
+                }
+                tb_ActInicio.setItems(data);
 //        tableview.setItems(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error on Building Data");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error on Building Data");
+            }
+        }
+        else {
+
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Debe seleccionar una UBICACION");
+
+            alert.showAndWait();
+
         }
 
     }
@@ -154,7 +168,7 @@ public class ActivosInicioController implements Initializable {
         // Inicializamos la tabla
         this.inicializarTabla();
 
-        // Inicializamos la tabla con algunos datos aleatorios
+        // Inicializamos la tabla con algunos datos 
         data = FXCollections.observableArrayList();
         try {
             String SQL = "Select to_char(a.fechaingres,'DD/MM/YYYY') as fecha ,a.idactivo as idActivo,a.idrubro as idRubro,\n"

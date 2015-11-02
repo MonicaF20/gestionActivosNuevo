@@ -9,7 +9,7 @@
 
 <AnchorPane layoutX="780.0" prefHeight="500.0" prefWidth="213.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.LateralDerechoController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="16.0" prefHeight="500.0" prefWidth="204.0" stylesheets="@../css/form.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane id="AnchorPane" layoutX="16.0" prefHeight="500.0" prefWidth="197.0" stylesheets="@../css/form.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="0.0">
          <children>
             <ImageView fitHeight="54.0" fitWidth="51.0" layoutX="7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
