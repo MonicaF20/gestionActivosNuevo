@@ -7,6 +7,8 @@ package gestionactivos;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,7 +29,7 @@ public class SolicitarActivoController implements Initializable {
     private TextArea descripcion;
 
     @FXML
-    private ComboBox<?> rubro;
+    private ComboBox<String> rubroSolicDoc;
 
     @FXML
     private DatePicker fecha;
@@ -36,7 +38,7 @@ public class SolicitarActivoController implements Initializable {
     private Label codigo;
 
     @FXML
-    private ComboBox<?> ubicacion;
+    private ComboBox<String> ubicacionSolicDoc;
 
     @FXML
     private Label codigoLabel;
@@ -51,10 +53,27 @@ public class SolicitarActivoController implements Initializable {
     private TextField nombre;
 
 
+    
+    BDConexion db= BDConexion.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        //LLENADO DE COMBOBOX DE RUBROS
+        ObservableList<String> list2 = FXCollections.observableArrayList();
+   list2=db.getRubros();
+    
+   rubroSolicDoc.setItems(list2);
+   
+   
+   
+   //LLENADO DE COMBOBOX DE UBICACION
+   
+   ObservableList<String> list3 = FXCollections.observableArrayList();
+   list3=db.getUbicacion();
+    
+   ubicacionSolicDoc.setItems(list3);
     }    
     
 }

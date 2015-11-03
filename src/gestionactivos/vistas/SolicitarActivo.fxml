@@ -14,7 +14,7 @@
             <Label layoutX="3.0" layoutY="276.0" text="Fecha:" />
             <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
             <Label layoutX="3.0" layoutY="181.0" text="Rubro:" />
-            <ComboBox fx:id="rubro" layoutX="171.0" layoutY="190.0" prefWidth="150.0" promptText="--Seleccione  Rubro" />
+            <ComboBox fx:id="rubroSolicDoc" layoutX="171.0" layoutY="190.0" prefWidth="150.0" promptText="--Seleccione  Rubro" />
             <Label layoutX="3.0" layoutY="148.0" text="Nombre Activo: " />
             <Label layoutY="341.0" text="Descripcion de Solicitud:" />
             <Label layoutY="230.0" text="Ubicacion a Asignar:" />
