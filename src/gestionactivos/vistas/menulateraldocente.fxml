@@ -13,12 +13,12 @@
     <panes>
       <TitledPane fx:id="peticiones" animated="false" maxHeight="100.0" minHeight="75.0" prefHeight="90.0" prefWidth="269.0" text="Solicitudes de Peticion de Activos">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="267.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="269.0">
                      <children>
-                        <VBox layoutX="20.0" prefHeight="111.0" prefWidth="230.0">
+                        <VBox layoutX="-3.0" prefHeight="111.0" prefWidth="269.0">
                            <children>
-                              <Button fx:id="reportePeticiones" mnemonicParsing="false" prefHeight="33.0" prefWidth="253.0" styleClass="menuItem" text="Generar Solicitud de Peticion" />
-                              <Button fx:id="solicitudesPeticion" mnemonicParsing="false" prefHeight="33.0" prefWidth="230.0" styleClass="menuItem" text="Estado de Solicitudes de Peticion" />
+                              <Button fx:id="reportePeticiones" mnemonicParsing="false" prefHeight="33.0" prefWidth="269.0" styleClass="menuItem" text="Generar Solicitud de Peticion" />
+                              <Button fx:id="solicitudesPeticion" mnemonicParsing="false" prefHeight="33.0" prefWidth="269.0" styleClass="menuItem" text="Estado de Solicitudes de Peticion" />
                            </children>
                         </VBox>
                      </children></AnchorPane>
@@ -26,12 +26,12 @@
       </TitledPane>
       <TitledPane fx:id="reparacion" animated="false" maxHeight="100.0" minHeight="50.0" prefHeight="75.0" prefWidth="269.0" text="Solicitudes de Reparacion">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="269.0">
                      <children>
-                        <VBox layoutX="22.0" prefHeight="200.0" prefWidth="224.0">
+                        <VBox layoutX="-3.0" prefHeight="140.0" prefWidth="269.0">
                            <children>
-                              <Button fx:id="reporteReparacion" mnemonicParsing="false" prefHeight="33.0" prefWidth="226.0" styleClass="menuItem" text="Generar Solicitud de Reparacion" />
-                              <Button fx:id="solicitudesReparacion" mnemonicParsing="false" prefHeight="33.0" prefWidth="229.0" styleClass="menuItem" text="Estado de Solcitudes Reparacion" />
+                              <Button fx:id="reporteReparacion" mnemonicParsing="false" prefHeight="33.0" prefWidth="269.0" styleClass="menuItem" text="Generar Solicitud de Reparacion" />
+                              <Button fx:id="solicitudesReparacion" mnemonicParsing="false" prefHeight="33.0" prefWidth="269.0" styleClass="menuItem" text="Estado de Solcitudes Reparacion" />
                            </children>
                         </VBox>
                      </children></AnchorPane>
@@ -39,12 +39,12 @@
       </TitledPane>
             <TitledPane fx:id="baja" animated="false" text="Solicitudes de Baja">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="269.0">
                      <children>
-                        <VBox layoutX="24.0" prefHeight="200.0" prefWidth="213.0">
+                        <VBox layoutX="-3.0" prefHeight="173.0" prefWidth="269.0">
                            <children>
-                              <Button fx:id="reporteBaja" mnemonicParsing="false" prefHeight="33.0" prefWidth="215.0" styleClass="menuItem" text="Generar Solicitud de baja" />
-                              <Button fx:id="solicitudesBaja" mnemonicParsing="false" prefHeight="33.0" prefWidth="212.0" styleClass="menuItem" text="Estado de Solicitudes de Baja" />
+                              <Button fx:id="reporteBaja" mnemonicParsing="false" prefHeight="33.0" prefWidth="269.0" styleClass="menuItem" text="Generar Solicitud de baja" />
+                              <Button fx:id="solicitudesBaja" mnemonicParsing="false" prefHeight="33.0" prefWidth="269.0" styleClass="menuItem" text="Estado de Solicitudes de Baja" />
                            </children>
                         </VBox>
                      </children>

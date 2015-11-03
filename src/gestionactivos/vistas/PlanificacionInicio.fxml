@@ -46,14 +46,14 @@
             <Label fx:id="lbAccion" layoutX="45.0" text="Accion" />
             <Label fx:id="lbCategoria" layoutX="2.0" layoutY="206.0" text="Categoria" />
             <Label fx:id="lbUbicacion" layoutX="1.0" layoutY="35.0" text="Ubicacion" />
-            <TextField fx:id="txtUbicacion" layoutX="4.0" layoutY="69.0" />
+            <TextField fx:id="txtUbicacion" layoutX="1.0" layoutY="69.0" />
             <Label fx:id="lbActivo" layoutX="4.0" layoutY="272.0" text="Activo" />
             <Button fx:id="btn_Aceptar" layoutY="342.0" mnemonicParsing="false" onAction="#Aceptar" text="Aceptar" />
-            <ComboBox fx:id="cmbCategoria" layoutY="237.0" prefWidth="150.0" />
-            <ComboBox fx:id="cmbUbi" layoutY="106.0" prefWidth="150.0" />
-            <ComboBox fx:id="cmbActivo" layoutX="3.0" layoutY="309.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmbCategoria" layoutY="237.0" prefWidth="150.0" promptText="--  Categoria --" />
+            <ComboBox fx:id="cmbUbi" layoutY="106.0" prefWidth="150.0" promptText="-- Ubacion --" />
+            <ComboBox fx:id="cmbActivo" layoutY="303.0" prefWidth="150.0" promptText="--Activo--" />
             <Label fx:id="lbEstado" layoutX="2.0" layoutY="137.0" text="Estado" />
-            <ComboBox fx:id="cmbEstado" layoutY="166.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmbEstado" layoutY="166.0" prefWidth="150.0" promptText="-- Estado --" />
             <Label fx:id="lbActual" layoutX="162.0" layoutY="71.0" text="Actual" />
             <Label fx:id="lbNueva" layoutX="162.0" layoutY="108.0" text="Nueva" />
          </children>

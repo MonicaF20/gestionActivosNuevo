@@ -212,7 +212,7 @@ public class PlanificacionInicioController implements Initializable {
         lbEstado.setDisable(false);
         lbUbicacion.setVisible(true);
 
-//        txtUbicacion.setVisible(true);
+        txtUbicacion.setVisible(false);
         cmbCategoria.setVisible(true);
         cmbEstado.setDisable(false);
         cmbUbi.setVisible(true);
