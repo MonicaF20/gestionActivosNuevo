@@ -61,7 +61,16 @@ public class SolicitarActivoController implements Initializable {
     private Button cancelarBoton;
 
     @FXML
-    private TextField nombre;
+    private TextField nombreActivo;
+
+    
+    @FXML
+    private TextField cantidad;
+    
+     @FXML
+    private TextField nombreSolicitante;
+
+   
 
 
     
