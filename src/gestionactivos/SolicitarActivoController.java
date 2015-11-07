@@ -39,8 +39,7 @@ public class SolicitarActivoController implements Initializable {
     @FXML
     private TextArea descripcion;
 
-    @FXML
-    private ComboBox<String> rubroSolicDoc;
+  
 
     @FXML
     private DatePicker fecha;
@@ -85,12 +84,7 @@ public class SolicitarActivoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        //LLENADO DE COMBOBOX DE RUBROS
-       //LLENADO DE COMBOBOX DE RUBROS
-         ObservableList<String> list2 = FXCollections.observableArrayList();
-   list2=db.getRubros();
-    
-   rubroSolicDoc.setItems(list2);
+       
    
    
    //LLENADO DE COMBOBOX DE UBICACION

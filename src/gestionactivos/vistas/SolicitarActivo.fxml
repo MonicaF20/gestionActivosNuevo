@@ -13,12 +13,11 @@
          <children>
             <Label layoutX="3.0" layoutY="276.0" text="Fecha:" />
             <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
-            <Label layoutX="3.0" layoutY="181.0" text="Rubro:" />
-            <ComboBox fx:id="rubroSolicDoc" layoutX="171.0" layoutY="190.0" prefWidth="150.0" promptText="--Seleccione  Rubro" />
+            <Label layoutX="3.0" layoutY="192.0" text="Cantidad:" />
             <Label layoutX="3.0" layoutY="148.0" text="Nombre Activo: " />
             <Label layoutY="341.0" text="Descripcion de Solicitud:" />
             <Label layoutY="230.0" text="Ubicacion a Asignar:" />
-            <TextField fx:id="nombre" layoutX="171.0" layoutY="146.0" />
+            <TextField fx:id="nombreActivo" layoutX="171.0" layoutY="146.0" />
             <TextArea fx:id="descripcion" layoutX="173.0" layoutY="324.0" prefHeight="55.0" prefWidth="268.0" />
             <Button fx:id="ingresarBoton" defaultButton="true" layoutX="67.0" layoutY="412.0" mnemonicParsing="false" text="Ingresar" textFill="#0d831d" />
             <Button fx:id="cancelarBoton" layoutX="207.0" layoutY="412.0" mnemonicParsing="false" text="Cancelar" textFill="#cd0d0d" />
@@ -27,7 +26,8 @@
             <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
             <ComboBox fx:id="ubicacion" editable="true" layoutX="170.0" layoutY="228.0" prefHeight="25.0" prefWidth="174.0" promptText="--Seleccione Ubicacion" />
             <Label layoutX="3.0" layoutY="113.0" text="Nombre de solicitante:" />
-            <TextField layoutX="171.0" layoutY="111.0" />
+            <TextField fx:id="nombreSolicitante" layoutX="171.0" layoutY="111.0" />
+            <TextField fx:id="cantidad" layoutX="171.0" layoutY="190.0" />
          </children>
       </AnchorPane>
    </children>
