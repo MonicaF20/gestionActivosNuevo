@@ -51,7 +51,6 @@
                         <VBox alignment="TOP_CENTER" layoutX="-3.0" prefHeight="200.0" prefWidth="220.0">
                            <children>
                               <Button fx:id="replanificacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Realizar Planificación" />
-                              <Button fx:id="verplanificacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Ver Planificación" />
                            </children>
                         </VBox>
                      </children>

@@ -196,7 +196,7 @@ switch(seleccion)
     //Vista de Marcela diredi    
     case "planificacion":
         try{
-             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ActivosInicio.fxml"));
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
              
              primaryStage.setTitle("Planificacion Inicio de Año");
              

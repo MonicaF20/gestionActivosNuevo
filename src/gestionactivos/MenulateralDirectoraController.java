@@ -34,7 +34,7 @@ public class MenulateralDirectoraController implements Initializable {
      @FXML private Button solreparacion;
      @FXML private Button solbaja;
      @FXML private Button replanificacion;
-     @FXML private Button verplanificacion;
+//     @FXML private Button verplanificacion;
      @FXML private Label lblRegresar;
      
     
@@ -68,14 +68,14 @@ public class MenulateralDirectoraController implements Initializable {
         
         });
         
-        verplanificacion.setOnMouseClicked(new EventHandler() {
-        @Override
-        public void handle(Event event) {
-           itemSelected(verplanificacion);
-           
-       }
-        
-        });
+//        verplanificacion.setOnMouseClicked(new EventHandler() {
+//        @Override
+//        public void handle(Event event) {
+//           itemSelected(verplanificacion);
+//           
+//       }
+//        
+//        });
       
       lblRegresar.setOnMouseClicked(new EventHandler(){
 
@@ -164,7 +164,7 @@ public class MenulateralDirectoraController implements Initializable {
                 
             case "Ver Planificación":
                 try{
-                loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ActivosInicio.fxml"));
+//                loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/ActivosInicio.fxml"));
                 primaryStage.setTitle("Planificacion Inicio de Año");
                 }catch(Exception e) {}
             break;
