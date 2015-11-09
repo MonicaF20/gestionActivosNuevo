@@ -13,12 +13,12 @@
     <panes>
       <TitledPane animated="false" text="Ingreso de un Nuevo Activo">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="49.0" prefWidth="218.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="49.0" prefWidth="220.0">
                      <children>
-                        <VBox layoutX="24.0" layoutY="7.0" prefHeight="24.0" prefWidth="197.0">
+                        <VBox layoutX="-2.0" layoutY="-4.0" prefHeight="24.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="ingreso" mnemonicParsing="false" prefHeight="40.0" prefWidth="196.0" styleClass="menuItem" text="Ingresar Nuevo Activo" />
-                              <Button fx:id="reporteIngreso" mnemonicParsing="false" prefHeight="33.0" prefWidth="232.0" styleClass="menuItem" text="Generar Reporte:Ingresos" />
+                              <Button fx:id="ingreso" mnemonicParsing="false" prefHeight="0.0" prefWidth="220.0" styleClass="menuItem" text="Ingresar Nuevo Activo" />
+                              <Button fx:id="reporteIngreso" mnemonicParsing="false" prefHeight="0.0" prefWidth="220.0" styleClass="menuItem" text="Generar Reporte:Ingresos" />
                            </children>
                         </VBox>
                      </children></AnchorPane>
@@ -26,12 +26,12 @@
       </TitledPane>
       <TitledPane fx:id="peticiones" animated="false" text="Solicitudes de Peticion de Activos">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="220.0">
                      <children>
-                        <VBox layoutX="20.0" prefHeight="200.0" prefWidth="200.0">
+                        <VBox layoutX="-2.0" prefHeight="184.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="solicitudesPeticion" mnemonicParsing="false" prefHeight="23.0" prefWidth="196.0" styleClass="menuItem" text="Ver Solicitudes de Peticion" />
-                              <Button fx:id="reportePeticiones" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" styleClass="menuItem" text="Generar Reporte : Peticiones" />
+                              <Button fx:id="solicitudesPeticion" mnemonicParsing="false" prefHeight="23.0" prefWidth="220.0" styleClass="menuItem" text="Ver Solicitudes de Peticion" />
+                              <Button fx:id="reportePeticiones" mnemonicParsing="false" prefHeight="26.0" prefWidth="220.0" styleClass="menuItem" text="Generar Reporte : Peticiones" />
                            </children>
                         </VBox>
                      </children></AnchorPane>
@@ -39,12 +39,12 @@
       </TitledPane>
       <TitledPane fx:id="reparacion" animated="false" text="Solicitudes de Reparacion">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="220.0">
                      <children>
-                        <VBox layoutX="22.0" prefHeight="200.0" prefWidth="198.0">
+                        <VBox layoutX="-3.0" layoutY="-3.0" prefHeight="175.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="solicitudesReparacion" mnemonicParsing="false" prefHeight="31.0" prefWidth="196.0" styleClass="menuItem" text="Ver Solcitudes Reparacion" />
-                              <Button fx:id="reporteReparacion" mnemonicParsing="false" prefHeight="31.0" prefWidth="196.0" styleClass="menuItem" text="Generar Reporte: Reparacion" />
+                              <Button fx:id="solicitudesReparacion" mnemonicParsing="false" prefHeight="31.0" prefWidth="220.0" styleClass="menuItem" text="Ver Solcitudes Reparacion" />
+                              <Button fx:id="reporteReparacion" mnemonicParsing="false" prefHeight="31.0" prefWidth="220.0" styleClass="menuItem" text="Generar Reporte: Reparacion" />
                            </children>
                         </VBox>
                      </children></AnchorPane>
@@ -52,12 +52,12 @@
       </TitledPane>
             <TitledPane fx:id="baja" animated="false" text="Solicitudes de Baja">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="220.0">
                      <children>
-                        <VBox layoutX="24.0" prefHeight="200.0" prefWidth="196.0">
+                        <VBox layoutX="-3.0" layoutY="-3.0" prefHeight="169.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="solicitudesBaja" mnemonicParsing="false" prefHeight="31.0" prefWidth="196.0" styleClass="menuItem" text="Ver Solicitudes de Baja" />
-                              <Button fx:id="reporteBaja" mnemonicParsing="false" prefHeight="31.0" prefWidth="196.0" styleClass="menuItem" text="Generar Reporte: Baja" />
+                              <Button fx:id="solicitudesBaja" mnemonicParsing="false" prefHeight="31.0" prefWidth="220.0" styleClass="menuItem" text="Ver Solicitudes de Baja" />
+                              <Button fx:id="reporteBaja" mnemonicParsing="false" prefHeight="31.0" prefWidth="220.0" styleClass="menuItem" text="Generar Reporte: Baja" />
                            </children>
                         </VBox>
                      </children>
@@ -68,10 +68,10 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox layoutX="24.0" prefHeight="200.0" prefWidth="196.0">
+                        <VBox layoutX="-3.0" layoutY="-3.0" prefHeight="155.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="modificarRubro" mnemonicParsing="false" prefHeight="31.0" prefWidth="196.0" styleClass="menuItem" text="Modificar Rubro" />
-                              <Button fx:id="agregarRubro" mnemonicParsing="false" prefHeight="31.0" prefWidth="196.0" styleClass="menuItem" text="Agregar Nuevo Rubro" />
+                              <Button fx:id="modificarRubro" mnemonicParsing="false" prefHeight="31.0" prefWidth="220.0" styleClass="menuItem" text="Modificar Rubro" />
+                              <Button fx:id="agregarRubro" mnemonicParsing="false" prefHeight="31.0" prefWidth="220.0" styleClass="menuItem" text="Agregar Nuevo Rubro" />
                            </children>
                         </VBox>
                      </children>

@@ -16,13 +16,13 @@
         <panes>
           <TitledPane animated="false" text="Reportes">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="200.0" prefHeight="195.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="191.0" prefWidth="220.0">
+                        <VBox alignment="TOP_CENTER" layoutX="-3.0" prefHeight="191.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="actingresado" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Activos Ingresados" />
-                              <Button fx:id="actreparacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Activos en Reparación" />
-                              <Button fx:id="actbaja" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Activos de Baja" />
+                              <Button fx:id="actingresado" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Activos Ingresados" />
+                              <Button fx:id="actreparacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Activos en Reparación" />
+                              <Button fx:id="actbaja" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Activos de Baja" />
                            </children>
                         </VBox>
                      </children>
@@ -33,11 +33,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="188.0" prefWidth="220.0">
+                        <VBox alignment="TOP_CENTER" layoutX="-3.0" prefHeight="188.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="solpeticion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Peteción de Activos" />
-                              <Button fx:id="solreparacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Reparación de Activos" />
-                              <Button fx:id="solbaja" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Baja de Activos" />
+                              <Button fx:id="solpeticion" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Peteción de Activos" />
+                              <Button fx:id="solreparacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Reparación de Activos" />
+                              <Button fx:id="solbaja" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Baja de Activos" />
                            </children>
                         </VBox>
                      </children>
@@ -48,10 +48,9 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="220.0">
+                        <VBox alignment="TOP_CENTER" layoutX="-3.0" prefHeight="200.0" prefWidth="220.0">
                            <children>
-                              <Button fx:id="replanificacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Realizar Planificación" />
-                              <Button fx:id="verplanificacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="menuItem" text="Ver Planificación" />
+                              <Button fx:id="replanificacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Realizar Planificación" />
                            </children>
                         </VBox>
                      </children>
