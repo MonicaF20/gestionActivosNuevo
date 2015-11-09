@@ -90,6 +90,7 @@ public class InicioController extends GestionActivos  implements Initializable {
     mainWindow = GestionActivos.primaryStage;
 
     mainWindow.setScene(newScene); 
+    
     switch(usuario){
         //llamar todas las opciones disponibles segun el usuario
         case "admin":

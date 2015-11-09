@@ -7,6 +7,8 @@ package gestionactivos;
 
 import static gestionactivos.BDConexion.con;
 import gestionactivos.Clases.ActivoC;
+import gestionactivos.Clases.Objetos;
+import static gestionactivos.GestionActivos.primaryStage;
 import gestionactivos.modelo.Activo;
 import gestionactivos.modelo.Ubicacion;
 import java.net.URL;
@@ -20,6 +22,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,10 +38,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -56,37 +63,10 @@ public class PlanificacionInicioController implements Initializable {
     private Button btn_Insertar;
     @FXML
     private Button btn_Modificar;
-    @FXML
-    private Button btn_Aceptar;
 
     // Declaramos los ComboBOX
     @FXML
     private ComboBox<String> cmb_Grado;
-    @FXML
-    private ComboBox<String> cmbCategoria;
-    @FXML
-    private ComboBox<String> cmbUbi;
-    @FXML
-    private ComboBox<String> cmbEstado;
-    @FXML
-    private ComboBox<String> cmbActivo;
-
-    @FXML
-    private Label lbAccion;
-    @FXML
-    private Label lbActivo;
-    @FXML
-    private Label lbCategoria;
-    @FXML
-    private Label lbUbicacion;
-    @FXML
-    private Label lbEstado;
-    @FXML
-    private Label lbNueva;
-    @FXML
-    private Label lbActual;
-    @FXML
-    private TextField txtUbicacion;
 
     // Declaramos la tabla y las columnas
     @FXML
@@ -105,6 +85,19 @@ public class PlanificacionInicioController implements Initializable {
     @FXML
     private TableView<ActivoC> tb_ActPlan;
 
+    //Declaracion de la segunda tabla
+    @FXML
+    private TableColumn clActivo;
+
+    @FXML
+    private TableColumn clCantidad;
+
+    @FXML
+    private TableView<Objetos> tb_Activos;
+
+    private ObservableList<Objetos> elementos;
+
+    //Declarcion de Objetos que se utilizaran 
     ObservableList<ActivoC> activos;
 
     private ObservableList<ActivoC> data;
@@ -134,13 +127,38 @@ public class PlanificacionInicioController implements Initializable {
         tb_ActPlan.setItems(data);
     }
 
+    private void inicilzarTabla2() {
+        clActivo.setCellValueFactory(new PropertyValueFactory<Objetos, String>("nombre"));
+        clCantidad.setCellValueFactory(new PropertyValueFactory<Objetos, Integer>("cantidad"));
+
+        elementos = FXCollections.observableArrayList();
+        tb_Activos.setItems(elementos);
+    }
+
     @FXML
     void buscar(ActionEvent event) {
+        
+        //Declarando los objetos visible o invisibles
+
+        btn_Insertar.setDisable(false);
+        btn_Eliminar.setDisable(true);
+        btn_Modificar.setDisable(true);
+        
+        
+        tb_ActPlan.setVisible(true);
+        tb_Activos.setVisible(true);
+        btn_Insertar.setVisible(true);
+        btn_Eliminar.setVisible(true);
+        btn_Modificar.setVisible(true);
+        
+        //*******************************************
 
         String valor = cmb_Grado.getValue();
         System.out.println("Valor selecionado:" + valor);
 
         data = FXCollections.observableArrayList();
+        elementos = FXCollections.observableArrayList();
+
         if (valor != null) {
 
             try {
@@ -179,6 +197,7 @@ public class PlanificacionInicioController implements Initializable {
                     data.add(act);
                 }
                 tb_ActPlan.setItems(data);
+
 //        tableview.setItems(data);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -195,6 +214,33 @@ public class PlanificacionInicioController implements Initializable {
 
         }
 
+        if (valor != null) {
+            try {
+                String SQL2 = null;
+
+                SQL2 = "Select a.nombreactivo AS nombre, count(a.nombreactivo) AS cantidad\n"
+                        + "from activo as a, ubicacion as b\n"
+                        + "where a.idubicacion = b.idubicacion\n"
+                        + "and b.nombrelugar= '" + valor + "'\n"
+                        + "and to_char(a.fechaingres,'YYYY') < to_char(now(),'YYYY')\n"
+                        + "GROUP BY a.nombreactivo;";
+
+                ResultSet rs2 = con.createStatement().executeQuery(SQL2);
+                while (rs2.next()) {
+                    Objetos elemt = new Objetos();
+
+                    elemt.nombre.set(rs2.getString("nombre"));
+                    elemt.cantidad.set(Integer.parseInt(rs2.getString("cantidad")));
+                    elementos.add(elemt);
+                }
+                tb_Activos.setItems(elementos);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error on Building Data");
+            }
+
+        }
+
     }
 
     @FXML
@@ -204,67 +250,29 @@ public class PlanificacionInicioController implements Initializable {
         btn_Modificar.setDisable(true);
         btn_Eliminar.setDisable(true);
 
-        btn_Aceptar.setVisible(true);
-
-        lbAccion.setVisible(true);
-        lbActivo.setVisible(true);
-        lbCategoria.setVisible(true);
-        lbEstado.setDisable(false);
-        lbUbicacion.setVisible(true);
-
-        txtUbicacion.setVisible(false);
-        cmbCategoria.setVisible(true);
-        cmbEstado.setDisable(false);
-        cmbUbi.setVisible(true);
-        cmbActivo.setVisible(true);
-
         String valor = cmb_Grado.getValue();
         System.out.println("Valor selecionado:" + valor);
 
-        txtUbicacion.setText(valor);
-        txtUbicacion.setEditable(false);
+        String accion = btn_Insertar.getText();
 
-        lbAccion.setText(btn_Insertar.getText());
+        if (cmb_Grado.getValue() != null) {
+            ActivoC actTable = getTablaSeleccionada();
 
-        //Llenado los ComboBox
-        ObservableList<String> list0 = FXCollections.observableArrayList();
-        list0 = db.getUbicacion();
-        cmbUbi.setItems(list0);
-        AutoCompleteComboBoxListener combobox = new AutoCompleteComboBoxListener<>(cmbUbi);
-        cmbUbi.setEditable(false);
+            llamarPantalla(valor, accion, actTable);
+            refresh();
 
-        list1 = FXCollections.observableArrayList();
-        list1 = db.getRubros();
-        System.out.println("lista" + list1);
-        cmbCategoria.setItems(list1);
-        AutoCompleteComboBoxListener combobox1 = new AutoCompleteComboBoxListener<>(cmbCategoria);
-        cmbCategoria.setEditable(false);
+        } else {
 
-        cmbActivo.setEditable(false);
-        cmbCategoria.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Campos Obligatorios no pueden estar vacios");
 
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                // Seleccionado los activo con respecto a la categoria
+            alert.showAndWait();
 
-                ObservableList<String> list2 = FXCollections.observableArrayList();
-                String catSelec = cmbCategoria.getValue();
-                System.out.println("Categoria seleccionada:" + catSelec);
+        }
 
-                String id = db.getIdRubro(catSelec);
-                System.out.println("Cod seleccionada:" + id);
 
-                list2 = db.getNomActivo(id);
-
-                System.out.println("lista2:" + list2);
-
-                cmbActivo.setItems(list2);
-                AutoCompleteComboBoxListener combobox2 = new AutoCompleteComboBoxListener<>(cmbActivo);
-                cmbActivo.setEditable(false);
-
-            }
-
-        });
 
     }
 
@@ -275,56 +283,32 @@ public class PlanificacionInicioController implements Initializable {
         btn_Modificar.setDisable(true);
         btn_Eliminar.setDisable(true);
 
-        lbAccion.setVisible(true);
-//        lbActivo.setDisable(true);
-//        lbCategoria.setDisable(true);
-//        lbEstado.setDisable(true);
-        lbUbicacion.setVisible(true);
-
-        lbActual.setVisible(true);
-        lbNueva.setVisible(true);
-
-        txtUbicacion.setVisible(true);
-        txtUbicacion.setEditable(false);
-
-//        cmbCategoria.setDisable(false);
-//        cmbEstado.setDisable(false);
-        cmbUbi.setVisible(true);
-//        cmbActivo.setDisable(false);
-
-        btn_Aceptar.setVisible(true);
-
-        lbAccion.setText(btn_Modificar.getText());
-
-        ObservableList<String> list = FXCollections.observableArrayList();
-
-        list = db.getUbicacion();
-
-        cmbUbi.setItems(list);
-        AutoCompleteComboBoxListener combobox = new AutoCompleteComboBoxListener<>(cmbUbi);
-
-        cmbUbi.setEditable(false);
-
-        String valor = cmbUbi.getValue();
+        String valor = cmb_Grado.getValue();
         System.out.println("Valor selecionado Ubi:" + valor);
-//
-//        txtUbicacion.setText(valor);
-//        txtUbicacion.setEditable(false);
 
-//        ActivoC activo = new ActivoC();
-//        activo.ubicacion.set(cmbUbi.getValue());
+        String accion = btn_Modificar.getText();
+
+        if (cmb_Grado.getValue() != null) {
+            ActivoC actTable = getTablaSeleccionada();
+
+            llamarPantalla(valor, accion, actTable);
+            refresh();
+
+        } else {
+
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Campos Obligatorios no pueden estar vacios");
+
+            alert.showAndWait();
+
+        }
     }
 
     @FXML
     void Eliminar(ActionEvent event) {
 
-//        btn_Insertar.setDisable(true);
-//        btn_Modificar.setDisable(true);
-//        btn_Eliminar.setDisable(true);
-//
-//        btn_Aceptar.setVisible(true);
-//        lbAccion.setVisible(true);
-//        lbAccion.setText(btn_Eliminar.getText());
         BDConexion db = BDConexion.getInstance();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionActivosPU");
         EntityManager em = emf.createEntityManager();
@@ -344,8 +328,7 @@ public class PlanificacionInicioController implements Initializable {
 
         if (result.get() == buttonTypeAceptar) {
             //cambiar ubicacion a bodega y poner estado=DISPONIBLE
-//            final ActivoC actTable = getTablaSeleccionada();
-//                    posicionEnTabla = data.indexOf(actTable);
+
             Ubicacion idrubro = new Ubicacion();
             idrubro.setIdubicacion(23);
 
@@ -365,144 +348,15 @@ public class PlanificacionInicioController implements Initializable {
 
     }
 
-    @FXML
-    void Aceptar(ActionEvent event) {
-
-        BDConexion db = BDConexion.getInstance();
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionActivosPU");
-        EntityManager em = emf.createEntityManager();
-
-        //***********************
-        lbAccion.setVisible(false);
-        lbActivo.setVisible(false);
-        lbCategoria.setVisible(false);
-        lbEstado.setVisible(false);
-        lbUbicacion.setVisible(false);
-
-        lbActual.setVisible(false);
-        lbNueva.setVisible(false);
-
-        txtUbicacion.setVisible(false);
-
-        cmbCategoria.setVisible(false);
-        cmbEstado.setVisible(false);
-        cmbUbi.setVisible(false);
-        cmbActivo.setVisible(false);
-
-        btn_Aceptar.setVisible(false);
-
-        txtUbicacion.setText("");
-
-        btn_Insertar.setDisable(false);
-        btn_Eliminar.setDisable(true);
-        btn_Modificar.setDisable(true);
-
-        //***********************
-//        Activo actOb = new Activo();
-        String opc = lbAccion.getText();
-        System.out.println("La accion: " + opc);
-
-        switch (opc) {
-            case "Insertar":
-                // Actalizar ubiciacion al Insertar
-                if (cmbUbi.getValue() != null && cmbCategoria.getValue() != null && cmbActivo.getValue() != null) {
-
-                    String ubiValor = cmbUbi.getValue();
-                    System.out.println("Valor Ubicacion: " + ubiValor);
-                    Ubicacion idrubro = db.getIdUbicacion(ubiValor);
-                    System.out.println("ID Ubicacion: " + idrubro);
-
-                    String valor2 = cmbActivo.getValue();
-                    String[] idActSelec = valor2.split(":");
-                    System.out.println("IdActivo: " + idActSelec[0]);
-
-                    Activo actOb = new Activo();
-
-                    actOb = (Activo) em.createNamedQuery("Activo.findByIdactivo", Activo.class).setParameter("idactivo", idActSelec[0]).getSingleResult();
-
-                    em.getTransaction().begin();
-                    actOb.setIdubicacion(idrubro);
-                    actOb.setEstadogeneral("En uso");
-
-                    em.getTransaction().commit();
-
-                    alert.setAlertType(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Insercion Exitosa");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Se inserto Correctamente");
-                    alert.showAndWait();
-                    refresh();
-                } else {
-                    alert.setAlertType(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Campos Obligatorios no pueden estar vacios");
-
-                    alert.showAndWait();
-
-                }
-
-                break;
-            case "Modificar":
-
-                System.out.println("Entro Modificar");
-
-                if (cmbUbi.getValue() != null) {
-
-                    String ubiValor = cmbUbi.getValue();
-                    System.out.println("Valor Ubicacion: " + ubiValor);
-                    Ubicacion idrubro = db.getIdUbicacion(ubiValor);
-                    System.out.println("ID Ubicacion: " + idrubro);
-
-                    final ActivoC actTable = getTablaSeleccionada();
-//                    posicionEnTabla = data.indexOf(actTable);
-                    String valor3 = actTable.getCodigo();
-                    System.out.println("IdActivo: " + valor3);
-
-                    Activo actOb = new Activo();
-
-                    actOb = (Activo) em.createNamedQuery("Activo.findByIdactivo", Activo.class).setParameter("idactivo", valor3).getSingleResult();
-
-                    if (ubiValor.indexOf("Bodega") != -1) {
-                        em.getTransaction().begin();
-                        actOb.setIdubicacion(idrubro);
-                        actOb.setEstadogeneral("DISPONIBLE");
-                        em.getTransaction().commit();
-
-                    } else {
-                        em.getTransaction().begin();
-                        actOb.setIdubicacion(idrubro);
-                        actOb.setEstadogeneral("En uso");
-                        em.getTransaction().commit();
-                    }
-
-                    alert.setAlertType(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Insercion Exitosa");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Se inserto Correctamente");
-                    alert.showAndWait();
-                    refresh();
-                } else {
-                    alert.setTitle("Error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Campos Obligatorios no pueden estar vacios");
-
-                    alert.showAndWait();
-                }
-                break;
-        }
-
-    }
     /**
      * Listener de la tabla personas
      */
-    private final ListChangeListener<ActivoC> selectorTabla
-            = new ListChangeListener<ActivoC>() {
-                @Override
-                public void onChanged(ListChangeListener.Change<? extends ActivoC> c) {
-                    ponerActivoSeleccionado();
-                }
-            };
+    private final ListChangeListener<ActivoC> selectorTabla = new ListChangeListener<ActivoC>() {
+        @Override
+        public void onChanged(ListChangeListener.Change<? extends ActivoC> c) {
+            ponerActivoSeleccionado();
+        }
+    };
 
     /**
      * PARA SELECCIONAR UNA CELDA DE LA TABLA "tablaPersonas"
@@ -527,28 +381,11 @@ public class PlanificacionInicioController implements Initializable {
 
         if (activo != null) {
 
-            // Pongo los textFields con los datos correspondientes
-            txtUbicacion.setText(activo.getUbicacion());
-
             // Pongo los botones en su estado correspondiente
             btn_Modificar.setDisable(false);
             btn_Eliminar.setDisable(false);
             btn_Insertar.setDisable(false);
-            btn_Aceptar.setVisible(false);
-            
-            txtUbicacion.setVisible(true);
-            
-            lbUbicacion.setVisible(true);
-            lbCategoria.setVisible(false);
-            lbActivo.setVisible(false);
-            lbAccion.setVisible(false);
-            lbActual.setVisible(false);
-            lbNueva.setVisible(false);
-            
-            cmbUbi.setVisible(false);
-            cmbCategoria.setVisible(false);
-            cmbActivo.setVisible(false);
-            
+
 
         }
     }
@@ -558,25 +395,12 @@ public class PlanificacionInicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         //***********************
-        lbAccion.setVisible(false);
-        lbActivo.setVisible(false);
-        lbCategoria.setVisible(false);
-        lbEstado.setVisible(false);
-        lbUbicacion.setVisible(false);
-
-        lbActual.setVisible(false);
-        lbNueva.setVisible(false);
-
-        txtUbicacion.setVisible(false);
-
-        cmbCategoria.setVisible(false);
-        cmbEstado.setVisible(false);
-        cmbUbi.setVisible(false);
-        cmbActivo.setVisible(false);
-
-        btn_Aceptar.setVisible(false);
-        btn_Eliminar.setDisable(true);
-        btn_Modificar.setDisable(true);
+        btn_Insertar.setVisible(false);
+        btn_Eliminar.setVisible(false);
+        btn_Modificar.setVisible(false);
+        
+        tb_ActPlan.setVisible(false);
+        tb_Activos.setVisible(false);
 
         //***********************
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -592,39 +416,42 @@ public class PlanificacionInicioController implements Initializable {
         // Inicializamos la tabla
         this.inicializarTabla();
 
+        this.inicilzarTabla2();
+
         // Seleccionar las tuplas de la tabla de las personas
         final ObservableList<ActivoC> tablaPersonaSel = tb_ActPlan.getSelectionModel().getSelectedItems();
         tablaPersonaSel.addListener(selectorTabla);
 
         // Inicializamos la tabla con algunos datos 
-        data = FXCollections.observableArrayList();
-        try {
-            String SQL = "Select to_char(a.fechaingres,'DD/MM/YYYY') as fecha ,a.idactivo as idActivo,a.idrubro as idRubro,\n"
-                    + "a.nombreactivo as nombre,a.estadogeneral as estado, b.nombrelugar as ubicacion\n"
-                    + "from activo as a, ubicacion as b\n"
-                    + "where a.idubicacion = b.idubicacion\n"
-                    + "and to_char(a.fechaingres,'YYYY') < to_char(now(),'YYYY');";
-            //Mi consulta         
-            ResultSet rs = con.createStatement().executeQuery(SQL);
-            while (rs.next()) {
-                ActivoC act = new ActivoC();
-//            Usermaster cm = new Usermaster();
-                act.estado.set(rs.getString("estado"));
-                act.nombre.set(rs.getString("nombre"));
-                act.fechaIngreso.set(rs.getString("fecha"));
-                act.codigo.set(rs.getString("idactivo"));
-                act.rubro.set(rs.getString("idrubro"));
-                act.ubicacion.set(rs.getString("ubicacion"));
+//        data = FXCollections.observableArrayList();
+//        try {
+//            String SQL = "Select to_char(a.fechaingres,'DD/MM/YYYY') as fecha ,a.idactivo as idActivo,a.idrubro as idRubro,\n"
+//                    + "a.nombreactivo as nombre,a.estadogeneral as estado, b.nombrelugar as ubicacion\n"
+//                    + "from activo as a, ubicacion as b\n"
+//                    + "where a.idubicacion = b.idubicacion\n"
+//                    + "and to_char(a.fechaingres,'YYYY') < to_char(now(),'YYYY');";
+//            //Mi consulta         
+//            ResultSet rs = con.createStatement().executeQuery(SQL);
+//            while (rs.next()) {
+//                ActivoC act = new ActivoC();
+////            Usermaster cm = new Usermaster();
+//                act.estado.set(rs.getString("estado"));
+//                act.nombre.set(rs.getString("nombre"));
+//                act.fechaIngreso.set(rs.getString("fecha"));
+//                act.codigo.set(rs.getString("idactivo"));
+//                act.rubro.set(rs.getString("idrubro"));
+//                act.ubicacion.set(rs.getString("ubicacion"));
+//
+//                data.add(act);
+//            }
+//            tb_ActPlan.setItems(data);
+////        tableview.setItems(data);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("Error on Building Data");
+//        }
 
-                data.add(act);
-            }
-            tb_ActPlan.setItems(data);
-//        tableview.setItems(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error on Building Data");
-        }
-
+//        refresh();
     }
 
     public void refresh() {
@@ -643,11 +470,53 @@ public class PlanificacionInicioController implements Initializable {
             loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
             loader2 = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menulateralDirectora.fxml"));
             loader3 = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/lateralDerecho.fxml"));
+
         } catch (Exception e) {
         }
-        GestionActivos.rootPane.setCenter(loader);
+
+        //Agregar scroll a panel del Centro
+        ScrollPane scrollPane = new ScrollPane();
+//        scrollPane.setFitToWidth(false);
+        scrollPane.setFitToHeight(true);
+//        scrollPane.setVvalue(0);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setContent(loader);
+
+//        scrollPane.vvalueProperty().addListener((ObservableValue<? extends Number> ov, 
+//            Number old_val, Number new_val) -> {
+//                System.out.println(-new_val.doubleValue());
+//                
+//                
+//        }); 
+        GestionActivos.rootPane.setCenter(scrollPane);
         GestionActivos.rootPane.setLeft(loader2);
         GestionActivos.rootPane.setRight(loader3);
+    }
+
+    public void llamarPantalla(String ubicacion, String accion, ActivoC seleccion) {
+        Stage stage = new Stage();
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gestionactivos/vistas/InsertActPlan.fxml"));
+
+            Parent root = (Parent) fxmlLoader.load();
+
+            InsertActPlanController controller = fxmlLoader.<InsertActPlanController>getController();
+
+            controller.setCampos(ubicacion);
+            controller.setAccion(accion);
+            controller.setActSeleccionado(seleccion);
+            
+            primaryStage.setTitle(accion);
+
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+
+            stage.show();
+
+        } catch (Exception e) {
+        }
     }
 
 }
