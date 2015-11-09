@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.net.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,21 +10,32 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.ReporteIngresoController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="186.0" layoutY="150.0" prefHeight="700.0" prefWidth="999.0" stylesheets="@../css/form.css">
+      <AnchorPane id="AnchorPane" layoutX="193.0" layoutY="150.0" prefHeight="700.0" prefWidth="999.0" stylesheets="@../css/form.css">
          <children>
-            <Label fx:id="lblTituloReporte" layoutX="331.0" layoutY="45.0" text="REPORTE DE INGRESO DE ACTIVOS DIARIOS" />
+            <Label fx:id="lblTituloReporte" layoutX="179.0" layoutY="45.0" prefHeight="21.0" prefWidth="536.0" text="REPORTE DE INGRESO DE ACTIVOS DIARIOS" textAlignment="CENTER" />
             <ComboBox fx:id="cmbOpcReporte" layoutX="216.0" layoutY="99.0" prefHeight="25.0" prefWidth="195.0" promptText="--Seleccione otra modalidad" />
-            <DatePicker fx:id="dtPickerReporte" layoutX="467.0" layoutY="100.0" prefHeight="25.0" prefWidth="136.0" visible="false" />
-            <Button fx:id="btnImprimir" layoutX="411.0" layoutY="432.0" mnemonicParsing="false" onAction="#generarPDF" text="Imprimir " />
-            <TableView fx:id="tableReporteIngreso" layoutX="201.0" layoutY="143.0" prefHeight="258.0" prefWidth="536.0">
+            <DatePicker fx:id="dtPickerReporte" layoutX="469.0" layoutY="100.0" prefHeight="25.0" prefWidth="136.0" visible="false" />
+            <Button fx:id="btnImprimir" layoutX="411.0" layoutY="489.0" mnemonicParsing="false" onAction="#generarPDF" text="Imprimir " />
+            <TableView fx:id="tableReporteIngreso" layoutX="130.0" layoutY="143.0" prefHeight="251.0" prefWidth="702.0">
               <columns>
-                <TableColumn fx:id="tableColRubro" prefWidth="120.0" text="Codigo de Rubro" />
-                <TableColumn fx:id="tableColActivo" prefWidth="120.0" text="Codigo de Activo" />
-                  <TableColumn fx:id="tableColNombre" prefWidth="79.0" text="Nombre" />
-                  <TableColumn fx:id="tableColDescrip" prefWidth="216.0" text="Descripcion " />
+                <TableColumn fx:id="tableColRubro" prefWidth="68.0" text="  Codigo&#10;de Rubro" />
+                <TableColumn fx:id="tableColActivo" prefWidth="94.0" text="  Codigo&#10; de Activo" />
+                  <TableColumn fx:id="tableColNombre" prefWidth="120.0" text="Nombre" />
+                  <TableColumn fx:id="tableColDescrip" prefWidth="209.0" text="Descripcion " />
+                  <TableColumn fx:id="tableColFecha" prefWidth="86.0" resizable="false" text="    Fecha&#10; de Ingreso" />
+                  <TableColumn fx:id="tableColEstado" prefWidth="125.0" text="Estado&#10; Actual" />
               </columns>
             </TableView>
-            <ComboBox fx:id="cmbBuscarRubros" editable="true" layoutX="469.0" layoutY="100.0" onAction="#count" prefHeight="25.0" prefWidth="150.0" visible="false" />
+            <ComboBox fx:id="cmbBuscarRubros" layoutX="469.0" layoutY="100.0" onAction="#count" prefHeight="25.0" prefWidth="150.0" visible="false" />
+            <ComboBox fx:id="cmbMeses" layoutX="469.0" layoutY="100.0" prefWidth="150.0" visible="false" />
+            <TextField fx:id="txtAnio" layoutX="469.0" layoutY="100.0" visible="false" />
+            <ComboBox fx:id="cmbNombre" layoutX="469.0" layoutY="100.0" prefWidth="150.0" promptText="--Seleccione Nombre" visible="false" />
+            <Label fx:id="lblCuenta" layoutX="130.0" layoutY="440.0" prefHeight="25.0" prefWidth="243.0" text="Cantidad de Registros: " />
+            <Label layoutX="130.0" layoutY="405.0" styleClass="opciones" text="Nota: Haga doble click  sobre el activo para abrir su imagen correspondiente">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font></Label>
+            <Label id="codigo" fx:id="lblNota" layoutX="544.0" layoutY="400.0" prefHeight="25.0" prefWidth="279.0" />
          </children>
       </AnchorPane>
    </children>

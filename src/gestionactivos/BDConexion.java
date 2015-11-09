@@ -127,6 +127,7 @@ return ubicaciones;
     
     
     
+    
   public String generarCodigo(String rubro){
       String idrubro,idactivo,ultimo = null,respuesta = null,primero = null;
       Statement stmt0,stmt;

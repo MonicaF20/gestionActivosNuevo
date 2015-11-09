@@ -20,7 +20,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -96,9 +98,10 @@ public class FXMLDocumentController implements Initializable {
   private static final int ancho2 = 500; 
   private static final int alto2 = 70; 
   private static String datos = "";
+  File imgFile=null;
    
    @FXML
-   public void ingresarActivo(ActionEvent event) {
+   public void ingresarActivo(ActionEvent event) throws IOException {
        EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
      EntityManager em=emf.createEntityManager();
       
@@ -134,7 +137,12 @@ public class FXMLDocumentController implements Initializable {
       activo.setIdrubro(results2);
       System.out.println(results);
       System.out.println(results2);
-      activo.setEstadogeneral("DISPONIBLE");
+      if(ubicacion.getValue().toString().startsWith("Bodega"))
+      { activo.setEstadogeneral("DISPONIBLE");}
+      else {activo.setEstadogeneral("EN USO");}
+      if(imgFile!= null)
+      {activo.setImagenactivo(this.convertirImagen(imgFile));}
+     // activo.setCodigoqr(this.convertirImagen());
       em2.getTransaction().begin();
       em2.persist(activo);
       em2.getTransaction().commit();
@@ -229,7 +237,7 @@ alert.showAndWait();
         );
 
         // Obtener la imagen seleccionada
-        File imgFile = fileChooser.showOpenDialog(GestionActivos.primaryStage);
+        imgFile = fileChooser.showOpenDialog(GestionActivos.primaryStage);
 
         // Mostar la imagen
         if (imgFile != null) {
@@ -309,6 +317,7 @@ try {
                 + "Descripcion de Activo: "+activo.getDescripcionactivo()+" \n"
                 + "Ubicacion de Activo: "+ubicacion.getValue()+"\n"
                 + "Estado de Activo: "+activo.getEstadogeneral();
+           
                
                 
         try {
@@ -386,7 +395,7 @@ try {
      //generando la imagen 
      BufferedImage image = new BufferedImage(ancho2, alto2, BufferedImage.TYPE_INT_RGB);
      Graphics g = image.getGraphics();
-         g.setFont(new Font("TimesRoman", Font.BOLD, 55));
+     g.setFont(new Font("TimesRoman", Font.BOLD, 55));
      g.drawString(activo.getIdactivo(),50,50);
  
      RUTA_IMAGEN2=dir+"/"+activo.getIdactivo()+".png";
@@ -418,4 +427,46 @@ try {
             }
         }
     }
+    
+    public byte[] convertirImagen(File fileImg) throws IOException{
+    
+           
+          /*  FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(fileImg);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            try {
+                for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                    bos.write(buf, 0, readNum); 
+                    System.out.println("read " + readNum + " bytes,");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //bytes is the ByteArray we need
+            byte[] bytes = bos.toByteArray();
+            return bytes;*/
+     
+
+        byte[] imageInByte;
+        BufferedImage originalImage = ImageIO.read(fileImg);
+
+        // convert BufferedImage to byte array
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(originalImage, "jpg", baos);
+        baos.flush();
+        imageInByte = baos.toByteArray();
+        baos.close();
+
+      
+return imageInByte;
+    
+    }
+    
+    
 }

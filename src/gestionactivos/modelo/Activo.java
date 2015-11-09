@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -37,8 +38,16 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Activo.findByFechaingres", query = "SELECT a FROM Activo a WHERE a.fechaingres = :fechaingres"),
     @NamedQuery(name = "Activo.findByEstadogeneral", query = "SELECT a FROM Activo a WHERE a.estadogeneral = :estadogeneral"),
     @NamedQuery(name = "Activo.findByNombreactivo", query = "SELECT a FROM Activo a WHERE a.nombreactivo = :nombreactivo"),
+    @NamedQuery(name = "Activo.findAllNombres", query = "SELECT distinct a FROM Activo a"),
     @NamedQuery(name = "Activo.findByIdRubro", query = "SELECT a FROM Activo a WHERE a.idrubro = :idrubro")})
+    
 public class Activo implements Serializable {
+    @Lob
+    @Column(name = "imagenactivo")
+    private byte[] imagenactivo;
+    @Lob
+    @Column(name = "codigoqr")
+    private byte[] codigoqr;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -164,10 +173,28 @@ public class Activo implements Serializable {
         }
         return true;
     }
+public byte[] getImagenactivo() {
+        return imagenactivo;
+    }
 
+    public void setImagenactivo(byte[] imagenactivo) {
+        this.imagenactivo = imagenactivo;
+    }
+
+    public byte[] getCodigoqr() {
+        return codigoqr;
+    }
+
+    public void setCodigoqr(byte[] codigoqr) {
+        this.codigoqr = codigoqr;
+    }
+    
     @Override
     public String toString() {
         return "gestionactivos.modelo.Activo[ idactivo=" + idactivo + " ]";
     }
+
+   
+
     
 }
