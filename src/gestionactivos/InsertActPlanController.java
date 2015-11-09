@@ -199,6 +199,8 @@ public class InsertActPlanController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
 
         // TODO
     }
@@ -251,6 +253,7 @@ public class InsertActPlanController implements Initializable {
 
     public void setAccion(String accion) {
         lbAccion.setText(accion);
+        
 
         switch (lbAccion.getText()) {
             case "Insertar":

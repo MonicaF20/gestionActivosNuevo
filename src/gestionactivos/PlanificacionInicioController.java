@@ -137,21 +137,6 @@ public class PlanificacionInicioController implements Initializable {
 
     @FXML
     void buscar(ActionEvent event) {
-        
-        //Declarando los objetos visible o invisibles
-
-        btn_Insertar.setDisable(false);
-        btn_Eliminar.setDisable(true);
-        btn_Modificar.setDisable(true);
-        
-        
-        tb_ActPlan.setVisible(true);
-        tb_Activos.setVisible(true);
-        btn_Insertar.setVisible(true);
-        btn_Eliminar.setVisible(true);
-        btn_Modificar.setVisible(true);
-        
-        //*******************************************
 
         String valor = cmb_Grado.getValue();
         System.out.println("Valor selecionado:" + valor);
@@ -198,7 +183,18 @@ public class PlanificacionInicioController implements Initializable {
                 }
                 tb_ActPlan.setItems(data);
 
-//        tableview.setItems(data);
+                //Declarando los objetos visible o invisibles
+                btn_Insertar.setDisable(false);
+                btn_Eliminar.setDisable(true);
+                btn_Modificar.setDisable(true);
+
+                tb_ActPlan.setVisible(true);
+                tb_Activos.setVisible(true);
+                btn_Insertar.setVisible(true);
+                btn_Eliminar.setVisible(true);
+                btn_Modificar.setVisible(true);
+
+        //*******************************************
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Error on Building Data");
@@ -259,6 +255,7 @@ public class PlanificacionInicioController implements Initializable {
             ActivoC actTable = getTablaSeleccionada();
 
             llamarPantalla(valor, accion, actTable);
+
             refresh();
 
         } else {
@@ -272,8 +269,18 @@ public class PlanificacionInicioController implements Initializable {
 
         }
 
+         //Declarando los objetos visible o invisibles
+        btn_Insertar.setDisable(false);
+        btn_Eliminar.setDisable(true);
+        btn_Modificar.setDisable(true);
 
+        tb_ActPlan.setVisible(true);
+        tb_Activos.setVisible(true);
+        btn_Insertar.setVisible(true);
+        btn_Eliminar.setVisible(true);
+        btn_Modificar.setVisible(true);
 
+        //*******************************************
     }
 
     @FXML
@@ -304,6 +311,7 @@ public class PlanificacionInicioController implements Initializable {
             alert.showAndWait();
 
         }
+
     }
 
     @FXML
@@ -386,7 +394,6 @@ public class PlanificacionInicioController implements Initializable {
             btn_Eliminar.setDisable(false);
             btn_Insertar.setDisable(false);
 
-
         }
     }
 
@@ -398,7 +405,7 @@ public class PlanificacionInicioController implements Initializable {
         btn_Insertar.setVisible(false);
         btn_Eliminar.setVisible(false);
         btn_Modificar.setVisible(false);
-        
+
         tb_ActPlan.setVisible(false);
         tb_Activos.setVisible(false);
 
@@ -423,35 +430,6 @@ public class PlanificacionInicioController implements Initializable {
         tablaPersonaSel.addListener(selectorTabla);
 
         // Inicializamos la tabla con algunos datos 
-//        data = FXCollections.observableArrayList();
-//        try {
-//            String SQL = "Select to_char(a.fechaingres,'DD/MM/YYYY') as fecha ,a.idactivo as idActivo,a.idrubro as idRubro,\n"
-//                    + "a.nombreactivo as nombre,a.estadogeneral as estado, b.nombrelugar as ubicacion\n"
-//                    + "from activo as a, ubicacion as b\n"
-//                    + "where a.idubicacion = b.idubicacion\n"
-//                    + "and to_char(a.fechaingres,'YYYY') < to_char(now(),'YYYY');";
-//            //Mi consulta         
-//            ResultSet rs = con.createStatement().executeQuery(SQL);
-//            while (rs.next()) {
-//                ActivoC act = new ActivoC();
-////            Usermaster cm = new Usermaster();
-//                act.estado.set(rs.getString("estado"));
-//                act.nombre.set(rs.getString("nombre"));
-//                act.fechaIngreso.set(rs.getString("fecha"));
-//                act.codigo.set(rs.getString("idactivo"));
-//                act.rubro.set(rs.getString("idrubro"));
-//                act.ubicacion.set(rs.getString("ubicacion"));
-//
-//                data.add(act);
-//            }
-//            tb_ActPlan.setItems(data);
-////        tableview.setItems(data);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            System.out.println("Error on Building Data");
-//        }
-
-//        refresh();
     }
 
     public void refresh() {
@@ -491,6 +469,7 @@ public class PlanificacionInicioController implements Initializable {
         GestionActivos.rootPane.setCenter(scrollPane);
         GestionActivos.rootPane.setLeft(loader2);
         GestionActivos.rootPane.setRight(loader3);
+
     }
 
     public void llamarPantalla(String ubicacion, String accion, ActivoC seleccion) {
@@ -506,17 +485,20 @@ public class PlanificacionInicioController implements Initializable {
             controller.setCampos(ubicacion);
             controller.setAccion(accion);
             controller.setActSeleccionado(seleccion);
-            
-            primaryStage.setTitle(accion);
 
             Scene scene = new Scene(root);
 
             stage.setScene(scene);
+            stage.setTitle(accion);
 
-            stage.show();
+//            stage.show();
+            stage.showAndWait();
 
+//            stage.wait();
         } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
 }
