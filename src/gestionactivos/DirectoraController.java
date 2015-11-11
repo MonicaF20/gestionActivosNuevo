@@ -8,6 +8,8 @@ package gestionactivos;
 import static gestionactivos.GestionActivos.primaryStage;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
@@ -204,25 +207,72 @@ public class DirectoraController extends GestionActivos implements Initializable
 
             //Vista de Marcela diredi    
             case "planificacion":
+
+                //**********************************************************************************
+                //COMENTAR ESTO PARA PRUEBA
+//                Calendar fecha = new GregorianCalendar();
+//                int año = fecha.get(Calendar.YEAR);
+//                int mes = fecha.get(Calendar.MONTH);
+//                
+//                //COMPRUEBA QUE SEA ENERO O FEBRO DEL AÑO PRESENTE
+//                if (mes != 1 || mes != 2) {
+//
+//                    Alert alert = new Alert(Alert.AlertType.WARNING);
+//                    alert.setTitle("Error");
+//                    alert.setHeaderText(null);
+//                    alert.setContentText("No es inicio de año " + año);
+//
+//                    alert.showAndWait();
+//
+//                    try {
+//                        loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menuDirectora.fxml"));
+//                        loader2 = null;
+//                        loader3 = null;
+//
+//                        primaryStage.setTitle("Sistema para la Gestion de Activos Fijos");
+//
+//                    } catch (Exception e) {
+//                    }
+//
+//                } else {
+//                    try {
+//                        Parent loader0 = null;
+//
+//                        loader0 = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
+//
+//                        //Para que aparesca el scroll en la pantalla
+//                        ScrollPane scrollPane = new ScrollPane();
+//                        scrollPane.setFitToWidth(false);
+//                        scrollPane.setFitToHeight(true);
+//                        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+//                        scrollPane.setContent(loader0);
+//
+//                        loader = scrollPane;
+//                        primaryStage.setTitle("Realizar Planificacion Inicio de Año");
+//                    } catch (Exception e) {
+//                    }
+//
+//                }
+
+ //************************************************************************************************************************************************
+                //SIN VERIFICAR SI ES INICIO DE AÑO   
                 try {
                     Parent loader0 = null;
-                              
-                    
-                    loader0 = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
-                    
-                    //Para que aparesca el scroll en la pantalla
 
+                    loader0 = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
+
+                    //Para que aparesca el scroll en la pantalla
                     ScrollPane scrollPane = new ScrollPane();
                     scrollPane.setFitToWidth(false);
                     scrollPane.setFitToHeight(true);
                     scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 //                    scrollPane.setPrefSize(500, 1000);
                     scrollPane.setContent(loader0);
-                    
+
                     loader = scrollPane;
+//                    loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
 
-                    primaryStage.setTitle("Planificacion Inicio de Año");
-
+                    primaryStage.setTitle("Realizar Planificacion Inicio de Año");
                 } catch (Exception e) {
                 }
                 break;

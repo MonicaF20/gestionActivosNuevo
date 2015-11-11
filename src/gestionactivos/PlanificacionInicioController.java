@@ -13,6 +13,8 @@ import gestionactivos.modelo.Activo;
 import gestionactivos.modelo.Ubicacion;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -194,7 +196,7 @@ public class PlanificacionInicioController implements Initializable {
                 btn_Eliminar.setVisible(true);
                 btn_Modificar.setVisible(true);
 
-        //*******************************************
+                //*******************************************
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Error on Building Data");
@@ -269,7 +271,7 @@ public class PlanificacionInicioController implements Initializable {
 
         }
 
-         //Declarando los objetos visible o invisibles
+        //Declarando los objetos visible o invisibles
         btn_Insertar.setDisable(false);
         btn_Eliminar.setDisable(true);
         btn_Modificar.setDisable(true);
@@ -410,6 +412,20 @@ public class PlanificacionInicioController implements Initializable {
         tb_Activos.setVisible(false);
 
         //***********************
+        //VERIFICA SI SE INICIO DE AÑO
+        //COMENTAR ESTO PARA MUESTRA
+//        Calendar fecha = new GregorianCalendar();
+//        int año = fecha.get(Calendar.YEAR);
+//        int mes = fecha.get(Calendar.MONTH);
+//
+//        if (mes != 1 || mes != 2) {
+//
+//            btn_Buscar.setDisable(true);
+//            cmb_Grado.setDisable(true);
+//
+//        }
+        //***********************
+        
         ObservableList<String> list = FXCollections.observableArrayList();
 
         list = db.getUbicacion();
@@ -480,11 +496,13 @@ public class PlanificacionInicioController implements Initializable {
 
             Parent root = (Parent) fxmlLoader.load();
 
+            //PARA MANDAR PARAMETROS A LA OTRA PANTALLA
             InsertActPlanController controller = fxmlLoader.<InsertActPlanController>getController();
 
             controller.setCampos(ubicacion);
             controller.setAccion(accion);
             controller.setActSeleccionado(seleccion);
+            //********************************************
 
             Scene scene = new Scene(root);
 
@@ -500,5 +518,7 @@ public class PlanificacionInicioController implements Initializable {
         }
 
     }
+
+
 
 }

@@ -241,6 +241,16 @@ public class InsertActPlanController implements Initializable {
                 list2 = db.getNomActivo(id);
 
                 System.out.println("lista2:" + list2);
+                
+                if(list2.isEmpty()){
+                    
+                    cmbActivo.setPromptText("NO DISPONIBLES");
+                    cmbActivo.setDisable(true);
+                }
+                else{
+                    cmbActivo.setPromptText("--Activo--");
+                    cmbActivo.setDisable(false);
+                }
 
                 cmbActivo.setItems(list2);
                 AutoCompleteComboBoxListener combobox2 = new AutoCompleteComboBoxListener<>(cmbActivo);
