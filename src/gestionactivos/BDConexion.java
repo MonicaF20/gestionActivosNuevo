@@ -168,6 +168,53 @@ public class BDConexion {
         return respuesta;
 
     }
+    
+    
+    
+    
+    public String generarCodigoSolictudActivo(String codigoletras){
+      String idsolicitud,ultimo = null,respuesta = null,primero = null;
+      Statement stmt0,stmt;
+      int codConver,contador;
+      String query="SELECT idsolicitud FROM solicitud WHERE tiposolicitud='"+codigoletras+"' ORDER BY idsolicitud DESC LIMIT 1;;";
+     
+      try{
+      stmt=con.createStatement();
+      ResultSet rs=stmt.executeQuery(query);
+      if(rs.next())
+      {   idsolicitud=rs.getString("idsolicitud");
+        //separando SAC---XXX
+          primero=idsolicitud.substring(0,3);
+          //System.out.println("muestra  las sigals:" +primero);
+          ultimo=idsolicitud.substring(3,idsolicitud.length()); 
+          codConver= Integer.parseInt(ultimo);
+          codConver++;
+          respuesta=Integer.toString(codConver); 
+          switch(respuesta.length())
+          {
+              case 1:
+                  respuesta=primero+"00"+respuesta;
+               break;
+              case 2:
+                   respuesta=primero+"0"+respuesta;
+                break;
+          }
+          
+         
+      }// fin del if, entonces no hay activo aun registrado para ese rubro, por lo tanto se genera el primer codigo
+      else {respuesta=codigoletras+"001";}
+      } catch ( Exception e ) {
+            e.printStackTrace();
+      }
+    
+      
+         /*catch ( Exception e ) {
+            e.printStackTrace();
+      }*/
+      return respuesta;
+      
+      
+}
 
     ObservableList<String> getIdactivo() {
         ObservableList<String> idactivos = FXCollections.observableArrayList();
