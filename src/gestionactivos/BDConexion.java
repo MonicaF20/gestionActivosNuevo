@@ -281,6 +281,8 @@ public class BDConexion {
         }
         return activos;
     }
+    
+    
 
     Ubicacion getIdUbicacion(String nomUbicacion) {
         Statement stmt = null;
@@ -306,5 +308,36 @@ public class BDConexion {
 
         return resul;
     }
+    
+   String getNomUbicacion(int idUbicacion) {
+        Statement stmt = null;
+        String resul="";
+        String idubicacion = String.valueOf(idUbicacion);
+//         ObservableList<String> resultado = FXCollections.observableArrayList();
+//        System.out.println("Valor recibido:"+rubro);
+        String query = "Select nombrelugar\n"
+                + "from ubicacion\n"
+                + "where  idubicacion = '"+idUbicacion+"'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                resul = rs.getString("nombrelugar");
+//                resul.setIdubicacion(Integer.parseInt(idubicacion));
+//                System.out.println("Encontrado:"+resul);
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resul;
+
+        
+        
+        
+        
+        
+        
+}
 }
