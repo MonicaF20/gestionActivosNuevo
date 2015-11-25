@@ -14,12 +14,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+//import static gestionactivos.DirectoraController.lblSolicitudes;
 
 /**
  *
  * @author USER
  */
-public class GestionActivos extends Application implements Runnable {
+public class GestionActivos extends Application  {
    public static Stage primaryStage;
    public static BorderPane rootPane;
     private AnchorPane ventanaDos;
@@ -27,22 +28,14 @@ public class GestionActivos extends Application implements Runnable {
   public static Scene scene;
   BDConexion bd= BDConexion.getInstance();
     public final String  estado="PENDIENTE";
-    String respuesta="";
-    Thread t=new Thread(this);
-    private boolean continuar =true;
-    public void lanzarhilo(){
-    t.start(); 
-    
-    }
-   
-    
-    
+    public static String respuesta="";
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         GestionActivos.primaryStage=primaryStage;
         cargarPrincipal();
        //(new Thread(new GestionActivos() )).start();
-      lanzarhilo();
+      //lanzarhilo();
 
     }
     public  void cargarPrincipal(){
@@ -127,33 +120,4 @@ public class GestionActivos extends Application implements Runnable {
   
       public void addAnchorCenter(){}
     
-      
-    
-    public void run() {
-          while(continuar){
-          respuesta= bd.solicitudespendientes(estado);
-          System.out.println("número: "+respuesta);
-          try {
-			t.sleep(5000);//milisegundos
-		} catch (InterruptedException ex) {
-			t.currentThread().interrupt();
-                        Thread.currentThread().interrupt();
-		}
-          if(rootPane.isVisible()==false){
-            continuar=false;
-          }
-          }
-         
-          //esperar();
-//        BDConexion bd= BDConexion.getInstance();
-//        if(bd.isConnected()){
-//            respuesta= bd.solicitudespendientes(estado);
-//        System.out.println("número: "+respuesta);
-//        esperar();
-//        }
-        
-    }
-     
-    
- 
 }

@@ -5,6 +5,8 @@
  */
 package gestionactivos;
 
+import javafx.scene.control.Label;
+
 /**
  *
  * @author Monica
@@ -12,9 +14,11 @@ package gestionactivos;
 public class Bandeja implements Runnable {
     Boolean continuar=true;
     BDConexion bd= BDConexion.getInstance();
-    String estado="PENDIENTE";
-    String respuesta="";
+    final String estado="PENDIENTE";
+    static String respuesta="";
     Thread t;
+    
+    
     
     @Override
     public void run(){
@@ -22,9 +26,10 @@ public class Bandeja implements Runnable {
        respuesta= bd.solicitudespendientes(estado);
         System.out.println("número: "+respuesta);
         esperar();
-       }
         
-    };
+       }
+       
+    }
     private void esperar(){
       try {
 			t.sleep( 5000);//milisegundos
@@ -32,5 +37,6 @@ public class Bandeja implements Runnable {
 			t.currentThread().interrupt();
 		}
     }
+    
     
 }

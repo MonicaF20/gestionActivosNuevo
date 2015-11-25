@@ -5,6 +5,7 @@
  */
 package gestionactivos;
 
+import static gestionactivos.Bandeja.respuesta;
 import static gestionactivos.GestionActivos.primaryStage;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -29,13 +31,20 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import static gestionactivos.GestionActivos.respuesta;
+import javafx.application.Platform;
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
  *
  * @author Monica
  */
-public class DirectoraController extends GestionActivos implements Initializable {
+public class DirectoraController extends GestionActivos implements Initializable/*,Runnable*/ {
 
     GestionActivos Principal;
     @FXML
@@ -44,9 +53,21 @@ public class DirectoraController extends GestionActivos implements Initializable
     private ImageView solicitudes;
     @FXML
     private ImageView planificacion;
-
+    @FXML
+    private  Label lblSolicitudes;
     List lista = new ArrayList<>();
     String seleccion = "";
+    
+    //private Service<Void> backgroundTH;
+    private ScheduledService<Void> backgroundTH;
+    Boolean continuar=true;
+    BDConexion bd= BDConexion.getInstance();
+    final String estado="PENDIENTE";
+    static String respue="";
+   
+    //Thread t = new Thread (this);
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,11 +76,19 @@ public class DirectoraController extends GestionActivos implements Initializable
 /*
        
          solicitudes.setOnMouseClicked(new EventHandler(){
-         @Override 
+         @Override directora
          public void handle(Event event){
          capturarClick(solicitudes);
          }
          });*/
+        
+//        th.start();
+          
+          hilo();
+        
+        
+       
+        
         planificacion.setOnMouseClicked(new EventHandler() {
             @Override
             public void handle(Event event) {
@@ -180,7 +209,8 @@ public class DirectoraController extends GestionActivos implements Initializable
             case "reporteIngreso":
                 try {
                     loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reporteIngreso.fxml"));
-
+                    //th.interrupt(); //prueba con nuevo hilo ******
+                    continuar=false;
                     primaryStage.setTitle("Reporte Ingreso de Activos");
 
                 } catch (Exception e) {
@@ -312,4 +342,68 @@ public class DirectoraController extends GestionActivos implements Initializable
 
     }
 
+    
+//    Thread th =new Thread(new Task(){
+//        
+//    @Override
+//    protected Object call() throws Exception{
+//    while(continuar){ 
+//       respue= bd.solicitudespendientes(estado);
+//       
+//        System.out.println("número: "+respue);
+//        lblSolicitudes.setText(respue);
+//       
+//        try {
+//			th.sleep( 5000);//milisegundos
+//		} catch (InterruptedException ex) {
+//			th.currentThread().interrupt();
+//		}
+//        
+//         }
+//      return true;
+//    }
+//    });
+        private void hilo(){
+        
+         /*backgroundTH = new Service<Void>()*/
+        backgroundTH  = new ScheduledService<Void>(){
+        @Override
+        protected Task<Void> createTask() {
+            return new Task<Void>(){
+            @Override 
+            protected Void call()throws Exception{
+                
+                while(continuar){ 
+                  respue= bd.solicitudespendientes(estado);
+                  updateMessage("Solicitudes Pendientes : "+" "+respue);//seteando el label 
+                  System.out.println("número: "+respue);
+                  
+                }//while 
+                
+            return null;
+            }
+            };
+        }
+        
+       }; //fin service
+       
+         backgroundTH.setOnSucceeded(new EventHandler <WorkerStateEvent>(){
+             @Override
+             public void handle(WorkerStateEvent event) {
+                 System.out.println("Done!");
+             }
+         });
+         lblSolicitudes.textProperty().bind(backgroundTH.messageProperty());//para recargar el label 
+         backgroundTH.restart();
+         backgroundTH.setPeriod(Duration.seconds(10));
+        
+        
+        }//fin hilo 
+
+      
+        
+        
+
+    
+    
 }
