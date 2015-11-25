@@ -15,13 +15,13 @@
       <Label layoutX="249.0" layoutY="55.0" text="Solicitud de Baja de Activo" />
       <Label layoutX="83.0" layoutY="148.0" text="Nombre del Activo:" />
       <Label layoutX="83.0" layoutY="184.0" text="Código Activo:" />
-      <TextArea layoutX="223.0" layoutY="231.0" prefHeight="117.0" prefWidth="188.0" />
-      <TextField layoutX="223.0" layoutY="182.0" />
-      <TextField layoutX="223.0" layoutY="146.0" />
+      <TextArea fx:id="txtDetalleDanio" layoutX="223.0" layoutY="231.0" prefHeight="117.0" prefWidth="188.0" />
+      <TextField fx:id="txtCodigoActivo" layoutX="223.0" layoutY="182.0" />
+      <TextField fx:id="txtNombreActivo" layoutX="223.0" layoutY="146.0" />
       <Label layoutX="83.0" layoutY="231.0" text="Detalle del daño:" />
-      <Button layoutX="493.0" layoutY="392.0" mnemonicParsing="false" text="Enviar" />
-      <Button layoutX="350.0" layoutY="392.0" mnemonicParsing="false" text="Limpiar" />
+      <Button fx:id="btnEnviar" layoutX="493.0" layoutY="392.0" mnemonicParsing="false" text="Enviar" />
+      <Button fx:id="btnLimpiar" layoutX="350.0" layoutY="392.0" mnemonicParsing="false" text="Limpiar" />
       <Label layoutX="419.0" layoutY="148.0" text="Fecha " />
-      <DatePicker layoutX="468.0" layoutY="146.0" />
+      <DatePicker fx:id="datePickerSolicitudBaja" layoutX="468.0" layoutY="146.0" />
    </children>
 </AnchorPane>
