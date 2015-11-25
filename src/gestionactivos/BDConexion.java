@@ -234,6 +234,27 @@ public class BDConexion {
         }
         return idactivos;
     }
+    
+    
+    
+    ObservableList<String> getSolicitudPeticionActivo() {
+        ObservableList<String> idsolicitudes = FXCollections.observableArrayList();
+        Statement stmt = null;
+        String query = "select idsolicitud from solicitud where tiposolicitud='SAC' and estadosolicitud='PENDIENTE'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                idsolicitudes.add(rs.getString("idsolicitud"));
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println(idactivos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return idsolicitudes;
+    }
 
     /// Marcela 
     String getIdRubro(String rubro) {
@@ -281,6 +302,8 @@ public class BDConexion {
         }
         return activos;
     }
+    
+    
 
     Ubicacion getIdUbicacion(String nomUbicacion) {
         Statement stmt = null;
@@ -324,5 +347,35 @@ public class BDConexion {
         }
        return resul;
     }
+   String getNomUbicacion(int idUbicacion) {
+        Statement stmt = null;
+        String resul="";
+        String idubicacion = String.valueOf(idUbicacion);
+//         ObservableList<String> resultado = FXCollections.observableArrayList();
+//        System.out.println("Valor recibido:"+rubro);
+        String query = "Select nombrelugar\n"
+                + "from ubicacion\n"
+                + "where  idubicacion = '"+idUbicacion+"'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                resul = rs.getString("nombrelugar");
+//                resul.setIdubicacion(Integer.parseInt(idubicacion));
+//                System.out.println("Encontrado:"+resul);
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resul;
+
+        
+        
+        
+        
+        
+        
+}
 }
