@@ -90,26 +90,9 @@ EntityManager em= emf.createEntityManager();
   @FXML
    public void AceptarSolicitud(ActionEvent event){
        
-      /* EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
-     EntityManager em=emf.createEntityManager();
-      
-    EntityManagerFactory emf2= Persistence.createEntityManagerFactory("GestionActivosPU");
-     EntityManager em2=emf2.createEntityManager();
-     
-     
-     
-         
-         
-         em.getTransaction().begin(); 
-      
-       Query query=em.createNativeQuery("UPDATE solicitud SET estadosolicitud='ACEPTADA' where idsolicitud=?",Solicitud.class).setParameter(1, solicitud.getIdsolicitud());
-       Solicitud results=(Solicitud) query.getSingleResult();
-      System.out.println("REsultado"+results);
-      
-       em.getTransaction().commit();
-       em.close();
-       
-       */
+   em.getTransaction().begin();
+   solicitud.setEstadosolicitud("ACEPTADA");
+   em.getTransaction().commit();
        JOptionPane.showMessageDialog(null, "Solicitud Aceptada");
        
     refresh();
@@ -117,7 +100,9 @@ EntityManager em= emf.createEntityManager();
       
    @FXML
    public void CancelarSolicitud(ActionEvent event){
-      
+       em.getTransaction().begin();
+   solicitud.setEstadosolicitud("RECHAZADA");
+   em.getTransaction().commit();
        JOptionPane.showMessageDialog(null, "Solicitud Rechazada");
        refresh();
     //
@@ -176,7 +161,6 @@ Stage mainWindow; //Haciendo referencia al primaryStage
 mainWindow = GestionActivos.primaryStage;
 mainWindow.setScene(newScene);     
 
-//cargando el menulateral
 try {
             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesPeticionDirectora.fxml"));
             loader2= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menulateralDirectora.fxml"));
