@@ -15,13 +15,22 @@ import javafx.fxml.Initializable;
  * @author Monica
  */
 public class SolicitarBajaController implements Initializable {
-
+    //BDConexion bd= BDConexion.getInstance();
+    //String estado="PENDIENTE";
+    //String respuesta="";
+    Bandeja hbandeja = new Bandeja();
+    
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        //bd.solicitudespendientes(estado);
+        //bandeja.start(); 
+        hbandeja.run();
+    }   
+    
     
 }

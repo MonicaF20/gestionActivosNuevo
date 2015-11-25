@@ -306,5 +306,23 @@ public class BDConexion {
 
         return resul;
     }
+    
+    //Consultas para Baja de solicitud 
+    String solicitudespendientes(String estado){
+        Statement stmt = null;
+        String resul = null;
+        String query ="Select count(estadosolicitud) as contar from solicitud where estadosolicitud='"+estado+"';";
+        try{
+            stmt=con.createStatement();
+            ResultSet rs= stmt.executeQuery(query);
+            while(rs.next()){
+            resul= rs.getString("contar");
+                //System.out.println("resultado"+resul);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+       return resul;
+    }
 
 }

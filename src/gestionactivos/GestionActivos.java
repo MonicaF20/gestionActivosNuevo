@@ -19,18 +19,31 @@ import javafx.stage.Stage;
  *
  * @author USER
  */
-public class GestionActivos extends Application {
+public class GestionActivos extends Application implements Runnable {
    public static Stage primaryStage;
    public static BorderPane rootPane;
     private AnchorPane ventanaDos;
      private AnchorPane header;
   public static Scene scene;
+  BDConexion bd= BDConexion.getInstance();
+    public final String  estado="PENDIENTE";
+    String respuesta="";
+    Thread t=new Thread(this);
+    private boolean continuar =true;
+    public void lanzarhilo(){
+    t.start(); 
+    
+    }
+   
+    
     
     @Override
     public void start(Stage primaryStage) throws Exception {
         GestionActivos.primaryStage=primaryStage;
         cargarPrincipal();
-        
+       //(new Thread(new GestionActivos() )).start();
+      lanzarhilo();
+
     }
     public  void cargarPrincipal(){
            try{
@@ -48,7 +61,7 @@ public class GestionActivos extends Application {
           
             }catch(IOException e){
                 }
-           
+          
         }
 
    
@@ -56,7 +69,7 @@ public class GestionActivos extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        launch(args);        
     }
     
    
@@ -113,5 +126,34 @@ public class GestionActivos extends Application {
 
   
       public void addAnchorCenter(){}
+    
+      
+    
+    public void run() {
+          while(continuar){
+          respuesta= bd.solicitudespendientes(estado);
+          System.out.println("número: "+respuesta);
+          try {
+			t.sleep(5000);//milisegundos
+		} catch (InterruptedException ex) {
+			t.currentThread().interrupt();
+                        Thread.currentThread().interrupt();
+		}
+          if(rootPane.isVisible()==false){
+            continuar=false;
+          }
+          }
+         
+          //esperar();
+//        BDConexion bd= BDConexion.getInstance();
+//        if(bd.isConnected()){
+//            respuesta= bd.solicitudespendientes(estado);
+//        System.out.println("número: "+respuesta);
+//        esperar();
+//        }
+        
+    }
+     
+    
  
 }
