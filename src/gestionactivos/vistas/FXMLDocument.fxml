@@ -24,7 +24,7 @@
             <TextArea fx:id="descripcion" layoutX="171.0" layoutY="242.0" prefHeight="46.0" prefWidth="237.0" />
             <Button fx:id="ingresarBoton" defaultButton="true" layoutX="67.0" layoutY="412.0" mnemonicParsing="false" onAction="#ingresarActivo" text="Ingresar" textFill="#0d831d" />
             <Button fx:id="cancelarBoton" layoutX="207.0" layoutY="412.0" mnemonicParsing="false" onAction="#refresh" text="Cancelar" textFill="#cd0d0d" />
-            <DatePicker fx:id="fecha" layoutX="171.0" layoutY="83.0" prefHeight="25.0" prefWidth="149.0" />
+            <DatePicker fx:id="fecha" editable="false" layoutX="171.0" layoutY="83.0" prefHeight="25.0" prefWidth="149.0" />
             <Label alignment="CENTER" layoutX="8.0" layoutY="34.0" text="INGRESO DE UN NUEVO ACTIVO" />
             <Label id="codigo" fx:id="codigo" layoutX="176.0" layoutY="368.0" prefHeight="31.0" prefWidth="160.0" visible="false" />
             <ComboBox fx:id="ubicacion" editable="true" layoutX="171.0" layoutY="301.0" onMouseEntered="#cargarUbicaciones" prefHeight="25.0" prefWidth="174.0" promptText="--Seleccione Ubicacion" />

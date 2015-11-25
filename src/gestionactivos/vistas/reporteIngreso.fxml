@@ -14,7 +14,7 @@
          <children>
             <Label fx:id="lblTituloReporte" layoutX="179.0" layoutY="45.0" prefHeight="21.0" prefWidth="536.0" text="REPORTE DE INGRESO DE ACTIVOS DIARIOS" textAlignment="CENTER" />
             <ComboBox fx:id="cmbOpcReporte" layoutX="216.0" layoutY="99.0" prefHeight="25.0" prefWidth="195.0" promptText="--Seleccione otra modalidad" />
-            <DatePicker fx:id="dtPickerReporte" layoutX="469.0" layoutY="100.0" prefHeight="25.0" prefWidth="136.0" visible="false" />
+            <DatePicker fx:id="dtPickerReporte" editable="false" layoutX="469.0" layoutY="100.0" prefHeight="25.0" prefWidth="136.0" visible="false" />
             <Button fx:id="btnImprimir" layoutX="411.0" layoutY="489.0" mnemonicParsing="false" onAction="#generarPDF" text="Imprimir " />
             <TableView fx:id="tableReporteIngreso" layoutX="130.0" layoutY="143.0" prefHeight="251.0" prefWidth="702.0">
               <columns>
