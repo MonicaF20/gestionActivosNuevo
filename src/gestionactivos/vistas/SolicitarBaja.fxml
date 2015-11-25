@@ -19,7 +19,7 @@
       <TextField fx:id="txtCodigoActivo" layoutX="223.0" layoutY="182.0" />
       <TextField fx:id="txtNombreActivo" layoutX="223.0" layoutY="146.0" />
       <Label layoutX="83.0" layoutY="231.0" text="Detalle del daño:" />
-      <Button fx:id="btnEnviar" layoutX="493.0" layoutY="392.0" mnemonicParsing="false" text="Enviar" />
+      <Button fx:id="btnEnviar" layoutX="493.0" layoutY="392.0" mnemonicParsing="false" onAction="#solicitarBaja" text="Enviar" />
       <Button fx:id="btnLimpiar" layoutX="350.0" layoutY="392.0" mnemonicParsing="false" text="Limpiar" />
       <Label layoutX="419.0" layoutY="148.0" text="Fecha " />
       <DatePicker fx:id="datePickerSolicitudBaja" layoutX="468.0" layoutY="146.0" />
