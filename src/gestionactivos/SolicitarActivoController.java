@@ -103,7 +103,12 @@ public class SolicitarActivoController implements Initializable {
      
      @FXML
    public void ingresarSolicitudActivo(ActionEvent event){
-       EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
+      if(nombreActivo.getText().isEmpty() || descripcion.getText().isEmpty() || cantidad.getText().isEmpty() || nombreSolicitante.getText().isEmpty() || ubicacionSolicDoc.getValue().isEmpty() || (fecha.getValue().toString().isEmpty())){
+      
+               JOptionPane.showMessageDialog(null, "Error. Debe ingresar todos los campos");}
+      else{
+       
+     EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
      EntityManager em=emf.createEntityManager();
       
     EntityManagerFactory emf2= Persistence.createEntityManagerFactory("GestionActivosPU");
@@ -130,6 +135,7 @@ public class SolicitarActivoController implements Initializable {
    //if(nombreSolicitant.getText().length()>0){
         //solicitud.setIdsolicitud();
        em2.getTransaction().begin();
+      solicitud.setNombreactivo(nombreActivo.getText());
       solicitud.setFecharegistrasoli(date);
       solicitud.setNombresolicitante(nombreSolicitante.getText());     
       solicitud.setDescripcionsolicitud(descripcion.getText());
@@ -173,7 +179,7 @@ alert.showAndWait();
       
    }
      
-     
+   }
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {

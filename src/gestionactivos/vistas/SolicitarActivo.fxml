@@ -17,17 +17,17 @@
             <Label layoutX="3.0" layoutY="148.0" text="Nombre Activo: " />
             <Label layoutY="341.0" text="Descripcion de Solicitud:" />
             <Label layoutY="230.0" text="Ubicacion a Asignar:" />
+            <TextField fx:id="nombreSolicitante" layoutX="171.0" layoutY="111.0" />
             <TextField fx:id="nombreActivo" layoutX="171.0" layoutY="146.0" />
+            <TextField fx:id="cantidad" layoutX="171.0" layoutY="190.0" />
+            <ComboBox fx:id="ubicacionSolicDoc" layoutX="170.0" layoutY="228.0" prefHeight="25.0" prefWidth="174.0" promptText="--Seleccione Ubicacion" />
+            <DatePicker fx:id="fecha" editable="false" layoutX="170.0" layoutY="274.0" />
             <TextArea fx:id="descripcion" layoutX="173.0" layoutY="324.0" prefHeight="55.0" prefWidth="268.0" />
             <Button fx:id="ingresarBoton" defaultButton="true" layoutX="67.0" layoutY="432.0" mnemonicParsing="false" onAction="#ingresarSolicitudActivo" text="Ingresar" textFill="#0d831d" />
             <Button fx:id="cancelarBoton" layoutX="207.0" layoutY="432.0" mnemonicParsing="false" text="Cancelar" textFill="#cd0d0d" />
-            <DatePicker fx:id="fecha" layoutX="170.0" layoutY="274.0" />
             <Label alignment="CENTER" layoutX="177.0" layoutY="34.0" text="SOLICITUD DE  ACTIVO" />
             <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
-            <ComboBox fx:id="ubicacionSolicDoc" editable="true" layoutX="170.0" layoutY="228.0" prefHeight="25.0" prefWidth="174.0" promptText="--Seleccione Ubicacion" />
             <Label layoutX="3.0" layoutY="113.0" text="Nombre de solicitante:" />
-            <TextField fx:id="nombreSolicitante" layoutX="171.0" layoutY="111.0" />
-            <TextField fx:id="cantidad" layoutX="171.0" layoutY="190.0" />
             <Label fx:id="labelcodigo1" layoutX="173.0" layoutY="400.0" prefHeight="21.0" prefWidth="80.0" visible="false" />
          </children>
       </AnchorPane>
