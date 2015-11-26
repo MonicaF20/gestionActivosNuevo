@@ -52,6 +52,8 @@ public class SolicitarBajaController implements Initializable {
    @FXML   
    private TextArea txtDetalleDanio;
    @FXML   
+   private TextField txtNombreSolicitante;
+   @FXML   
    private DatePicker datePickerSolicitudBaja;
    @FXML
    private ComboBox<String> cbUbicacionActivo;
@@ -89,6 +91,9 @@ public class SolicitarBajaController implements Initializable {
       Sol.setFecharegistrasoli(fecha);
       Sol.setDescripcionsolicitud(txtDetalleDanio.getText());
       Sol.setIdubicacion(ubi);
+      Sol.setIdactivo(txtCodigoActivo.getText());
+      Sol.setNombresolicitante(txtNombreSolicitante.getText());
+      Sol.setNombreactivo(txtNombreActivo.getText());
       Sol.setEstadosolicitud("PENDIENTE");
       Sol.setTiposolicitud(codigoLe);
       Sol.setIdsolicitud(lblCodigoSol.getText());

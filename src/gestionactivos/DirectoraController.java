@@ -378,7 +378,7 @@ public class DirectoraController extends GestionActivos implements Initializable
                 while(continuar){ 
                   respue= bd.solicitudespendientes(estado);
                   updateMessage("Solicitudes Pendientes : "+" "+respue);//seteando el label 
-                  System.out.println("número: "+respue);
+                  //System.out.println("número: "+respue);
                   
                 }//while 
                 

@@ -388,13 +388,46 @@ public class BDConexion {
             e.printStackTrace();
         }
 
-        return resul;
-
-        
-        
-        
-        
-        
-        
+        return resul;        
 }
+   
+     ObservableList<String> getSolicitudesBaja() {
+        ObservableList<String> solicitudBaja = FXCollections.observableArrayList();
+        Statement stmt = null;
+
+        String query = "select idsolicitud from solicitud where tiposolicitud='SBA' and estadosolicitud='PENDIENTE'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                solicitudBaja.add(rs.getString("idsolicitud"));
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println(idactivos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudBaja;
+    }
+   
+      ObservableList<String> getSolicitudesBajaTodas() {
+        ObservableList<String> solicitudBaja = FXCollections.observableArrayList();
+        Statement stmt = null;
+
+        String query = "select idsolicitud from solicitud where tiposolicitud='SBA'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                solicitudBaja.add(rs.getString("idsolicitud"));
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println(idactivos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudBaja;
+    }
 }

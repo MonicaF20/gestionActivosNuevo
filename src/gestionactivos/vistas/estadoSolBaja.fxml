@@ -6,14 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/form.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionactivos.EstadoSolBajaController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.EstadoSolBajaController">
    <children>
       <Label layoutX="158.0" layoutY="30.0" text="CONSULTA DEL ESTADO DE SOLICITUD REALIZADA" />
       <Label layoutX="104.0" layoutY="70.0" text="Ingrese el Id de la Solicitud" />
-      <TextField layoutX="306.0" layoutY="68.0" />
-      <Button layoutX="203.0" layoutY="122.0" mnemonicParsing="false" text="Procesar Consulta" />
-      <Label id="codigo" layoutX="172.0" layoutY="220.0" text="Su solicitud aun no ha sido revisada" />
+      <Button fx:id="btnConsulta" layoutX="203.0" layoutY="122.0" mnemonicParsing="false" text="Procesar Consulta" />
+      <Label id="codigo" fx:id="lblRespuesta" layoutX="172.0" layoutY="220.0" prefHeight="21.0" prefWidth="254.0" />
       <Label layoutX="254.0" layoutY="190.0" text="Respuesta:" />
+      <ComboBox fx:id="cbIdSol" layoutX="300.0" layoutY="68.0" prefWidth="150.0" promptText="-- Solicitud" />
    </children>
 </AnchorPane>
