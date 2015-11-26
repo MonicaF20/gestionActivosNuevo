@@ -79,6 +79,9 @@ public class SolicitudesPeticionDirectoraController implements Initializable {
       
        @FXML
     private Button rechazarBoton;
+       
+       
+  
 
     BDConexion db= BDConexion.getInstance();
 EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
