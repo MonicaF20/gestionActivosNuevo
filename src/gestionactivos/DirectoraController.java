@@ -5,7 +5,7 @@
  */
 package gestionactivos;
 
-import static gestionactivos.Bandeja.respuesta;
+
 import static gestionactivos.GestionActivos.primaryStage;
 import java.net.URL;
 import java.util.ArrayList;
