@@ -175,45 +175,24 @@ public class MenulateralDirectoraController implements Initializable {
             case "Realizar Planificación":
 
                 //**********************************************************************************
-//                //COMENTAR ESTO PARA PRUEBA
-//                Calendar fecha = new GregorianCalendar();
-//                int año = fecha.get(Calendar.YEAR);
-//                int mes = fecha.get(Calendar.MONTH);
-//
-//                if (mes != 1 || mes != 2) {
-//
-//                    Alert alert = new Alert(Alert.AlertType.WARNING);
-////                        alert.setAlertType(Alert.AlertType.WARNING);
-//                    alert.setTitle("Error");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("No es inicio de año " + año);
-//
-//                    alert.showAndWait();
-//
-//                } //***********************
-////                else { //COMETAR ESTE ELSE
-//                    try {
-//                        
-//                        Parent loader0 = null;
-//                        loader0 = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
-//
-//                        //Para que aparesca el scroll en la pantalla
-//                        ScrollPane scrollPane = new ScrollPane();
-//                        scrollPane.setFitToWidth(false);
-//                        scrollPane.setFitToHeight(true);
-//                        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-//                        scrollPane.setContent(loader0);
-//
-//                        loader = scrollPane;
-//                        primaryStage.setTitle("Realizar Planificacion Inicio de Año");
-//                    } catch (Exception e) {
-//                    }
-////COMENTAR ESTA "}"
-////                }
-                //*************************************************************************
-                
-                //SIN VERIFICAR SI ES INICIO DE AÑO                 
-                try {
+                //COMENTAR ESTO PARA PRUEBA
+                Calendar fecha = new GregorianCalendar();
+                int año = fecha.get(Calendar.YEAR);
+                int mes = fecha.get(Calendar.MONTH);
+
+                if (mes != 1 || mes != 2) {
+
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+//                        alert.setAlertType(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("No es inicio de año " + año);
+
+                    alert.showAndWait();
+
+                } //***********************
+//                else { //COMETAR ESTE ELSE
+                    try {
                         
                         Parent loader0 = null;
                         loader0 = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
@@ -229,7 +208,28 @@ public class MenulateralDirectoraController implements Initializable {
                         primaryStage.setTitle("Realizar Planificacion Inicio de Año");
                     } catch (Exception e) {
                     }
+//COMENTAR ESTA "}"
+//                }
+                //*************************************************************************
                 
+                //SIN VERIFICAR SI ES INICIO DE AÑO                 
+//                try {
+//                        
+//                        Parent loader0 = null;
+//                        loader0 = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/PlanificacionInicio.fxml"));
+//
+//                        //Para que aparesca el scroll en la pantalla
+//                        ScrollPane scrollPane = new ScrollPane();
+//                        scrollPane.setFitToWidth(false);
+//                        scrollPane.setFitToHeight(true);
+//                        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+//                        scrollPane.setContent(loader0);
+//
+//                        loader = scrollPane;
+//                        primaryStage.setTitle("Realizar Planificacion Inicio de Año");
+//                    } catch (Exception e) {
+//                    }
+//                
                 //**********************************************************************
 
                 break;

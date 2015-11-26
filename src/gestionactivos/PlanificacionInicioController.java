@@ -173,7 +173,6 @@ public class PlanificacionInicioController implements Initializable {
                 ResultSet rs = con.createStatement().executeQuery(SQL);
                 while (rs.next()) {
                     ActivoC act = new ActivoC();
-//            Usermaster cm = new Usermaster();
                     act.estado.set(rs.getString("estado"));
                     act.nombre.set(rs.getString("nombre"));
                     act.fechaIngreso.set(rs.getString("fecha"));
@@ -402,6 +401,8 @@ public class PlanificacionInicioController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
+        
+        btn_Buscar.setVisible(false);
 
         //***********************
         btn_Insertar.setVisible(false);
@@ -414,25 +415,27 @@ public class PlanificacionInicioController implements Initializable {
         //***********************
         //VERIFICA SI SE INICIO DE AÑO
         //COMENTAR ESTO PARA MUESTRA
-//        Calendar fecha = new GregorianCalendar();
-//        int año = fecha.get(Calendar.YEAR);
-//        int mes = fecha.get(Calendar.MONTH);
-//
-//        if (mes != 1 || mes != 2) {
-//
-//            btn_Buscar.setDisable(true);
-//            cmb_Grado.setDisable(true);
-//
-//        }
-        //***********************
+        Calendar fecha = new GregorianCalendar();
+        int año = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+
+        if (mes != 1 || mes != 2) {
+
+            btn_Buscar.setDisable(true);
+            cmb_Grado.setDisable(true);
+
+        }
         
+        //MOdificar DirectoraController y MenulateralDirectoraController
+        
+        //***********************
         ObservableList<String> list = FXCollections.observableArrayList();
 
         list = db.getUbicacion();
         list.add("Todo");
 
         cmb_Grado.setItems(list);
-        AutoCompleteComboBoxListener combobox = new AutoCompleteComboBoxListener<>(cmb_Grado);
+//        AutoCompleteComboBoxListener combobox = new AutoCompleteComboBoxListener<>(cmb_Grado);
 
         cmb_Grado.setEditable(false);
 
@@ -445,7 +448,16 @@ public class PlanificacionInicioController implements Initializable {
         final ObservableList<ActivoC> tablaPersonaSel = tb_ActPlan.getSelectionModel().getSelectedItems();
         tablaPersonaSel.addListener(selectorTabla);
 
-        // Inicializamos la tabla con algunos datos 
+        //El listener de ComboBox        
+        cmb_Grado.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String> () {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                
+                buscar(null);
+                
+            }
+        });
     }
 
     public void refresh() {
@@ -470,18 +482,10 @@ public class PlanificacionInicioController implements Initializable {
 
         //Agregar scroll a panel del Centro
         ScrollPane scrollPane = new ScrollPane();
-//        scrollPane.setFitToWidth(false);
         scrollPane.setFitToHeight(true);
-//        scrollPane.setVvalue(0);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setContent(loader);
-
-//        scrollPane.vvalueProperty().addListener((ObservableValue<? extends Number> ov, 
-//            Number old_val, Number new_val) -> {
-//                System.out.println(-new_val.doubleValue());
-//                
-//                
-//        }); 
+        
         GestionActivos.rootPane.setCenter(scrollPane);
         GestionActivos.rootPane.setLeft(loader2);
         GestionActivos.rootPane.setRight(loader3);
@@ -518,7 +522,5 @@ public class PlanificacionInicioController implements Initializable {
         }
 
     }
-
-
 
 }

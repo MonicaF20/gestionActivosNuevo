@@ -6,29 +6,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionactivos.SolicitudesReparacionDirectoraController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.SolicitudesReparacionDirectoraController">
     <children>
     <AnchorPane layoutX="198.0" layoutY="-14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="672.0" styleClass="anchorPane" stylesheets="@../css/form.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="-14.0">
          <children>
             <Label layoutX="38.0" layoutY="367.0" styleClass="opciones" text="Fecha de reporte:" />
             <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
-            <Label id="secundario" layoutX="35.0" layoutY="155.0" styleClass="opciones" text="Nombre Activo: " />
-            <Label layoutX="35.0" layoutY="190.0" styleClass="opciones" text="Rubro:" />
-            <Label layoutX="35.0" layoutY="228.0" styleClass="opciones" text="Ubicacion:" />
-            <TextField fx:id="nombre" editable="false" focusTraversable="false" layoutX="161.0" layoutY="188.0" />
+            <Label id="secundario" layoutX="36.0" layoutY="217.0" styleClass="opciones" text="Nombre Activo: " />
+            <Label layoutX="36.0" layoutY="262.0" styleClass="opciones" text="Ubicacion:" />
             <Label alignment="CENTER" layoutX="180.0" layoutY="31.0" text="SOLICITUDES DE REPARACION DE ACTIVO " />
             <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
             <Label layoutX="35.0" layoutY="77.0" text="Solicitud de Reparacion " />
-            <TextField editable="false" focusTraversable="false" layoutX="161.0" layoutY="153.0" />
-            <TextField editable="false" focusTraversable="false" layoutX="161.0" layoutY="226.0" />
-            <Label layoutX="35.0" layoutY="275.0" prefHeight="53.0" prefWidth="101.0" styleClass="opciones" text="Descripcion de daño:" wrapText="true" />
-            <TextArea editable="false" layoutX="163.0" layoutY="275.0" prefHeight="53.0" prefWidth="302.0" />
-            <ComboBox fx:id="idactivo" editable="true" layoutX="213.0" layoutY="75.0" prefHeight="25.0" prefWidth="185.0" promptText="--Seleccione una solicitud" />
+            <TextField fx:id="nombre" editable="false" focusTraversable="false" layoutX="161.0" layoutY="212.0" />
+            <TextField fx:id="ubicacion" editable="false" focusTraversable="false" layoutX="162.0" layoutY="257.0" />
+            <Label layoutX="35.0" layoutY="287.0" prefHeight="53.0" prefWidth="101.0" styleClass="opciones" text="Descripcion de daño:" wrapText="true" />
+            <TextArea fx:id="descripcion" editable="false" layoutX="160.0" layoutY="293.0" prefHeight="53.0" prefWidth="302.0" />
+            <ComboBox fx:id="idsolicitud" editable="true" layoutX="213.0" layoutY="75.0" prefHeight="25.0" prefWidth="185.0" promptText="--Seleccione una solicitud" />
             <Label layoutX="37.0" layoutY="123.0" text="Datos Generales de la Solicitud" />
-            <TextField editable="false" layoutX="161.0" layoutY="362.0" />
-            <Button layoutX="64.0" layoutY="411.0" mnemonicParsing="false" text="Aceptar Solicitud " />
-            <Button layoutX="236.0" layoutY="411.0" mnemonicParsing="false" text="Rechazar Solicitud" />
-            <Button layoutX="413.0" layoutY="411.0" mnemonicParsing="false" text="Dar de Baja " />
+            <TextField fx:id="fecha" editable="false" layoutX="161.0" layoutY="362.0" />
+            <Button layoutX="102.0" layoutY="411.0" mnemonicParsing="false" onAction="#aceptarSoli" text="Aceptar Solicitud " />
+            <Button layoutX="299.0" layoutY="411.0" mnemonicParsing="false" onAction="#RechazarSoli" text="Rechazar Solicitud" />
+            <Label layoutX="35.0" layoutY="158.0" prefHeight="53.0" prefWidth="101.0" styleClass="opciones" text="Nombre del Solicitante:" wrapText="true" />
+            <TextField fx:id="nombre_soli" editable="false" focusTraversable="false" layoutX="162.0" layoutY="166.0" prefHeight="25.0" prefWidth="205.0" />
          </children>
       </AnchorPane>
    </children>

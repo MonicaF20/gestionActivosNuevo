@@ -30,7 +30,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -221,22 +224,50 @@ public class ReporteIngresoController implements Initializable {
            }
        });
    
+
+dtPickerReporte.valueProperty().addListener(new ChangeListener<LocalDate>(){
+
+           @Override
+           public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+               limpiarTabla();
+               cargarDatos(0);
+           }
+       });
+
+   
               this.cargarDatos(0);
     }
     
  public SimpleStringProperty cargarDatos(int modalidad){
-   
+   //   DateFormat df = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss");
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     switch(modalidad){
+     
         //modalidad 0 es la por defecto: REPORTES DIARIOS
         case 0:
+            String fechaString=dtPickerReporte.getValue().toString();
+           System.out.print("entro a modalidad 0");
+           System.out.print(dtPickerReporte.getValue());
+           System.out.println(date);
+      {
+          try {
+              date= df.parse(fechaString);
+          } catch (ParseException ex) {
+              Logger.getLogger(ReporteIngresoController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+      }
            EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
            EntityManager em= emf.createEntityManager();
            txtAnio.setVisible(false);
            cmbBuscarRubros.setVisible(false);
-           dtPickerReporte.setVisible(true);
+          txtAnio.setVisible(false);
+          cmbNombre.setVisible(false);
+          cmbMeses.setVisible(false);
+           dtPickerReporte.setVisible(true);  
            
+         
            em.getTransaction().begin();
-           TypedQuery<Activo> query= em.createNamedQuery("Activo.findByFechaingres",Activo.class).setParameter("fechaingres",date);
+           TypedQuery<Activo> query= em.createNamedQuery("Activo.findByFechaingres",Activo.class).setParameter("fechaingres", date);
            results= query.getResultList();
             em.getTransaction().commit();
             
@@ -362,13 +393,15 @@ public class ReporteIngresoController implements Initializable {
     }
     
    lblCuenta.setText(cuenta+listaActivo.size());
-    for(int i=0;i<results.size();i++)
+   for(int i=0;i<results.size();i++)
     {
       
   
   
    tableReporteIngreso.setItems(listaActivo);
  
+   
+   
     tableColActivo.setCellValueFactory(new PropertyValueFactory<>("idactivo"));
     tableColNombre.setCellValueFactory(new PropertyValueFactory<>("nombreactivo"));
     tableColDescrip.setCellValueFactory(new PropertyValueFactory<>("descripcionactivo"));
