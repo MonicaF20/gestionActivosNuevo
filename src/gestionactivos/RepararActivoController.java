@@ -9,6 +9,7 @@ import gestionactivos.modelo.Activo;
 import gestionactivos.modelo.Rubro;
 import gestionactivos.modelo.Solicitud;
 import gestionactivos.modelo.Ubicacion;
+import java.io.IOException;
 import java.net.URL;
 import static java.sql.JDBCType.NULL;
 import java.time.Instant;
@@ -16,8 +17,12 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,6 +41,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -72,6 +78,9 @@ public class RepararActivoController implements Initializable {
   
     @FXML
     private Label num_soli;
+    
+    @FXML
+    private TextField nom_solicitante;
 
     BDConexion db = BDConexion.getInstance();
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionActivosPU");
@@ -94,6 +103,22 @@ public class RepararActivoController implements Initializable {
         
         String codigo=db.generarCodigoSolictudActivo(codigoletras);
    num_soli.setText(codigo);
+   
+      
+  cancelarBoton.setOnAction ( new EventHandler(){
+        
+
+            @Override
+            public void handle(Event event) {
+                
+               JOptionPane.showMessageDialog(null, "Solicitud Cancelada");
+                try {
+                    regresarMenu();
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuLateralDocenteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+ }
+        });
 
         
 
@@ -131,7 +156,7 @@ public class RepararActivoController implements Initializable {
     @FXML
     public void ingresarActivoDañado() {
         
-        if(nombre.getText().isEmpty() || rubro.getText().isEmpty()||ubicacion.getText().isEmpty()||descripcion.getText().isEmpty() || fecha.getValue().toString().isEmpty() ){
+        if(nombre.getText().isEmpty() || rubro.getText().isEmpty()||ubicacion.getText().isEmpty()||descripcion.getText().isEmpty() || fecha.getValue().toString().isEmpty() || nom_solicitante.getText().isEmpty()){
          
              Alert alert = new Alert(Alert.AlertType.ERROR);
 alert.setTitle("Error Dialog");
@@ -161,6 +186,9 @@ alert.showAndWait();
       solicitud.setTiposolicitud(codigoletras);
       solicitud.setIdubicacion(ubicacion1);
       solicitud.setIdsolicitud(num_soli.getText());
+      solicitud.setNombreactivo(activo.getNombreactivo());
+      solicitud.setIdactivo(activo.getIdactivo());
+      solicitud.setNombresolicitante(nom_solicitante.getText());
       num_soli.setVisible(true);
       soli.setVisible(true);
       //em2.getTransaction().begin();
@@ -200,6 +228,16 @@ alert.showAndWait();
      
         
     }  
+    public void regresarMenu() throws IOException{
+   AnchorPane loader= null;
+    loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menudocente.fxml"));
+   GestionActivos.rootPane.setCenter(loader);
+   GestionActivos.rootPane.setLeft(null);
+   GestionActivos.rootPane.setRight(null);
+   
+    }  
+
+   
         
       
     
