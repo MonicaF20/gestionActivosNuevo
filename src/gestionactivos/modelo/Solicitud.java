@@ -52,6 +52,7 @@ public class Solicitud implements Serializable {
     private Integer cantidadsolicitada;
     @Column(name = "tiposolicitud")
     private String tiposolicitud;
+    
     @Lob
     //@Column(name = "imagenSolicitud")
     //private byte[] imagenSolicitud;
@@ -62,6 +63,9 @@ public class Solicitud implements Serializable {
     
     @Column(name = "nombreactivo")
     private String nombreactivo;
+    
+    @Column(name = "idactivo")
+    private String idactivo;
     @Id
     @Basic(optional = false)
     @Column(name = "idsolicitud")
@@ -145,6 +149,14 @@ public class Solicitud implements Serializable {
 
     public void setNombreactivo(String nombreactivo) {
         this.nombreactivo = nombreactivo;
+    }
+    
+     public String getIdactivo() {
+        return idactivo;
+    }
+
+    public void setIdactivo(String idactivo) {
+        this.idactivo = idactivo;
     }
 
     public String getIdsolicitud() {
