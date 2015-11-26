@@ -8,19 +8,25 @@ package gestionactivos;
 import gestionactivos.modelo.Activo;
 import gestionactivos.modelo.Solicitud;
 import gestionactivos.modelo.Ubicacion;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -30,6 +36,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -54,7 +61,7 @@ public class SolicitudesReparacionAdminController implements Initializable {
 
     @FXML
     private Label codigoLabel;
-
+    
     @FXML
     private TextField nom_activo;
 
@@ -63,8 +70,11 @@ public class SolicitudesReparacionAdminController implements Initializable {
 
     @FXML
     private Label lbl_aprobada;
+     
     
-    
+     @FXML
+    private Button cancelarBoton;
+     
      BDConexion db = BDConexion.getInstance();
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionActivosPU");
     EntityManager em = emf.createEntityManager();
@@ -80,7 +90,7 @@ public class SolicitudesReparacionAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        
         ObservableList<String> list2 = FXCollections.observableArrayList();
-        list2 = db.getSolicitudReparacionActivo() ;//getSolicitudReparacionActivoAdmin
+        list2 = db.getSolicitudReparacionActivoAdmin() ;//getSolicitudReparacionActivoAdmin
 
         idsolicitud.setItems(list2);
         AutoCompleteComboBoxListener combobox = new AutoCompleteComboBoxListener<>(idsolicitud);
@@ -107,6 +117,21 @@ public class SolicitudesReparacionAdminController implements Initializable {
         
               
             }
+        });
+        
+        cancelarBoton.setOnAction ( new EventHandler(){
+        
+
+            @Override
+            public void handle(Event event) {
+                
+               JOptionPane.showMessageDialog(null, "Solicitud Cancelada");
+                try {
+                    regresarMenu();
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuLateralDocenteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+ }
         });
     }
     
@@ -137,6 +162,15 @@ public class SolicitudesReparacionAdminController implements Initializable {
             em.getTransaction().commit();
         
     }
+    
+    public void regresarMenu() throws IOException{
+   AnchorPane loader= null;
+    loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menudocente.fxml"));
+   GestionActivos.rootPane.setCenter(loader);
+   GestionActivos.rootPane.setLeft(null);
+   GestionActivos.rootPane.setRight(null);
+   
+    }  
     
     
     public void refresh(){
