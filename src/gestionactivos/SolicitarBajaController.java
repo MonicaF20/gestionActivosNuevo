@@ -59,8 +59,8 @@ public class SolicitarBajaController implements Initializable {
    private Button btnEnviarSol;
    @FXML
    private Button btnCancelarSol; 
-     @FXML
-    private Label lblCodigoSol;
+   @FXML
+   private Label lblCodigoSol;
    
    Solicitud Sol = new Solicitud();
    BDConexion db= BDConexion.getInstance(); 
@@ -92,7 +92,7 @@ public class SolicitarBajaController implements Initializable {
       Sol.setEstadosolicitud("PENDIENTE");
       Sol.setTiposolicitud(codigoLe);
       Sol.setIdsolicitud(lblCodigoSol.getText());
-      lblCodigoSol.setVisible(true);
+      //lblCodigoSol.setVisible(true);
       em1.persist(Sol);
       em1.getTransaction().commit();
       em1.close();
@@ -157,7 +157,7 @@ mainWindow.setScene(newScene);
 
 //cargando el menulateral
 try {
-            loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/SolicitarActivo.fxml"));
+            loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/SolicitarBaja.fxml"));
             loader2= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menulateraldocente.fxml"));
             loader3= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/lateralDerecho.fxml"));   //// LATERAL DERECHO ES PARA TODOS???????
         } catch (Exception e) {

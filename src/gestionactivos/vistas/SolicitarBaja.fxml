@@ -25,5 +25,6 @@
       <DatePicker fx:id="datePickerSolicitudBaja" layoutX="468.0" layoutY="146.0" />
       <Label layoutX="76.0" layoutY="229.0" text="Ubicación del Activo:" />
       <ComboBox fx:id="cbUbicacionActivo" layoutX="234.0" layoutY="227.0" prefWidth="150.0" promptText="--Seleccione Ubicación" />
+      <Label fx:id="lblCodigoSol" layoutX="656.0" layoutY="184.0" prefHeight="21.0" prefWidth="0.0" />
    </children>
 </AnchorPane>
