@@ -80,7 +80,7 @@ public class SolicitudesReparacionAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        
         ObservableList<String> list2 = FXCollections.observableArrayList();
-        list2 = db.getSolicitudReparacionActivoAdmin() ;
+        list2 = db.getSolicitudReparacionActivo() ;//getSolicitudReparacionActivoAdmin
 
         idsolicitud.setItems(list2);
         AutoCompleteComboBoxListener combobox = new AutoCompleteComboBoxListener<>(idsolicitud);
