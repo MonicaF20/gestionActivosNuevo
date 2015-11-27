@@ -448,4 +448,23 @@ public class BDConexion {
         }
         return solicitudBaja;
     }
+      ObservableList<String> getSolicitudesBajaAcept() {
+        ObservableList<String> solicitudBaja = FXCollections.observableArrayList();
+        Statement stmt = null;
+
+        String query = "select idsolicitud from solicitud where tiposolicitud='SBA' and estadosolicitud='ACEPTADA'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                solicitudBaja.add(rs.getString("idsolicitud"));
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println(idactivos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudBaja;
+    }
 }
