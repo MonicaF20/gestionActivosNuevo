@@ -12,16 +12,17 @@
          <children>
             <Label fx:id="lblTituloReporte" layoutX="331.0" layoutY="45.0" text="REPORTE DE ACTIVOS DADOS DE BAJA" />
             <DatePicker fx:id="dtPickerReporte" layoutX="467.0" layoutY="100.0" prefHeight="25.0" prefWidth="136.0" visible="false" />
-            <Button fx:id="btnImprimir" layoutX="412.0" layoutY="389.0" mnemonicParsing="false" text="Imprimir " />
-            <TableView fx:id="tableReporteIngreso" layoutX="194.0" layoutY="100.0" prefHeight="258.0" prefWidth="536.0">
+            <Button fx:id="btnImprimir" layoutX="412.0" layoutY="457.0" mnemonicParsing="false" text="Imprimir " />
+            <TableView fx:id="tableReporteBaja" layoutX="195.0" layoutY="159.0" prefHeight="258.0" prefWidth="536.0">
               <columns>
                 <TableColumn fx:id="tableColRubro" prefWidth="120.0" text="Codigo de Rubro" />
                 <TableColumn fx:id="tableColActivo" prefWidth="120.0" text="Codigo de Activo" />
                   <TableColumn fx:id="tableColNombre" prefWidth="79.0" text="Nombre" />
-                  <TableColumn fx:id="tableColDescrip" prefWidth="216.0" text="Descripcion " />
+                  <TableColumn fx:id="tableColCausaBaja" prefWidth="216.0" text="Causa de la Baja" />
               </columns>
             </TableView>
-            <ComboBox fx:id="cmbBuscarRubros" editable="true" layoutX="469.0" layoutY="100.0" prefHeight="25.0" prefWidth="150.0" visible="false" />
+            <Label layoutX="331.0" layoutY="104.0" text="Año: " />
+            <TextField fx:id="txtAnio" layoutX="412.0" layoutY="102.0" />
          </children>
       </AnchorPane>
    </children>
