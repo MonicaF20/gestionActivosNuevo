@@ -94,6 +94,7 @@ public class RepararActivoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       fecha=ConvertidorFecha.ConvertidorFecha(fecha);
 
         ObservableList<String> list2 = FXCollections.observableArrayList();
         list2 = db.getIdactivo();
@@ -126,8 +127,12 @@ public class RepararActivoController implements Initializable {
 
     @FXML
     public void buscar() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionActivosPU");
-        EntityManager em = emf.createEntityManager();
+        BDConexion db = BDConexion.getInstance();
+    EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("GestionActivosPU");
+    EntityManager em2 = emf2.createEntityManager();
+    
+       
+       
         String valor = idactivo.getValue();
         
         System.out.printf("Boton buscar" + idactivo.getValue());
@@ -142,10 +147,11 @@ public class RepararActivoController implements Initializable {
         
         Ubicacion ubicacion_n= (Ubicacion) em.createNamedQuery("Ubicacion.findByIdubicacion", Ubicacion.class).setParameter("idubicacion", ubicacion1.getIdubicacion()).getSingleResult();
       
-        em.getTransaction().begin();
+        em2.getTransaction().begin();
         nombre.setText(activo.getNombreactivo());
         rubro.setText(rubro_n.getNombrerubro());
         ubicacion.setText(ubicacion_n.getNombrelugar());
+        
         
         
         String codigo=db.generarCodigoSolictudActivo(codigoletras);
