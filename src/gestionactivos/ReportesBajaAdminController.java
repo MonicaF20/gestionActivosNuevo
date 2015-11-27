@@ -5,6 +5,7 @@
  */
 package gestionactivos;
 
+import gestionactivos.Clases.ActivoRB;
 import gestionactivos.modelo.Activo;
 import gestionactivos.modelo.Solicitud;
 import java.net.URL;
@@ -52,9 +53,10 @@ public class ReportesBajaAdminController implements Initializable {
    EntityManager em=emf.createEntityManager();
    Calendar fecha = Calendar.getInstance();
    Activo activo =new Activo();
-    List<Activo> listActivos = new ArrayList<Activo>();
-    List<Activo> listaDelAño = new ArrayList<Activo>();
-    ObservableList<Activo> listaActivosBaja;
+    List<ActivoRB> listActivosRB = new ArrayList<ActivoRB>();
+//    List<Activo> listActivos = new ArrayList<Activo>();
+//    List<Activo> listaDelAño = new ArrayList<Activo>();
+    ObservableList<ActivoRB> listaActivosBaja;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,54 +64,58 @@ public class ReportesBajaAdminController implements Initializable {
         txtAnio.setText(Integer.toString(fecha.get(Calendar.YEAR)));
         
         em.getTransaction().begin();
-        listActivos=em.createNamedQuery("Activo.findByEstadogeneral",Activo.class).setParameter("estadogeneral","NO DISPONIBLE").getResultList();
+        //listActivos=em.createNamedQuery("Activo.findByEstadogeneral",Activo.class).setParameter("estadogeneral","NO DISPONIBLE").getResultList();
+        listActivosRB=db.reporteBaja();
         em.getTransaction().commit();
         em.close();
-        for(int i=0; i<listActivos.size();i++){
-           int anio=convertirFechaString(listActivos.get(i).getFechaingres());
-           int anioActual=Integer.parseInt(txtAnio.getText());
-           if(anio==anioActual){
-               //Activos de baja de este año 
-               listaDelAño.add(listActivos.get(i));
-           }
-        }
-        listaActivosBaja=FXCollections.observableArrayList(listaDelAño);
-        for(int j=0; j<listaDelAño.size();j++){
+//        for(int i=0; i<listActivos.size();i++){
+//           int anio=convertirFechaString(listActivos.get(i).getFechaingres());
+//           int anioActual=Integer.parseInt(txtAnio.getText());
+//           if(anio==anioActual){
+//               //Activos de baja de este año 
+//               listaDelAño.add(listActivos.get(i));
+//           }
+//        }
+        listaActivosBaja=FXCollections.observableArrayList(listActivosRB);
+        for(int j=0; j<listActivosRB.size();j++){
           tableReporteBaja.setItems(listaActivosBaja);
           tableColActivo.setCellValueFactory(new PropertyValueFactory<>("idactivo"));
-          tableColNombre.setCellValueFactory(new PropertyValueFactory<>("nombreactivo"));
-           tableColRubro.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Activo,String>, ObservableValue<String>>() {
-  
-        @Override
-        public ObservableValue<String> call(TableColumn.CellDataFeatures<Activo, String> param) {
-            SimpleStringProperty sp = new SimpleStringProperty();
-            sp.unbind();
-            sp.bind(new StringBinding() {
-                {
-                param.getValue().getIdrubro();
-                }
-                @Override
-                protected String computeValue() {
-                       return param.getValue().getIdrubro().getIdrubro();
-					}
-                
-            });
-            return sp;
-        }
-		});
-        }
+          tableColNombre.setCellValueFactory(new PropertyValueFactory<>("nombreactivio"));
+          tableColRubro.setCellValueFactory(new PropertyValueFactory<>("idrubro"));
+          tableColCausaBaja.setCellValueFactory(new PropertyValueFactory<>("descripcionsol"));
+          
+//           tableColRubro.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Activo,String>, ObservableValue<String>>() {
+//  
+//        @Override
+//        public ObservableValue<String> call(TableColumn.CellDataFeatures<Activo, String> param) {
+//            SimpleStringProperty sp = new SimpleStringProperty();
+//            sp.unbind();
+//            sp.bind(new StringBinding() {
+//                {
+//                param.getValue().getIdrubro();
+//                }
+//                @Override
+//                protected String computeValue() {
+//                       return param.getValue().getIdrubro().getIdrubro();
+//					}
+//                
+//            });
+//            return sp;
+//        }
+//		});
+        }//for
         
     }    
-    public int convertirFechaString(Date date){
-  
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String reportDate = df.format(date);
-        int retorna=0;
-     
-        retorna=Integer.parseInt(reportDate.substring(0,4)); 
-        //System.out.println("año:" +retorna);
-         return  retorna;
-      
-     }
+//    public int convertirFechaString(Date date){
+//  
+//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//        String reportDate = df.format(date);
+//        int retorna=0;
+//     
+//        retorna=Integer.parseInt(reportDate.substring(0,4)); 
+//        //System.out.println("año:" +retorna);
+//         return  retorna;
+//      
+//     }
     
 }

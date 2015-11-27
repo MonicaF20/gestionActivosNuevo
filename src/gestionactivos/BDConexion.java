@@ -5,6 +5,7 @@
  */
 package gestionactivos;
 
+import gestionactivos.Clases.ActivoRB;
 import gestionactivos.modelo.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -467,4 +468,32 @@ public class BDConexion {
         }
         return solicitudBaja;
     }
+      List<ActivoRB> reporteBaja() {
+        List<ActivoRB> solicitudBaja = new ArrayList<ActivoRB>();
+        
+        Statement stmt = null;
+
+        String query = "select a.idactivo ,a.nombreactivo,a.idrubro,s.descripcionsolicitud,s.fecharegistrasoli from activo a join solicitud s on s.idactivo=a.idactivo where a.estadogeneral='NO DISPONIBLE' and s.estadosolicitud='EJECUTADA';";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                ActivoRB activo= new ActivoRB();
+                activo.setIdactivo(rs.getString("idactivo"));
+                activo.setIdrubro(rs.getString("idrubro"));
+                activo.setNombreactivio(rs.getString("nombreactivo"));
+                activo.setDescripcionsol(rs.getString("descripcionsolicitud"));
+                solicitudBaja.add(activo);
+                //System.out.println(idactivos);
+
+            }
+            System.out.println("numero de activos"+solicitudBaja.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudBaja;
+    }
+      
+      //select a.idactivo ,a.nombreactivo,a.idrubro,s.descripcionsolicitud from activo a join solicitud s on s.idactivo=a.idactivo where a.estadogeneral='NO DISPONIBLE' and s.estadosolicitud='EJECUTADA';
+
 }
