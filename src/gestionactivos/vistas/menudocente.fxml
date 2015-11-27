@@ -36,16 +36,6 @@
          </children></StackPane>
       <Label layoutX="241.0" layoutY="279.0" text="Solicitar de  Activo" />
       <Label layoutX="570.0" layoutY="269.0" text="Solicitud de Reparacion de un Activo" />
-       <StackPane layoutX="600.0" prefHeight="47.0" prefWidth="220.0" styleClass="bandeja">
-         <children>
-            <Label fx:id="lblSolicitudes" prefHeight="47.0" prefWidth="220.0" styleClass="bandejaLabel" text="Solicitudes Pendientes :  0" />
-            <ImageView fitHeight="21.0" fitWidth="247.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
-               <image>
-                  <Image url="@../css/msjs.png" />
-               </image>
-            </ImageView>
-         </children>
-      </StackPane>
       <StackPane layoutX="418.0" layoutY="310.0" prefHeight="150.0" prefWidth="20.0" styleClass="image">
          <children>
             <ImageView id="bajaActivo" fx:id="bajaActivo" fitHeight="150.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true">

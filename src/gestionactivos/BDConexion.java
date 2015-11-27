@@ -487,13 +487,28 @@ public class BDConexion {
                 //System.out.println(idactivos);
 
             }
-            System.out.println("numero de activos"+solicitudBaja.size());
+            //System.out.println("numero de activos"+solicitudBaja.size());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return solicitudBaja;
     }
       
-      //select a.idactivo ,a.nombreactivo,a.idrubro,s.descripcionsolicitud from activo a join solicitud s on s.idactivo=a.idactivo where a.estadogeneral='NO DISPONIBLE' and s.estadosolicitud='EJECUTADA';
+      String solicitudespendientesAdmin(String estado){
+        Statement stmt = null;
+        String resul = null;
+        String query ="Select count(estadosolicitud) as contar from solicitud where estadosolicitud='"+estado+"' or estadosolicitud='RECHAZADA' ;";
+        try{
+            stmt=con.createStatement();
+            ResultSet rs= stmt.executeQuery(query);
+            while(rs.next()){
+            resul= rs.getString("contar");
+                //System.out.println("resultado"+resul);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+       return resul;
+    }
 
 }
