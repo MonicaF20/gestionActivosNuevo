@@ -193,9 +193,9 @@ switch(selected.getText())
         break;
             case "Estado de Solcitudes Reparacion":
              try{
-             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/estadoSolBaja.fxml"));
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/estadoSolReparacion.fxml"));
              
-             primaryStage.setTitle("Solicitud de Baja de Activo");
+             primaryStage.setTitle("Solicitud de Reparacion de Activo");
              
             }catch(Exception e){System.out.print(e);}
         break;

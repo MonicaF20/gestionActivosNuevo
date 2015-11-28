@@ -54,8 +54,8 @@ public class Solicitud implements Serializable {
     private String tiposolicitud;
     
     @Lob
-    //@Column(name = "imagenSolicitud")
-    //private byte[] imagenSolicitud;
+    @Column(name = "imagensolicitud")
+    private byte[] imagensolicitud;
     
     
     @Column(name = "nombresolicitante")
@@ -127,13 +127,13 @@ public class Solicitud implements Serializable {
         this.tiposolicitud = tiposolicitud;
     }
 
-   /* public byte[] getImagenSolicitud() {
-        return imagenSolicitud;
+    public byte[] getImagenSolicitud() {
+        return imagensolicitud;
     }
 
     public void setImagenSolicitud(byte[] imagenSolicitud) {
-        this.imagenSolicitud = imagenSolicitud;
-    }*/
+        this.imagensolicitud = imagensolicitud;
+    }
 
     public String getNombresolicitante() {
         return nombresolicitante;

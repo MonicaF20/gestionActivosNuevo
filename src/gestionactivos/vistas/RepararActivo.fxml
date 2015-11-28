@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -17,11 +19,19 @@
             <TextArea fx:id="descripcion" focusTraversable="false" layoutX="157.0" layoutY="169.0" prefHeight="81.0" prefWidth="275.0" />
             <TextField fx:id="rubro" editable="false" focusTraversable="false" layoutX="165.0" layoutY="69.0" />
             <TextField fx:id="ubicacion" editable="false" focusTraversable="false" layoutX="165.0" layoutY="101.0" />
-            <Label fx:id="soli" layoutX="333.0" layoutY="15.0" text="Solicitud Nº:" visible="false" />
+            <Label fx:id="soli" layoutX="333.0" layoutY="15.0" text="Solicitud Nº: " textFill="#d70f37" visible="false" />
             <Label layoutY="39.0" text="Nombre Activo: " />
             <Label layoutX="-3.0" layoutY="135.0" prefHeight="25.0" prefWidth="145.0" text="Nombre de solicitante" />
             <TextField fx:id="nom_solicitante" focusTraversable="false" layoutX="165.0" layoutY="135.0" />
             <Label layoutX="118.0" layoutY="3.0" text="Datos del Activo" />
+            <ImageView fx:id="imageViewCargar" fitHeight="81.0" fitWidth="128.0" layoutX="339.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <image>
+                  <Image url="@../css/cargarImagen.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />

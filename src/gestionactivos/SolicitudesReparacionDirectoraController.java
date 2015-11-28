@@ -23,15 +23,22 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import gestionactivos.modelo.Solicitud;
 import gestionactivos.modelo.Ubicacion;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 
 
@@ -43,6 +50,9 @@ import javafx.stage.Stage;
 public class SolicitudesReparacionDirectoraController implements Initializable {
      @FXML
     private TextArea descripcion;
+     
+     @FXML
+    private Button Cancelarsoli;
 
     @FXML
     private ComboBox<String> idsolicitud;
@@ -88,7 +98,7 @@ public class SolicitudesReparacionDirectoraController implements Initializable {
                 
                 String valor = idsolicitud.getValue();
          
-            solicitud = (Solicitud) em.createNamedQuery("Solicitud.findByIdsolicitud", Solicitud.class).setParameter("idsolicitud",valor).getSingleResult();
+    solicitud = (Solicitud) em.createNamedQuery("Solicitud.findByIdsolicitud", Solicitud.class).setParameter("idsolicitud",valor).getSingleResult();
             ubicacion1 = solicitud.getIdubicacion(); //tipo UBICACION
         
         
@@ -102,6 +112,21 @@ public class SolicitudesReparacionDirectoraController implements Initializable {
         
               
             }
+        });
+        
+          Cancelarsoli.setOnAction ( new EventHandler(){
+        
+
+            @Override
+            public void handle(Event event) {
+                
+               JOptionPane.showMessageDialog(null, "Solicitud Cancelada");
+                try {
+                    regresarMenu();
+                } catch (IOException ex) {
+                    Logger.getLogger(MenuLateralDocenteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+ }
         });
     }
         @FXML
@@ -159,8 +184,17 @@ try {
   GestionActivos.rootPane.setRight(loader3); 
     }
     
-
-            
+   public void regresarMenu() throws IOException{
+   AnchorPane loader= null;
+    loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/menuDirectora.fxml"));
+   GestionActivos.rootPane.setCenter(loader);
+   GestionActivos.rootPane.setLeft(null);
+   GestionActivos.rootPane.setRight(null);
+   
+    }  
+    
+    
+   
 
                 
 }

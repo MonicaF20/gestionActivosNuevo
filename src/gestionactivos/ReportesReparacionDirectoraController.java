@@ -14,7 +14,10 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import gestionactivos.Clases.ActivoRB;
+import gestionactivos.modelo.Activo;
 import gestionactivos.modelo.Solicitud;
+import gestionactivos.modelo.Ubicacion;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
@@ -26,12 +29,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.StringBinding;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,15 +45,18 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.xml.transform.TransformerException;
 
 /**
@@ -55,19 +64,27 @@ import javax.xml.transform.TransformerException;
  *
  * @author Valery
  */
-public class ReportesReparacionAdminController implements Initializable {
-    
-    @FXML
+public class ReportesReparacionDirectoraController implements Initializable {
+     @FXML
     private Button btnImprimir;
 
     @FXML
     private TableColumn tableColNom;
 
     @FXML
-    private TableColumn tableColSolicitud;
+    private TableColumn tableColFecha;
 
     @FXML
-    private TableColumn tableColFecha;
+    private ComboBox<String> cmbOpcReporte;
+
+    @FXML
+    private TableColumn tableColSolicitante;
+
+    @FXML
+    private TableView tableReporteReparacion;
+
+    @FXML
+    private TableColumn tableColSolicitud;
 
     @FXML
     private Label lblCuenta;
@@ -76,71 +93,43 @@ public class ReportesReparacionAdminController implements Initializable {
     private Label lblNota;
 
     @FXML
-    private TableColumn tableColSolicitante;
-
-    @FXML
     private TableColumn tableColDescripcion;
 
     @FXML
     private Label lblTituloReporte;
 
     @FXML
-    private TableView tableReporteReparacion;
-
-    @FXML
     private TableColumn tableColActivo;
 
-    @FXML
-    private Label anio;
+
+
     
-   BDConexion db= BDConexion.getInstance();
+    BDConexion db= BDConexion.getInstance();
    EntityManagerFactory emf4= Persistence.createEntityManagerFactory("GestionActivosPU");
    EntityManager em4= emf4.createEntityManager();
     int modalidad,rowIndex;
     List<Solicitud> listasolicitudes = new ArrayList<Solicitud>();
 
     ObservableList<Solicitud> listaSolicitud;
-    Calendar fecha = Calendar.getInstance();
+    
 String cuenta="Cantidad de Registros: ";
     byte[] imagenMostrar;
-
-    /**
-     * Initializes the controller class.
-     */
+    private ObservableList<String> opciones= FXCollections.observableArrayList("Aceptadas","En Reparacion"
+                                                                                , "Rechazadas","Pendientes");        
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         anio.setText(Integer.toString(fecha.get(Calendar.YEAR)));
-     anio.setVisible(true);
-    EntityManagerFactory emf1= Persistence.createEntityManagerFactory("GestionActivosPU");
-   EntityManager em1=emf1.createEntityManager();
-        em1.getTransaction().begin();
-        
-        listasolicitudes=db.reporteReparacion1();
-        em1.getTransaction().commit();
-        em1.close();
+        cmbOpcReporte.setItems(opciones);
+      cmbOpcReporte.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>() {
+      
+          @Override
+          public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+              modalidad= cmbOpcReporte.getSelectionModel().getSelectedIndex();   
+              cargarDatos(modalidad);
+          System.out.println(modalidad);}
+      });
 
-        listaSolicitud=FXCollections.observableArrayList(listasolicitudes);
-        
-        lblCuenta.setText(cuenta+listaSolicitud.size());
-   for(int i=0;i<listasolicitudes.size();i++)
-    {
-     
-  
-        
-   tableReporteReparacion.setItems(listaSolicitud);
- 
-   
-   
-    tableColActivo.setCellValueFactory(new PropertyValueFactory<>("idactivo"));
-    tableColNom.setCellValueFactory(new PropertyValueFactory<>("nombreactivo"));
-    tableColDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcionsolicitud"));
-    tableColFecha.setCellValueFactory(new PropertyValueFactory<>("fecharegistrasoli"));
-    tableColSolicitud.setCellValueFactory(new PropertyValueFactory<>("idsolicitud"));
-    tableColSolicitante.setCellValueFactory(new PropertyValueFactory<>("nombresolicitante"));
-    }
-   
-   
-       tableReporteReparacion.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      tableReporteReparacion.setOnMouseClicked(new EventHandler<MouseEvent>() {
        
            @Override
            public void handle(MouseEvent event) {
@@ -161,8 +150,109 @@ String cuenta="Cantidad de Registros: ";
                }
            }
        });
-        // TODO
+         
     }    
+    
+    
+    public SimpleStringProperty cargarDatos(int modalidad){
+         
+        
+        switch(modalidad){
+     
+        //modalidad 0 es la por defecto: REPORTES DIARIOS
+        case 0:
+            EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
+   EntityManager em=emf.createEntityManager();
+        em.getTransaction().begin();
+        
+        listasolicitudes=db.reporteReparacion();
+        em.getTransaction().commit();
+        em.close();
+
+        listaSolicitud=FXCollections.observableArrayList(listasolicitudes);
+            
+        break;
+            
+         case 1:
+             EntityManagerFactory emf1= Persistence.createEntityManagerFactory("GestionActivosPU");
+   EntityManager em1=emf1.createEntityManager();
+        em1.getTransaction().begin();
+        
+        listasolicitudes=db.reporteReparacion1();
+        em1.getTransaction().commit();
+        em1.close();
+
+        listaSolicitud=FXCollections.observableArrayList(listasolicitudes);
+              
+        break;
+             case 2:
+                 EntityManagerFactory emf2= Persistence.createEntityManagerFactory("GestionActivosPU");
+   EntityManager em2=emf2.createEntityManager();
+        em2.getTransaction().begin();
+        
+        listasolicitudes=db.reporteReparacion2();
+        em2.getTransaction().commit();
+        em2.close();
+
+        listaSolicitud=FXCollections.observableArrayList(listasolicitudes);
+              
+                  
+        break;
+                 case 3:
+                     EntityManagerFactory emf3= Persistence.createEntityManagerFactory("GestionActivosPU");
+   EntityManager em3=emf3.createEntityManager();
+        em3.getTransaction().begin();
+        
+        listasolicitudes=db.reporteReparacion3();
+        em3.getTransaction().commit();
+        em3.close();
+
+        listaSolicitud=FXCollections.observableArrayList(listasolicitudes);
+              
+                  
+                     break;
+//        }
+        }
+        lblCuenta.setText(cuenta+listaSolicitud.size());
+   for(int i=0;i<listasolicitudes.size();i++)
+    {
+     
+  
+        
+   tableReporteReparacion.setItems(listaSolicitud);
+ 
+   
+   
+    tableColActivo.setCellValueFactory(new PropertyValueFactory<>("idactivo"));
+    tableColNom.setCellValueFactory(new PropertyValueFactory<>("nombreactivo"));
+    tableColDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcionsolicitud"));
+    tableColFecha.setCellValueFactory(new PropertyValueFactory<>("fecharegistrasoli"));
+    tableColSolicitud.setCellValueFactory(new PropertyValueFactory<>("idsolicitud"));
+    tableColSolicitante.setCellValueFactory(new PropertyValueFactory<>("nombresolicitante"));
+    
+   // tableColUbicacion.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ubicacion,String>, ObservableValue<String>>() {
+
+//        @Override
+//        public ObservableValue<String> call(TableColumn.CellDataFeatures<Ubicacion, String> param) {
+//            SimpleStringProperty sp = new SimpleStringProperty();
+//            sp.unbind();
+//            sp.bind(new StringBinding() {
+//                {
+//                param.getValue().getNombrelugar();
+//                }
+//                @Override
+//                protected String computeValue() {
+//                       return param.getValue().getNombrelugar();
+//					}
+//                
+//            });
+//            return sp;
+//        }
+//		});
+    }
+   
+        return null;
+   }
     public void generarPDF(ActionEvent event) throws DocumentException, TransformerException, IOException{
         Document document= new Document();
     
@@ -232,6 +322,8 @@ String cuenta="Cantidad de Registros: ";
     
     }
     
+    
+    
     private void ConvertirImagen(byte[] bytes) throws IOException {
 	
      //creando un directorio para guardar las etiquetas
@@ -264,5 +356,7 @@ String cuenta="Cantidad de Registros: ";
          
          }
     }
-    
+
+     
 }
+

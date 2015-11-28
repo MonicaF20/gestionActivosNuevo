@@ -24,10 +24,11 @@
             <ComboBox fx:id="idsolicitud" editable="true" layoutX="213.0" layoutY="75.0" prefHeight="25.0" prefWidth="185.0" promptText="--Seleccione una solicitud" />
             <Label layoutX="37.0" layoutY="123.0" text="Datos Generales de la Solicitud" />
             <TextField fx:id="fecha" editable="false" layoutX="161.0" layoutY="362.0" />
-            <Button layoutX="102.0" layoutY="411.0" mnemonicParsing="false" onAction="#aceptarSoli" text="Aceptar Solicitud " />
-            <Button layoutX="299.0" layoutY="411.0" mnemonicParsing="false" onAction="#RechazarSoli" text="Rechazar Solicitud" />
+            <Button layoutX="42.0" layoutY="411.0" mnemonicParsing="false" onAction="#aceptarSoli" prefHeight="39.0" prefWidth="160.0" text="Aceptar Solicitud " />
+            <Button layoutX="236.0" layoutY="411.0" mnemonicParsing="false" onAction="#RechazarSoli" prefHeight="39.0" prefWidth="168.0" text="Rechazar Solicitud" />
             <Label layoutX="35.0" layoutY="158.0" prefHeight="53.0" prefWidth="101.0" styleClass="opciones" text="Nombre del Solicitante:" wrapText="true" />
             <TextField fx:id="nombre_soli" editable="false" focusTraversable="false" layoutX="162.0" layoutY="166.0" prefHeight="25.0" prefWidth="205.0" />
+            <Button fx:id="Cancelarsoli" layoutX="419.0" layoutY="411.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="109.0" text="CANCELAR" />
          </children>
       </AnchorPane>
    </children>

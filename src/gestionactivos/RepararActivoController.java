@@ -9,6 +9,9 @@ import gestionactivos.modelo.Activo;
 import gestionactivos.modelo.Rubro;
 import gestionactivos.modelo.Solicitud;
 import gestionactivos.modelo.Ubicacion;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import static java.sql.JDBCType.NULL;
@@ -35,8 +38,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -82,6 +89,10 @@ public class RepararActivoController implements Initializable {
     @FXML
     private TextField nom_solicitante;
 
+     @FXML
+    private ImageView imageViewCargar;
+     
+     
     BDConexion db = BDConexion.getInstance();
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionActivosPU");
     EntityManager em = emf.createEntityManager();
@@ -91,8 +102,9 @@ public class RepararActivoController implements Initializable {
     String codigoletras = "SAR";
         Rubro rubro1 = new Rubro();
         Ubicacion ubicacion1 = new Ubicacion();
-
+File imgFile=null;
     @Override
+    
     public void initialize(URL url, ResourceBundle rb) {
        fecha=ConvertidorFecha.ConvertidorFecha(fecha);
 
@@ -120,6 +132,29 @@ public class RepararActivoController implements Initializable {
                 }
  }
         });
+  imageViewCargar.setOnMouseClicked(new EventHandler(){
+
+        @Override
+        public void handle(Event event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Buscar Imagen");
+
+        // Agregar filtros para facilitar la busqueda
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        // Obtener la imagen seleccionada
+        imgFile = fileChooser.showOpenDialog(GestionActivos.primaryStage);
+
+        // Mostar la imagen
+        if (imgFile != null) {
+            Image image = new Image("file:" + imgFile.getAbsolutePath());
+            imageViewCargar.setImage(image);
+        }        }
+    });
 
         
 
@@ -130,6 +165,9 @@ public class RepararActivoController implements Initializable {
         BDConexion db = BDConexion.getInstance();
     EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("GestionActivosPU");
     EntityManager em2 = emf2.createEntityManager();
+    
+    
+     
     
        
        
@@ -160,7 +198,7 @@ public class RepararActivoController implements Initializable {
     }
 
     @FXML
-    public void ingresarActivoDañado() {
+    public void ingresarActivoDañado() throws IOException {
         
         if(nombre.getText().isEmpty() || rubro.getText().isEmpty()||ubicacion.getText().isEmpty()||descripcion.getText().isEmpty() || fecha.getValue().toString().isEmpty() || nom_solicitante.getText().isEmpty()){
          
@@ -197,6 +235,8 @@ alert.showAndWait();
       solicitud.setNombresolicitante(nom_solicitante.getText());
       num_soli.setVisible(true);
       soli.setVisible(true);
+      if(imgFile!= null)
+      {activo.setImagenactivo(this.convertirImagen(imgFile));}
       //em2.getTransaction().begin();
        //codigo.setVisible(true);
      // String codigoGenerado= db.generarCodigoSolictudActivo(codigoletras);
@@ -269,6 +309,23 @@ try {
  GestionActivos.rootPane.setCenter(loader);
   GestionActivos.rootPane.setLeft(loader2);
   GestionActivos.rootPane.setRight(loader3); 
+    }
+
+public byte[] convertirImagen(File fileImg) throws IOException{
+    
+        byte[] imageInByte;
+        BufferedImage originalImage = ImageIO.read(fileImg);
+
+        // convert BufferedImage to byte array
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(originalImage, "jpg", baos);
+        baos.flush();
+        imageInByte = baos.toByteArray();
+        baos.close();
+
+      
+return imageInByte;
+    
     }
     
     }

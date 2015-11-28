@@ -111,7 +111,7 @@ public class SolicitudesBajaDirectoraController implements Initializable {
                 refresh();
                  
             }
-        });
+        }); 
          btnRechazarSol.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override

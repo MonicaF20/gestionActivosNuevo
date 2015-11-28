@@ -218,7 +218,7 @@ public class DirectoraController extends GestionActivos implements Initializable
                 break;
             case "reporteRepa":
                 try {
-                    loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesReparacionAdmin.fxml"));
+                    loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesReparacionDirectora.fxml"));
 
                     primaryStage.setTitle("Reporte Reparacion de Activos ");
 
