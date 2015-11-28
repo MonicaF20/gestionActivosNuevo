@@ -104,8 +104,7 @@ public class AdminController extends GestionActivos implements Initializable{
        MenuItem item1= new MenuItem("Modificar Rubro");
        MenuItem item2= new MenuItem("Agregar Nuevo Rubro");
        MenuItem item6= new MenuItem("Agregar Ubicación");
-       MenuItem item7= new MenuItem("Modificar Ubicacion");
-       cm.getItems().addAll(item1,item2,item6,item7);
+       cm.getItems().addAll(item1,item2,item6);
      
        mantenimientoRubros.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
         @Override 
