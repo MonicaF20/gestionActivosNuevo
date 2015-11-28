@@ -5,6 +5,7 @@
  */
 package gestionactivos;
 
+import gestionactivos.Clases.ActivoRB;
 import gestionactivos.modelo.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -448,4 +449,66 @@ public class BDConexion {
         }
         return solicitudBaja;
     }
+      ObservableList<String> getSolicitudesBajaAcept() {
+        ObservableList<String> solicitudBaja = FXCollections.observableArrayList();
+        Statement stmt = null;
+
+        String query = "select idsolicitud from solicitud where tiposolicitud='SBA' and estadosolicitud='ACEPTADA'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                solicitudBaja.add(rs.getString("idsolicitud"));
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println(idactivos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudBaja;
+    }
+      List<ActivoRB> reporteBaja() {
+        List<ActivoRB> solicitudBaja = new ArrayList<ActivoRB>();
+        
+        Statement stmt = null;
+
+        String query = "select a.idactivo ,a.nombreactivo,a.idrubro,s.descripcionsolicitud,s.fecharegistrasoli from activo a join solicitud s on s.idactivo=a.idactivo where a.estadogeneral='NO DISPONIBLE' and s.estadosolicitud='EJECUTADA';";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                ActivoRB activo= new ActivoRB();
+                activo.setIdactivo(rs.getString("idactivo"));
+                activo.setIdrubro(rs.getString("idrubro"));
+                activo.setNombreactivio(rs.getString("nombreactivo"));
+                activo.setDescripcionsol(rs.getString("descripcionsolicitud"));
+                solicitudBaja.add(activo);
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println("numero de activos"+solicitudBaja.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudBaja;
+    }
+      
+      String solicitudespendientesAdmin(String estado){
+        Statement stmt = null;
+        String resul = null;
+        String query ="Select count(estadosolicitud) as contar from solicitud where estadosolicitud='"+estado+"' or estadosolicitud='RECHAZADA' ;";
+        try{
+            stmt=con.createStatement();
+            ResultSet rs= stmt.executeQuery(query);
+            while(rs.next()){
+            resul= rs.getString("contar");
+                //System.out.println("resultado"+resul);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+       return resul;
+    }
+
 }

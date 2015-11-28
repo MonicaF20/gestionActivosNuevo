@@ -9,18 +9,18 @@
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.SolicitudesBajaAdminController">
     <children>
       <Label layoutX="93.0" layoutY="189.0" styleClass="opciones" stylesheets="@../css/form.css" text="Nombre:" />
-      <TextField editable="false" layoutX="217.0" layoutY="184.0" />
+      <TextField fx:id="txtNombreS" editable="false" layoutX="217.0" layoutY="184.0" />
       <Label layoutX="98.0" layoutY="299.0" styleClass="opciones" stylesheets="@../css/form.css" text="Descripción" />
-      <TextArea layoutX="206.0" layoutY="306.0" prefHeight="39.0" prefWidth="262.0" />
+      <TextArea fx:id="txtDescriS" layoutX="206.0" layoutY="306.0" prefHeight="39.0" prefWidth="262.0" />
       <Label layoutX="93.0" layoutY="71.0" stylesheets="@../css/form.css" text="Solicitud de Baja" />
-      <ComboBox editable="true" layoutX="250.0" layoutY="69.0" prefHeight="25.0" prefWidth="166.0" promptText="--Seleccione Solicitud" />
-      <Button layoutX="234.0" layoutY="363.0" mnemonicParsing="false" stylesheets="@../css/form.css" text="Dar de Baja" />
+      <ComboBox fx:id="cbSolId" editable="true" layoutX="250.0" layoutY="69.0" prefHeight="25.0" prefWidth="166.0" promptText="--Seleccione Solicitud" />
+      <Button fx:id="btnBaja" layoutX="234.0" layoutY="363.0" mnemonicParsing="false" stylesheets="@../css/form.css" text="Dar de Baja" />
       <Label layoutX="151.0" layoutY="28.0" stylesheets="@../css/form.css" text="SOLICITUDES DE BAJA DE ACTIVOS" />
       <Label layoutX="95.0" layoutY="263.0" styleClass="opciones" stylesheets="@../css/form.css" text="Fecha" />
       <Label layoutX="96.0" layoutY="219.0" styleClass="opciones" stylesheets="@../css/form.css" text="Código:" />
-      <TextField editable="false" layoutX="217.0" layoutY="258.0" />
-      <TextField editable="false" layoutX="217.0" layoutY="214.0" />
+      <TextField fx:id="txtFechaS" editable="false" layoutX="217.0" layoutY="258.0" />
+      <TextField fx:id="txtCodigoArt" editable="false" layoutX="217.0" layoutY="214.0" />
       <Label layoutX="93.0" layoutY="157.0" stylesheets="@../css/form.css" text="DATOS GENERALES DE SOLICITUD" />
-      <Label id="codigo" layoutX="232.0" layoutY="114.0" stylesheets="@../css/form.css" text="SOLICITUD APROBADA" />
+      <Label layoutX="232.0" layoutY="114.0" stylesheets="@../css/form.css" text="SOLICITUD APROBADA" />
    </children>
 </AnchorPane>

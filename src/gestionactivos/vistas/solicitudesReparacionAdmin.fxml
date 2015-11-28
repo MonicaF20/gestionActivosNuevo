@@ -13,21 +13,22 @@
             <Label layoutX="94.0" layoutY="393.0" styleClass="opciones" text="Fecha de reporte:" />
             <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
             <Label id="secundario" layoutX="91.0" layoutY="181.0" styleClass="opciones" text="Nombre Activo: " />
-            <Label layoutX="91.0" layoutY="216.0" styleClass="opciones" text="Rubro:" />
+            <Label layoutX="91.0" layoutY="216.0" styleClass="opciones" text="Nommbre Solicitante:" />
             <Label layoutX="91.0" layoutY="254.0" styleClass="opciones" text="Ubicacion:" />
-            <TextField fx:id="nombre" editable="false" focusTraversable="false" layoutX="217.0" layoutY="214.0" />
+            <TextField fx:id="nombre_soli" editable="false" focusTraversable="false" layoutX="217.0" layoutY="214.0" />
             <Label alignment="CENTER" layoutX="180.0" layoutY="31.0" text="SOLICITUDES DE REPARACION DE ACTIVO " />
             <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
             <Label layoutX="35.0" layoutY="77.0" text="Solicitud de Reparacion " />
-            <TextField editable="false" focusTraversable="false" layoutX="217.0" layoutY="179.0" />
-            <TextField editable="false" focusTraversable="false" layoutX="217.0" layoutY="252.0" />
+            <TextField fx:id="nom_activo" editable="false" focusTraversable="false" layoutX="217.0" layoutY="179.0" />
+            <TextField fx:id="ubicacion" editable="false" focusTraversable="false" layoutX="217.0" layoutY="252.0" />
             <Label layoutX="91.0" layoutY="301.0" prefHeight="53.0" prefWidth="101.0" styleClass="opciones" text="Descripcion de daño:" wrapText="true" />
-            <TextArea editable="false" layoutX="219.0" layoutY="301.0" prefHeight="53.0" prefWidth="302.0" />
-            <ComboBox fx:id="idactivo" editable="true" layoutX="213.0" layoutY="75.0" prefHeight="25.0" prefWidth="185.0" promptText="--Seleccione una solicitud" />
+            <TextArea fx:id="descripcion" editable="false" layoutX="219.0" layoutY="301.0" prefHeight="53.0" prefWidth="302.0" />
+            <ComboBox fx:id="idsolicitud" editable="true" layoutX="213.0" layoutY="75.0" prefHeight="25.0" prefWidth="185.0" promptText="--Seleccione una solicitud" />
             <Label layoutX="93.0" layoutY="149.0" text="Datos Generales de la Solicitud" />
-            <TextField editable="false" layoutX="217.0" layoutY="388.0" />
-            <Button layoutX="219.0" layoutY="435.0" mnemonicParsing="false" text="INICIAR  REPARACION" />
-            <Label id="codigo" layoutX="230.0" layoutY="113.0" text="SOLICITUD APROBADA" />
+            <TextField fx:id="fecha" editable="false" layoutX="217.0" layoutY="388.0" />
+            <Button layoutX="149.0" layoutY="438.0" mnemonicParsing="false" onAction="#iniciaReparacion" text="INICIAR  REPARACION" />
+            <Label id="codigo" fx:id="lbl_aprobada" layoutX="230.0" layoutY="113.0" text="SOLICITUD APROBADA" visible="false" />
+            <Button fx:id="cancelarBoton" layoutX="352.0" layoutY="438.0" mnemonicParsing="false" text="CANCELAR" />
          </children>
       </AnchorPane>
    </children>
