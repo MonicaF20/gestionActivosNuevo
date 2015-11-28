@@ -314,9 +314,7 @@ try {
         datos="Codigo de Activo: "+activo.getIdactivo()+"\n"
                 +"Rubro de Activo: "+activo.getIdrubro().getIdrubro()+"\n"
                 + "Nombre de Activo: "+activo.getNombreactivo()+"\n"
-                + "Descripcion de Activo: "+activo.getDescripcionactivo()+" \n"
-                + "Ubicacion de Activo: "+ubicacion.getValue()+"\n"
-                + "Estado de Activo: "+activo.getEstadogeneral();
+                + "Descripcion de Activo: "+activo.getDescripcionactivo();
            
                
                 

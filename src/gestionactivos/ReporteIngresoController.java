@@ -117,6 +117,7 @@ public class ReporteIngresoController implements Initializable {
    List<Activo> mesAux;
     String cuenta="Cantidad de Registros: ";
     byte[] imagenMostrar;
+    SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");
     private ObservableList<String> opciones= FXCollections.observableArrayList("Reporte Diario","Reporte Mensual",
                                                                                 "Reporte Anual",
                                                                                 "Por Rubro",
@@ -405,7 +406,7 @@ dtPickerReporte.valueProperty().addListener(new ChangeListener<LocalDate>(){
     tableColActivo.setCellValueFactory(new PropertyValueFactory<>("idactivo"));
     tableColNombre.setCellValueFactory(new PropertyValueFactory<>("nombreactivo"));
     tableColDescrip.setCellValueFactory(new PropertyValueFactory<>("descripcionactivo"));
-    tableColFecha.setCellValueFactory(new PropertyValueFactory<>("fechaingres"));
+    //tableColFecha.setCellValueFactory(new PropertyValueFactory<>("fechaingres"));
     tableColEstado.setCellValueFactory(new PropertyValueFactory<>("estadogeneral"));
     tableColRubro.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Activo,String>, ObservableValue<String>>() {
   
@@ -426,6 +427,27 @@ dtPickerReporte.valueProperty().addListener(new ChangeListener<LocalDate>(){
             return sp;
         }
 		});
+    
+    tableColFecha.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Activo,String>, ObservableValue<String>>() {
+
+       @Override
+       public ObservableValue<String> call(CellDataFeatures<Activo, String> param) {
+           SimpleStringProperty sp = new SimpleStringProperty();
+            sp.unbind();
+            sp.bind(new StringBinding() {
+                {
+               // param.getValue().getFechaingres();
+                }
+                @Override
+                protected String computeValue() {
+                    ;
+                       return formatter.format(param.getValue().getFechaingres());
+					}
+                
+            });
+            return sp;
+       }
+   });
     
     
     
@@ -484,7 +506,7 @@ dtPickerReporte.valueProperty().addListener(new ChangeListener<LocalDate>(){
                table.addCell(results.get(i).getIdactivo().toString());
                table.addCell(results.get(i).getNombreactivo().toString());
                table.addCell(results.get(i).getDescripcionactivo().toString());
-               table.addCell(results.get(i).getFechaingres().toString());
+               table.addCell(formatter.format(results.get(i).getFechaingres()));
                table.addCell(results.get(i).getEstadogeneral());
                
            }
@@ -518,7 +540,7 @@ dtPickerReporte.valueProperty().addListener(new ChangeListener<LocalDate>(){
  try {  */
      //creando un directorio para guardar las etiquetas
          String ruta=System.getProperty("user.home");
-        File dir= new File(System.getProperty(ruta,"ActivosImagenes"));
+        File dir= new File(ruta,"ActivosImagenes");
      if (!dir.exists() && !dir.mkdirs()) {
          try {
              throw new IOException("Unable to create " + dir.getAbsolutePath());
@@ -526,8 +548,14 @@ dtPickerReporte.valueProperty().addListener(new ChangeListener<LocalDate>(){
              Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
          }
      }
-     ruta=dir+".png";
-    
+     ruta=dir+"/"+results.get(0).getIdactivo()+".png";
+     FileOutputStream imagen = null; 
+        try {
+            imagen = new FileOutputStream(ruta);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
          if(bytes!= null){
              try{
                  

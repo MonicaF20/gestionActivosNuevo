@@ -48,6 +48,8 @@ public class MenuLateralController implements Initializable {
     @FXML Button reporteReparacion;
     @FXML  Button solicitudesBaja;
     @FXML Button reporteBaja;
+    @FXML Button btnAgregarUbi;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ingreso.setOnMouseClicked(new EventHandler() {
@@ -132,6 +134,13 @@ public class MenuLateralController implements Initializable {
             @Override
             public void handle(Event event) {
                 itemSelected(reporteBaja);
+            }
+        });
+     btnAgregarUbi.setOnMouseClicked(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                itemSelected(btnAgregarUbi);
             }
         });
     }    
@@ -223,7 +232,12 @@ switch(selected.getText())
              primaryStage.setTitle("Reportes de Baja de Activo");
             }catch(Exception e){System.out.print(e);}
         break;
-         
+         case "Agregar un Nueva Ubicacion":
+          try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/agregarUbicacion.fxml"));
+             primaryStage.setTitle("Agregar Nueva Ubicación");
+            }catch(Exception e){System.out.print(e);}
+        break;
 }
 
    GestionActivos.rootPane.setCenter(loader);
