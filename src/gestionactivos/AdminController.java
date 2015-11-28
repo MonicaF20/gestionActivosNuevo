@@ -103,7 +103,8 @@ public class AdminController extends GestionActivos implements Initializable{
  final ContextMenu cm= new ContextMenu();
        MenuItem item1= new MenuItem("Modificar Rubro");
        MenuItem item2= new MenuItem("Agregar Nuevo Rubro");
-       cm.getItems().addAll(item1,item2);
+       MenuItem item6= new MenuItem("Agregar Ubicación");
+       cm.getItems().addAll(item1,item2,item6);
      
        mantenimientoRubros.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
         @Override 
@@ -127,6 +128,13 @@ public class AdminController extends GestionActivos implements Initializable{
               imagenSeleccionada="ingresarRubro";
               llamarInterfaces();
               }
+          });
+       item6.setOnAction(new EventHandler(){
+
+              @Override
+              public void handle(Event event) {
+                imagenSeleccionada="agregarUbicación";
+                  llamarInterfaces();              }
           });
 final ContextMenu cm2= new ContextMenu();
        MenuItem item3= new MenuItem("Reporte de Activos Ingresados");
@@ -164,7 +172,7 @@ final ContextMenu cm2= new ContextMenu();
                 imagenSeleccionada="reporteBajaAdmin";
                   llamarInterfaces();              }
           });
-       
+        
  /*mantenimientoRubros.setOnMouseClicked(new EventHandler() {
 
               @Override
@@ -264,7 +272,13 @@ switch(imagenSeleccionada)
             loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesReparacionAdmin.fxml"));
             primaryStage.setTitle("Reporte de Activos en Reparacion");
         }catch(Exception e){}
-      
+        break;
+      case "agregarUbicación":
+        try{
+            
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/agregarUbicacion.fxml"));
+            primaryStage.setTitle("Agregar Ubicación");
+        }catch(Exception e){}
     break;
    /* //******* Mónica Baja activo **********
     case "bajaActivo":
