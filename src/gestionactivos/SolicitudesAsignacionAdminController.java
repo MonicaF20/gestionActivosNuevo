@@ -5,6 +5,8 @@
  */
 package gestionactivos;
 
+import gestionactivos.modelo.Activo;
+import gestionactivos.modelo.Rubro;
 import gestionactivos.modelo.Solicitud;
 import gestionactivos.modelo.Ubicacion;
 import java.io.IOException;
@@ -38,6 +40,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
 /**
@@ -82,32 +85,67 @@ public class SolicitudesAsignacionAdminController implements Initializable {
     @FXML
     private Button Cancelar;
     
-     BDConexion db= BDConexion.getInstance();
-EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
-EntityManager em= emf.createEntityManager();
-  Solicitud solicitud = new Solicitud();
-  Ubicacion ubicacion1 = new Ubicacion();
     
+    EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
+EntityManager em= emf.createEntityManager();
+
+
+    BDConexion db= BDConexion.getInstance();
+  Solicitud solicitud = new Solicitud();
+  Solicitud solicitud1 = new Solicitud();
+  Ubicacion ubicacion1 = new Ubicacion();
+  Activo activo = new Activo();  
   
+ 
   
   @FXML
    public void AsignarActivo(ActionEvent event){
        
-   em.getTransaction().begin();
-   solicitud.setEstadosolicitud("ASIGNADO");
-   em.getTransaction().commit();
-       JOptionPane.showMessageDialog(null, "Activo Asginado");
-       
-    refresh();
-}
+        
+   solicitud1 =(Solicitud) em.createNamedQuery("Solicitud.findByIdsolicitud",Solicitud.class).setParameter("idsolicitud",codSolic.getValue()).getSingleResult();
+  // activo = (Activo) em.createNamedQuery("Activo.findByNombreactivo", Activo.class).setParameter("nombreactivo",solicitud1.getNombreactivo()).getSingleResult();     
+   
+   
+   Query query2=em.createNativeQuery("SELECT a.idactivo FROM activo a  WHERE a.nombreactivo=? AND estadogeneral='DISPONIBLE'",Activo.class).setParameter(1,solicitud1.getNombreactivo());
+      Activo  results2= (Activo)query2.getSingleResult();
+    
+      
+      if (results2.getNombreactivo().isEmpty())
+      {
+      
+         JOptionPane.showMessageDialog(null, "jajajsjdaksdassle");
+      }
+       System.out.println("results2"+results2);
+      if(solicitud1.getNombreactivo() == results2.getNombreactivo())
+      {
+         // Clase();
+          System.out.println("igualdad");
+          
+          em.getTransaction().begin();               
+         solicitud1.setEstadosolicitud("NO ASIGNADO");
+         em.getTransaction().commit();
+         
+         JOptionPane.showMessageDialog(null, "No Existe Activo Disponible");
+        
+      }else{ //if(solicitud1.getNombreactivo()!= results2.getNombreactivo()){
+          em.getTransaction().begin();               
+         solicitud1.setEstadosolicitud("ASIGNADO");
+         em.getTransaction().commit();
+      JOptionPane.showMessageDialog(null, "Activo Asignado");
+      }
+      
+           refresh();
+   }
   
+ 
+   
     @Override      
     public void initialize(URL url, ResourceBundle rb) {
         
           // TODO
         
         ObservableList<String> solicitudes= FXCollections.observableArrayList();
-        solicitudes =db.getSolicitudPeticionActivo();
+        solicitudes =db.getSolicitudPeticionActivoAdmin();
         codSolic.setItems(solicitudes);
       AutoCompleteComboBoxListener cmb= new AutoCompleteComboBoxListener(codSolic);
       
@@ -149,12 +187,6 @@ EntityManager em= emf.createEntityManager();
         });
     }   
     
-    
-    
-    
-        
-        
-        
         
          //METODO REGRESA MENU
    public void regresarMenu() throws IOException{
