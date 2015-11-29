@@ -141,8 +141,7 @@ EntityManager em= emf.createEntityManager();
    
     @Override      
     public void initialize(URL url, ResourceBundle rb) {
-        
-          // TODO
+                  // TODO
         
         ObservableList<String> solicitudes= FXCollections.observableArrayList();
         solicitudes =db.getSolicitudPeticionActivoAdmin();

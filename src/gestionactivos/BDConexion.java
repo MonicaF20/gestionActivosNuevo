@@ -294,6 +294,30 @@ public class BDConexion {
         }
         return idsolicitudes;
     }
+     
+     
+     
+     ObservableList<String> getSolicitudPeticionActivoAdmin() {
+        ObservableList<String> idsolicitudes = FXCollections.observableArrayList();
+        Statement stmt = null;
+        String query = "select idsolicitud from solicitud where tiposolicitud='SAR' and estadosolicitud='ACEPTADA'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                idsolicitudes.add(rs.getString("idsolicitud"));
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println(idactivos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return idsolicitudes;
+    }
+     
+     
+     
     /// Marcela 
     String getIdRubro(String rubro) {
         Statement stmt = null;

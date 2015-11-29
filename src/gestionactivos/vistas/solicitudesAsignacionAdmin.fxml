@@ -10,26 +10,25 @@
     <children>
       <AnchorPane layoutX="-18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="554.0" prefHeight="500.0" prefWidth="500.0" styleClass="anchorPane" stylesheets="@../css/form.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-18.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="77.0" layoutY="337.0" prefHeight="32.0" prefWidth="149.0" styleClass="opciones" text="Fecha de la solicutd:" />
+            <Label layoutX="80.0" layoutY="332.0" prefHeight="32.0" prefWidth="149.0" styleClass="opciones" text="Fecha de la solicitud:" />
             <Label fx:id="codigoLabel" layoutX="489.0" layoutY="75.0" prefHeight="24.0" prefWidth="168.0" text="Codigo de Activo:" visible="false" />
-            <Label layoutX="77.0" layoutY="242.0" styleClass="opciones" text="Rubro:" />
-            <Label layoutX="77.0" layoutY="209.0" styleClass="opciones" text="Nombre Activo: " />
+            <Label layoutX="77.0" layoutY="225.0" styleClass="opciones" text="Nombre Activo: " />
             <Label layoutX="74.0" layoutY="402.0" styleClass="opciones" text="Descripcion de Solicitud:" />
-            <Label layoutX="74.0" layoutY="291.0" styleClass="opciones" text="Ubicacion a Asignar:" />
-            <TextField fx:id="nombre" editable="false" layoutX="245.0" layoutY="207.0" />
+            <Label layoutX="74.0" layoutY="282.0" styleClass="opciones" text="Ubicacion a Asignar:" />
+            <TextField fx:id="nombreSolic" editable="false" layoutX="245.0" layoutY="172.0" />
+            <TextField fx:id="nombreActivo" editable="false" layoutX="245.0" layoutY="220.0" />
             <TextArea fx:id="descripcion" editable="false" layoutX="247.0" layoutY="385.0" prefHeight="55.0" prefWidth="268.0" />
-            <Button fx:id="ingresarBoton" defaultButton="true" layoutX="168.0" layoutY="450.0" mnemonicParsing="false" text="Asignar Activo Solicitado" textFill="#0d831d" />
+            <Button fx:id="ingresarBoton" defaultButton="true" layoutX="167.0" layoutY="459.0" mnemonicParsing="false" onAction="#AsignarActivo" text="Asignar Activo Solicitado" textFill="#0d831d" />
             <Label alignment="CENTER" layoutX="177.0" layoutY="34.0" text="SOLICITUD DE PETICION DE  ACTIVO" />
             <Label id="codigo" fx:id="codigo" layoutX="515.0" layoutY="99.0" prefHeight="24.0" prefWidth="168.0" visible="false" />
             <Label layoutX="77.0" layoutY="174.0" styleClass="opciones" text="Nombre de solicitante:" />
-            <TextField editable="false" layoutX="245.0" layoutY="172.0" />
-            <TextField editable="false" layoutX="245.0" layoutY="251.0" />
-            <TextField editable="false" layoutX="245.0" layoutY="289.0" />
-            <TextField editable="false" layoutX="245.0" layoutY="335.0" />
-            <ComboBox editable="true" layoutX="269.0" layoutY="64.0" prefHeight="25.0" prefWidth="176.0" promptText="--Seleccione solicitud" />
+            <TextField fx:id="ubicacion" editable="false" layoutX="245.0" layoutY="277.0" />
+            <TextField fx:id="fecha" editable="false" layoutX="245.0" layoutY="335.0" />
+            <ComboBox fx:id="codSolic" editable="true" layoutX="269.0" layoutY="64.0" prefHeight="25.0" prefWidth="176.0" promptText="--Seleccione solicitud" />
             <Label layoutX="45.0" layoutY="68.0" text="Solicitud de Asignacion de activo" />
             <Label layoutX="74.0" layoutY="148.0" text="Datos Generales de la Solicitud" />
             <Label id="codigo" layoutX="239.0" layoutY="114.0" text="SOLICITUD APROBADA" />
+            <Button fx:id="Cancelar" defaultButton="true" layoutX="387.0" layoutY="459.0" mnemonicParsing="false" text="Cancelar" textFill="#0d831d" />
          </children>
       </AnchorPane>
    </children>
