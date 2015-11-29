@@ -300,7 +300,7 @@ public class BDConexion {
      ObservableList<String> getSolicitudPeticionActivoAdmin() {
         ObservableList<String> idsolicitudes = FXCollections.observableArrayList();
         Statement stmt = null;
-        String query = "select idsolicitud from solicitud where tiposolicitud='SAR' and estadosolicitud='ACEPTADA'";
+        String query = "select idsolicitud from solicitud where tiposolicitud='SAC' and estadosolicitud='ACEPTADA'";
         try {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -473,6 +473,50 @@ public class BDConexion {
         }
         return solicitudBaja;
     }
+      
+      
+      ObservableList<String> getSolicitudReparacionActivoAll() {
+        ObservableList<String> solicitudBaja = FXCollections.observableArrayList();
+        Statement stmt = null;
+
+        String query = "select idsolicitud from solicitud where tiposolicitud='SAR'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                solicitudBaja.add(rs.getString("idsolicitud"));
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println(idactivos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudBaja;
+    }
+      
+      
+      ObservableList<String> getSolicitudPeticionActivoAll() {
+        ObservableList<String> solicitudBaja = FXCollections.observableArrayList();
+        Statement stmt = null;
+
+        String query = "select idsolicitud from solicitud where tiposolicitud='SAC'";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                solicitudBaja.add(rs.getString("idsolicitud"));
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println(idactivos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudBaja;
+    }
+      
+      
       ObservableList<String> getSolicitudesBajaAcept() {
         ObservableList<String> solicitudBaja = FXCollections.observableArrayList();
         Statement stmt = null;

@@ -185,7 +185,7 @@ switch(selected.getText())
         break;
         case "Estado de Solicitudes de Peticion":
              try{
-             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/estadoSolBaja.fxml"));
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/estadoSolPeticion.fxml"));
              
              primaryStage.setTitle("Solicitud de Baja de Activo");
              
@@ -193,7 +193,7 @@ switch(selected.getText())
         break;
             case "Estado de Solcitudes Reparacion":
              try{
-             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/estadoSolBaja.fxml"));
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/estadoSolReparacion.fxml"));
              
              primaryStage.setTitle("Solicitud de Baja de Activo");
              

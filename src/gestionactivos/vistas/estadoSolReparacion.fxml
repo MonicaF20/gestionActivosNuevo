@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.EstadoSolReparacionController">
+   <children>
+      <Label layoutX="158.0" layoutY="30.0" text="CONSULTA DEL ESTADO DE SOLICITUD REALIZADA" />
+      <Label layoutX="104.0" layoutY="70.0" text="Ingrese el Id de la Solicitud" />
+      <Button fx:id="procesar" layoutX="203.0" layoutY="122.0" mnemonicParsing="false" onAction="#procesarConsulta" text="Procesar Consulta" />
+      <Label id="codigo" layoutX="104.0" layoutY="220.0" text="Su solicitud ha sido:   " />
+      <Label layoutX="254.0" layoutY="190.0" text="Respuesta:" />
+      <ComboBox fx:id="idsolicitud" editable="true" layoutX="306.0" layoutY="68.0" prefHeight="25.0" prefWidth="185.0" promptText="--Seleccione una solicitud" />
+      <Label id="codigo" fx:id="estado" layoutX="264.0" layoutY="220.0" />
+   </children>
+</AnchorPane>
