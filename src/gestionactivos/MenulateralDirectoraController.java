@@ -48,6 +48,8 @@ public class MenulateralDirectoraController implements Initializable {
     private Button solbaja;
     @FXML
     private Button replanificacion;
+      @FXML
+    private Button actisolic;
 //     @FXML private Button verplanificacion;
     @FXML
     private Label lblRegresar;
@@ -129,6 +131,14 @@ public class MenulateralDirectoraController implements Initializable {
             @Override
             public void handle(Event event) {
                 itemSelected(solbaja);
+
+            }
+        });
+        
+        actisolic.setOnMouseClicked(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                itemSelected(actisolic);
 
             }
         });
@@ -259,6 +269,14 @@ public class MenulateralDirectoraController implements Initializable {
                 try {
                     loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/solicitudesBajaDirectora.fxml"));
                     primaryStage.setTitle("Solicitudes de Baja");
+                } catch (Exception e) {
+                }
+                break;
+                
+                case "Activos Solicitados":
+                try {
+                    loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesPeticionDirectora.fxml"));
+                    primaryStage.setTitle("Solicitudes de Activos");
                 } catch (Exception e) {
                 }
                 break;

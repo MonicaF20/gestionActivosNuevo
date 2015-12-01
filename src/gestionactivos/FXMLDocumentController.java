@@ -131,7 +131,7 @@ public class FXMLDocumentController implements Initializable {
      
       activo.setFechaingres(date);
       activo.setIdactivo(codigo.getText());
-      activo.setNombreactivo(nombre.getText());
+      activo.setNombreactivo(nombre.getText().toLowerCase());
       activo.setDescripcionactivo(descripcion.getText());
       activo.setIdubicacion(results);
       activo.setIdrubro(results2);

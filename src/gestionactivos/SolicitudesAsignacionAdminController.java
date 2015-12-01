@@ -95,6 +95,7 @@ EntityManager em= emf.createEntityManager();
   Solicitud solicitud1 = new Solicitud();
   Ubicacion ubicacion1 = new Ubicacion();
   Activo activo = new Activo();  
+  Activo results2 = new Activo();
   
  
   
@@ -103,37 +104,42 @@ EntityManager em= emf.createEntityManager();
        
         
    solicitud1 =(Solicitud) em.createNamedQuery("Solicitud.findByIdsolicitud",Solicitud.class).setParameter("idsolicitud",codSolic.getValue()).getSingleResult();
-  // activo = (Activo) em.createNamedQuery("Activo.findByNombreactivo", Activo.class).setParameter("nombreactivo",solicitud1.getNombreactivo()).getSingleResult();     
    
-   
+   //results2= null;
    Query query2=em.createNativeQuery("SELECT a.idactivo FROM activo a  WHERE a.nombreactivo=? AND estadogeneral='DISPONIBLE'",Activo.class).setParameter(1,solicitud1.getNombreactivo());
-      Activo  results2= (Activo)query2.getSingleResult();
-    
-      
-      if (results2.getNombreactivo().isEmpty())
+     results2= (Activo)query2.getSingleResult();
+      // activo = (Activo) em.createNamedQuery("Activo.findByIdactivo", Activo.class).setParameter("nombreactivo",results2.getNombreactivo()).getSingleResult();
+     /* if (results2.getNombreactivo().isEmpty())
       {
       
          JOptionPane.showMessageDialog(null, "jajajsjdaksdassle");
-      }
+      }*/
        System.out.println("results2"+results2);
-      if(solicitud1.getNombreactivo() == results2.getNombreactivo())
+      if(solicitud1.getNombreactivo() == results2.getNombreactivo());
       {
          // Clase();
-          System.out.println("igualdad");
+        /*  System.out.println("igualdad");
           
           em.getTransaction().begin();               
          solicitud1.setEstadosolicitud("NO ASIGNADO");
          em.getTransaction().commit();
          
-         JOptionPane.showMessageDialog(null, "No Existe Activo Disponible");
-        
-      }else{ //if(solicitud1.getNombreactivo()!= results2.getNombreactivo()){
+         JOptionPane.showMessageDialog(null, "No Existe Activo Disponible");*/
+         em.getTransaction().begin();               
+         solicitud1.setEstadosolicitud("ASIGNADO");  
+         results2.setEstadogeneral("EN USO");
+         em.getTransaction().commit();
+         /*em.getTransaction().begin();               
+         activo.setEstadogeneral("EN USO");         
+         em.getTransaction().commit();*/
+         
+      JOptionPane.showMessageDialog(null, "Activo Asignado");
+      }/*else{ //if(solicitud1.getNombreactivo()!= results2.getNombreactivo()){
           em.getTransaction().begin();               
          solicitud1.setEstadosolicitud("ASIGNADO");
          em.getTransaction().commit();
       JOptionPane.showMessageDialog(null, "Activo Asignado");
-      }
-      
+      }*/     
            refresh();
    }
   

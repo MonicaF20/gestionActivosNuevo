@@ -135,7 +135,7 @@ public class SolicitarActivoController implements Initializable {
    //if(nombreSolicitant.getText().length()>0){
         //solicitud.setIdsolicitud();
        em2.getTransaction().begin();
-      solicitud.setNombreactivo(nombreActivo.getText());
+      solicitud.setNombreactivo(nombreActivo.getText().toLowerCase());
       solicitud.setFecharegistrasoli(date);
       solicitud.setNombresolicitante(nombreSolicitante.getText());     
       solicitud.setDescripcionsolicitud(descripcion.getText());
@@ -186,7 +186,7 @@ alert.showAndWait();
         // TODO
         
        
-   
+   fecha=ConvertidorFecha.ConvertidorFecha(fecha);
    
    //LLENADO DE COMBOBOX DE UBICACION
    

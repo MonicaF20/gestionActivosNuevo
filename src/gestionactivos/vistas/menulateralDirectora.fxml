@@ -23,6 +23,7 @@
                               <Button fx:id="actingresado" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Activos Ingresados" />
                               <Button fx:id="actreparacion" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Activos en Reparación" />
                               <Button fx:id="actbaja" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Activos de Baja" />
+                              <Button fx:id="actisolic" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" styleClass="menuItem" text="Activos Solicitados" />
                            </children>
                         </VBox>
                      </children>
