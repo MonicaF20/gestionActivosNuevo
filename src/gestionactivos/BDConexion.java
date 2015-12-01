@@ -294,7 +294,127 @@ public class BDConexion {
         }
         return idsolicitudes;
     }
-     
+     List<Solicitud> reporteReparacion() {
+        List<Solicitud> solicitudrepa = new ArrayList<Solicitud>();
+        
+        Statement stmt = null;
+
+        String query = "select s.descripcionsolicitud,s.fecharegistrasoli,s.nombresolicitante,s.imagensolicitud,s.nombreactivo,s.idactivo,s.idsolicitud from solicitud s  where s.estadosolicitud='ACEPTADA' and s.tiposolicitud='SAR';";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Solicitud solicitud= new Solicitud();
+                
+                solicitud.setIdactivo(rs.getString("idactivo"));
+                 solicitud.setDescripcionsolicitud(rs.getString("descripcionsolicitud"));
+                 solicitud.setFecharegistrasoli(rs.getDate("fecharegistrasoli") );
+                 solicitud.setNombresolicitante(rs.getString("nombresolicitante"));
+                 solicitud.setIdsolicitud(rs.getString("idsolicitud"));
+                 solicitud.setNombreactivo(rs.getString("nombreactivo"));
+                 solicitud.setImagenSolicitud(rs.getBytes("imagenSolicitud"));
+                 
+                
+                solicitudrepa.add(solicitud);
+                //System.out.println(idactivos);
+
+            }
+      } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudrepa;
+    }
+      List<Solicitud> reporteReparacion1() {
+        List<Solicitud> solicitudrepa = new ArrayList<Solicitud>();
+        
+        Statement stmt = null;
+
+        String query = "select s.descripcionsolicitud,s.fecharegistrasoli,s.nombresolicitante,s.imagensolicitud,s.nombreactivo,s.idactivo,s.idsolicitud from solicitud s  where s.estadosolicitud='REALIZADA' and s.tiposolicitud='SAR';";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Solicitud solicitud= new Solicitud();
+                
+                solicitud.setIdactivo(rs.getString("idactivo"));
+                 solicitud.setDescripcionsolicitud(rs.getString("descripcionsolicitud"));
+                 solicitud.setFecharegistrasoli(rs.getDate("fecharegistrasoli") );
+                 solicitud.setNombresolicitante(rs.getString("nombresolicitante"));
+                 solicitud.setIdsolicitud(rs.getString("idsolicitud"));
+                 solicitud.setNombreactivo(rs.getString("nombreactivo"));
+                 solicitud.setImagenSolicitud(rs.getBytes("imagenSolicitud"));
+                 
+                
+                solicitudrepa.add(solicitud);
+                //System.out.println(idactivos);
+
+            }
+      } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudrepa;
+    }
+      
+      List<Solicitud> reporteReparacion2() {
+        List<Solicitud> solicitudrepa = new ArrayList<Solicitud>();
+        
+        Statement stmt = null;
+
+        String query = "select s.descripcionsolicitud,s.fecharegistrasoli,s.nombresolicitante,s.imagensolicitud,s.nombreactivo,s.idactivo,s.idsolicitud from solicitud s  where s.estadosolicitud='RECHAZADA' and s.tiposolicitud='SAR';";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Solicitud solicitud= new Solicitud();
+                
+                solicitud.setIdactivo(rs.getString("idactivo"));
+                 solicitud.setDescripcionsolicitud(rs.getString("descripcionsolicitud"));
+                 solicitud.setFecharegistrasoli(rs.getDate("fecharegistrasoli") );
+                 solicitud.setNombresolicitante(rs.getString("nombresolicitante"));
+                 solicitud.setIdsolicitud(rs.getString("idsolicitud"));
+                 solicitud.setNombreactivo(rs.getString("nombreactivo"));
+                 solicitud.setImagenSolicitud(rs.getBytes("imagenSolicitud"));
+                 
+                
+                solicitudrepa.add(solicitud);
+                //System.out.println(idactivos);
+
+            }
+      } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudrepa;
+    }
+      List<Solicitud> reporteReparacion3() {
+        List<Solicitud> solicitudrepa = new ArrayList<Solicitud>();
+        
+        Statement stmt = null;
+
+        String query = "select s.descripcionsolicitud,s.fecharegistrasoli,s.nombresolicitante,s.imagensolicitud,s.nombreactivo,s.idactivo,s.idsolicitud  from solicitud s  where s.estadosolicitud='PENDIENTE' and s.tiposolicitud='SAR';";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Solicitud solicitud= new Solicitud();
+                
+                solicitud.setIdactivo(rs.getString("idactivo"));
+                 solicitud.setDescripcionsolicitud(rs.getString("descripcionsolicitud"));
+                 solicitud.setFecharegistrasoli(rs.getDate("fecharegistrasoli") );
+                 solicitud.setNombresolicitante(rs.getString("nombresolicitante"));
+                 solicitud.setIdsolicitud(rs.getString("idsolicitud"));
+                 solicitud.setNombreactivo(rs.getString("nombreactivo"));
+                 System.out.println(rs.getString("imagensolicitud"));
+                 solicitud.setImagenSolicitud(rs.getBytes("imagensolicitud"));
+                
+                solicitudrepa.add(solicitud);
+                //System.out.println(idactivos);
+
+            }
+      } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return solicitudrepa;
+    }
      
      
      ObservableList<String> getSolicitudPeticionActivoAdmin() {
@@ -579,39 +699,6 @@ public class BDConexion {
        return resul;
     }
 
-      
-      List<Solicitud> reporteReparacion1() {
-        List<Solicitud> solicitudrepa = new ArrayList<Solicitud>();
-        
-        Statement stmt = null;
-
-        String query = "select s.descripcionsolicitud,s.fecharegistrasoli,s.nombresolicitante,s.imagensolicitud,s.nombreactivo,s.idactivo,s.idsolicitud from solicitud s  where s.estadosolicitud='REALIZADA' and s.tiposolicitud='SAR';";
-        try {
-            stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                Solicitud solicitud= new Solicitud();
-                
-                solicitud.setIdactivo(rs.getString("idactivo"));
-                 solicitud.setDescripcionsolicitud(rs.getString("descripcionsolicitud"));
-                 solicitud.setFecharegistrasoli(rs.getDate("fecharegistrasoli") );
-                 solicitud.setNombresolicitante(rs.getString("nombresolicitante"));
-                 solicitud.setIdsolicitud(rs.getString("idsolicitud"));
-                 solicitud.setNombreactivo(rs.getString("nombreactivo"));
-                // solicitud.setImagenSolicitud(rs.getBytes("imagenSolicitud"));
-                 
-                
-                solicitudrepa.add(solicitud);
-                //System.out.println(idactivos);
-
-            }
-      } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return solicitudrepa;
-    }
-      
-      
       List<Solicitud> reportePeticionSolicitudes() {
         List<Solicitud> solicitudrepa = new ArrayList<Solicitud>();
         

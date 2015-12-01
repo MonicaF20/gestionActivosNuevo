@@ -246,7 +246,7 @@ public class MenulateralDirectoraController implements Initializable {
 
             case "Activos en Reparación":
                 try {
-                    loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesReparacionAdmin.fxml"));
+                    loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesReparacionDirectora.fxml"));
                     primaryStage.setTitle("Activos en Reparación");
                 } catch (Exception e) {
                 }
