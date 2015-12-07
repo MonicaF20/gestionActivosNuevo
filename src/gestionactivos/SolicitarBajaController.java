@@ -5,8 +5,12 @@
  */
 package gestionactivos;
 
+import gestionactivos.modelo.Activo;
 import gestionactivos.modelo.Solicitud;
 import gestionactivos.modelo.Ubicacion;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
@@ -30,14 +34,21 @@ import javax.persistence.Query;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 /**
  * FXML Controller class
@@ -63,6 +74,9 @@ public class SolicitarBajaController implements Initializable {
    private Button btnCancelarSol; 
    @FXML
    private Label lblCodigoSol;
+   @FXML private ImageView imageViewCargar;
+   @FXML private ComboBox<String> cbCodigoActivo;
+   File imgFile=null;
    
    Solicitud Sol = new Solicitud();
    BDConexion db= BDConexion.getInstance(); 
@@ -71,6 +85,7 @@ public class SolicitarBajaController implements Initializable {
    EntityManagerFactory emf1= Persistence.createEntityManagerFactory("GestionActivosPU");
    EntityManager em1=emf.createEntityManager();
    String codigoLe="SBA";
+   Activo activo =new  Activo();
     /**
      * Initializes the controller class.
      */
@@ -91,12 +106,14 @@ public class SolicitarBajaController implements Initializable {
       Sol.setFecharegistrasoli(fecha);
       Sol.setDescripcionsolicitud(txtDetalleDanio.getText());
       Sol.setIdubicacion(ubi);
-      Sol.setIdactivo(txtCodigoActivo.getText());
+      Sol.setIdactivo(cbCodigoActivo.getValue());
       Sol.setNombresolicitante(txtNombreSolicitante.getText());
       Sol.setNombreactivo(txtNombreActivo.getText());
       Sol.setEstadosolicitud("PENDIENTE");
       Sol.setTiposolicitud(codigoLe);
       Sol.setIdsolicitud(lblCodigoSol.getText());
+      if(imgFile!= null)
+      {Sol.setImagenSolicitud(this.convertirImagen(imgFile));}
       //lblCodigoSol.setVisible(true);
       em1.persist(Sol);
       em1.getTransaction().commit();
@@ -124,13 +141,35 @@ public class SolicitarBajaController implements Initializable {
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
         datePickerSolicitudBaja=ConvertidorFecha.ConvertidorFecha(datePickerSolicitudBaja);
         ObservableList<String> listaUbi = FXCollections.observableArrayList();
+         ObservableList<String> listaActivo = FXCollections.observableArrayList();
          listaUbi=db.getUbicacion();
          cbUbicacionActivo.setItems(listaUbi);
+         listaActivo=db.getIdactivoUso();
+         cbCodigoActivo.setItems(listaActivo);
          String code=db.generarCodigoSolictudActivo(codigoLe);
          lblCodigoSol.setText(code);
+          cbCodigoActivo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                em.getTransaction().begin();
+                Query query=em.createNativeQuery("SELECT * FROM  Activo a where a.idactivo=?",Activo.class).setParameter(1, cbCodigoActivo.getValue().toString());
+                 activo = (Activo)query.getSingleResult();
+                em.getTransaction().commit();
+                //em.close();
+                System.out.println("nombre"+activo.getNombreactivo());
+                
+                txtNombreActivo.setText(activo.getNombreactivo());
+                
+                
+                
+            }
+        
+        
+        });
          
          
          btnCancelarSol.setOnAction(new EventHandler<ActionEvent>() {
@@ -146,6 +185,31 @@ public class SolicitarBajaController implements Initializable {
                
             }
         });
+         
+         imageViewCargar.setOnMouseClicked(new EventHandler(){
+
+        @Override
+        public void handle(Event event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Buscar Imagen");
+
+        // Agregar filtros para facilitar la busqueda
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        // Obtener la imagen seleccionada
+        imgFile = fileChooser.showOpenDialog(GestionActivos.primaryStage);
+
+        // Mostar la imagen
+        if (imgFile != null) {
+            Image image = new Image("file:" + imgFile.getAbsolutePath());
+            imageViewCargar.setImage(image);
+        }        }
+    });
+         
        
 //        datePickerSolicitudBaja.valueProperty().addListener(new ChangeListener<LocalDate>(){
 //
@@ -187,5 +251,22 @@ try {
    GestionActivos.rootPane.setRight(null);
    
     }   
+   
+   public byte[] convertirImagen(File fileImg) throws IOException{
+    
+        byte[] imageInByte;
+        BufferedImage originalImage = ImageIO.read(fileImg);
+
+        // convert BufferedImage to byte array
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(originalImage, "jpg", baos);
+        baos.flush();
+        imageInByte = baos.toByteArray();
+        baos.close();
+
+      
+return imageInByte;
+    
+    }
     
 }

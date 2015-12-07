@@ -84,7 +84,8 @@ public class SolicitudesAsignacionAdminController implements Initializable {
     
     @FXML
     private Button Cancelar;
-    
+     @FXML
+     private Label lblSolAceptada;
     
     EntityManagerFactory emf= Persistence.createEntityManagerFactory("GestionActivosPU");
 EntityManager em= emf.createEntityManager();
@@ -163,7 +164,7 @@ EntityManager em= emf.createEntityManager();
                
                solicitud =(Solicitud) em.createNamedQuery("Solicitud.findByIdsolicitud",Solicitud.class).setParameter("idsolicitud",codSolic.getValue()).getSingleResult();
                ubicacion1 = solicitud.getIdubicacion();
-               
+               lblSolAceptada.setVisible(true);
                Ubicacion ubi =(Ubicacion) em.createNamedQuery("Ubicacion.findByIdubicacion",Ubicacion.class).setParameter("idubicacion",ubicacion1.getIdubicacion()).getSingleResult();
               ubicacion.setText(ubi.getNombrelugar());
               

@@ -27,7 +27,7 @@
             <ComboBox fx:id="codSolic" editable="true" layoutX="269.0" layoutY="64.0" prefHeight="25.0" prefWidth="176.0" promptText="--Seleccione solicitud" />
             <Label layoutX="45.0" layoutY="68.0" text="Solicitud de Asignacion de activo" />
             <Label layoutX="74.0" layoutY="148.0" text="Datos Generales de la Solicitud" />
-            <Label id="codigo" layoutX="239.0" layoutY="114.0" text="SOLICITUD APROBADA" />
+            <Label id="codigo" fx:id="lblSolAceptada" layoutX="239.0" layoutY="114.0" text="SOLICITUD APROBADA" visible="false" />
             <Button fx:id="Cancelar" defaultButton="true" layoutX="387.0" layoutY="459.0" mnemonicParsing="false" text="Cancelar" textFill="#0d831d" />
          </children>
       </AnchorPane>

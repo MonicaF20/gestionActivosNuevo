@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,17 +9,24 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.ReporteBajaController">
    <children>
-      <Label layoutX="265.0" layoutY="54.0" stylesheets="@../css/form.css" text="Reporte Baja de Activos" />
-      <ChoiceBox layoutX="289.0" layoutY="126.0" prefWidth="150.0" />
-      <Label layoutX="245.0" layoutY="132.0" stylesheets="@../css/form.css" text="Año:" />
-      <TableView layoutX="101.0" layoutY="169.0" prefHeight="237.0" prefWidth="507.0">
+      <Label fx:id="lblTituloReporte" layoutX="265.0" layoutY="54.0" stylesheets="@../css/form.css" text="Reporte Baja de Activos" />
+      <Label layoutX="245.0" layoutY="132.0" stylesheets="@../css/form.css" text="Año:" visible="false" />
+      <TableView fx:id="tableReporteDirectora" layoutX="69.0" layoutY="169.0" prefHeight="239.0" prefWidth="557.0" stylesheets="@../css/form.css">
         <columns>
-          <TableColumn prefWidth="75.0" text="Código Activo" />
-          <TableColumn prefWidth="75.0" text="Nombre" />
-            <TableColumn prefWidth="97.0" text="Fecha de Baja" />
-            <TableColumn prefWidth="150.0" text="Descripción de Baja" />
+          <TableColumn fx:id="tableColCodigoS" prefWidth="123.0" text="Código Solicitud" />
+          <TableColumn fx:id="tableColCodigoA" prefWidth="104.0" text="Código Activo" />
+            <TableColumn fx:id="tableColNombre" prefWidth="59.0" text="Nombre " />
+            <TableColumn fx:id="tableColNombreS" prefWidth="78.0" text="Solicitante" />
+            <TableColumn fx:id="tableColFechaIn" minWidth="0.0" prefWidth="99.0" text="Fecha Ingreso" />
+            <TableColumn fx:id="tableColDescripcion" prefWidth="93.0" text="Descripción" />
         </columns>
       </TableView>
-      <Button layoutX="301.0" layoutY="435.0" mnemonicParsing="false" styleClass="bu" text="Imprimir" />
+      <ComboBox fx:id="cbOpciones" layoutX="257.0" layoutY="120.0" prefHeight="25.0" prefWidth="195.0" promptText="--Seleccione modalidad" />
+      <Button fx:id="btnImprimir" layoutX="304.0" layoutY="447.0" mnemonicParsing="false" stylesheets="@../css/form.css" text="Imprimir " />
+      <Label fx:id="lblNota" layoutX="70.0" layoutY="420.0" styleClass="opciones" stylesheets="@../css/form.css" text="Nota: Haga doble click para abrir la imagen correspondiente al activo ">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

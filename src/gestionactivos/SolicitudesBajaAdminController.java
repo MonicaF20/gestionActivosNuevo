@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -52,6 +53,8 @@ public class SolicitudesBajaAdminController implements Initializable {
      private Button btnBaja;
      @FXML
      private ComboBox<String> cbSolId;
+     @FXML
+     private Label lblSolAceptada;
      
     BDConexion db = BDConexion.getInstance();
     Solicitud sol = new Solicitud();
@@ -79,7 +82,7 @@ public class SolicitudesBajaAdminController implements Initializable {
                 em.getTransaction().commit();
                 //em.close();
                 System.out.println("nombre"+sol.getNombreactivo());
-                
+                lblSolAceptada.setVisible(true);
                 txtNombreS.setText(sol.getNombreactivo());
                 txtCodigoArt.setText(sol.getIdactivo());
                 date=sol.getFecharegistrasoli();

@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Solicitud.findByTiposolicitud", query = "SELECT s FROM Solicitud s WHERE s.tiposolicitud = :tiposolicitud"),
     @NamedQuery(name = "Solicitud.findByNombresolicitante", query = "SELECT s FROM Solicitud s WHERE s.nombresolicitante = :nombresolicitante"),
     @NamedQuery(name = "Solicitud.findByNombreactivo", query = "SELECT s FROM Solicitud s WHERE s.nombreactivo = :nombreactivo"),
+    @NamedQuery(name = "Solicitud.findByEstadoAndTipo", query = "SELECT s FROM Solicitud s WHERE s.estadosolicitud = :estadosolicitud and s.tiposolicitud =:tiposolicitud"),
     @NamedQuery(name = "Solicitud.findByIdsolicitud", query = "SELECT s FROM Solicitud s WHERE s.idsolicitud = :idsolicitud")})
 public class Solicitud implements Serializable {
     private static final long serialVersionUID = 1L;

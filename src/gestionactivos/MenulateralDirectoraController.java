@@ -175,7 +175,7 @@ public class MenulateralDirectoraController implements Initializable {
                 break;
             case "Activos de Baja":
                 try {
-                    loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reportesBajaAdmin.fxml"));
+                    loader = (AnchorPane) FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/reporteBaja.fxml"));
                     primaryStage.setTitle("Reporte de Baja de Activos");
                 } catch (Exception e) {
                 }

@@ -827,5 +827,23 @@ public class BDConexion {
         }
         return solicitudrepa;
     }
+         ObservableList<String> getIdactivoUso() {
+        ObservableList<String> idactivos = FXCollections.observableArrayList();
+        Statement stmt = null;
+        String query = "select idactivo from activo where estadogeneral='EN USO';";
+        try {
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                idactivos.add(rs.getString("idactivo"));
+                //System.out.println(idactivos);
+
+            }
+            //System.out.println(idactivos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return idactivos;
+    }
       
 }

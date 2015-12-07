@@ -21,6 +21,6 @@
       <TextField fx:id="txtFechaS" editable="false" layoutX="217.0" layoutY="258.0" />
       <TextField fx:id="txtCodigoArt" editable="false" layoutX="217.0" layoutY="214.0" />
       <Label layoutX="93.0" layoutY="157.0" stylesheets="@../css/form.css" text="DATOS GENERALES DE SOLICITUD" />
-      <Label layoutX="232.0" layoutY="114.0" stylesheets="@../css/form.css" text="SOLICITUD APROBADA" />
+      <Label id="codigo" fx:id="lblSolAceptada" layoutX="232.0" layoutY="114.0" stylesheets="@../css/form.css" text="SOLICITUD APROBADA" visible="false" />
    </children>
 </AnchorPane>
