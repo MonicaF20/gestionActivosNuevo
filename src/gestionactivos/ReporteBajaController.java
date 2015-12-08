@@ -40,6 +40,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -51,6 +52,7 @@ import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 import javax.xml.transform.TransformerException;
 
 /**
@@ -164,8 +166,12 @@ public class ReporteBajaController implements Initializable {
                         .setParameter("tiposolicitud", "SBA").getResultList();
                 if (listasol.isEmpty()) {
                     System.out.println("entro");
-                    tableReporteDirectora.getItems().removeAll(listaSolicitud);
-
+                    if(tableReporteDirectora.getItems().isEmpty()){
+                         sinDatos();
+                    }
+                    else {     
+                       tableReporteDirectora.getItems().removeAll(listaSolicitud);
+                    }
                 }
                 em.getTransaction().commit();
                 em.close();
@@ -183,7 +189,12 @@ public class ReporteBajaController implements Initializable {
                         .setParameter("tiposolicitud", "SBA").getResultList();
                 if (listasol.isEmpty()) {
                     System.out.println("entro");
-                    tableReporteDirectora.getItems().removeAll(listaSolicitud);
+                    if(tableReporteDirectora.getItems().isEmpty()){
+                         sinDatos();
+                    }
+                    else {     
+                       tableReporteDirectora.getItems().removeAll(listaSolicitud);
+                    }
 
                 }
                 em1.getTransaction().commit();
@@ -201,7 +212,12 @@ public class ReporteBajaController implements Initializable {
                         .setParameter("tiposolicitud", "SBA").getResultList();
                 if (listasol.isEmpty()) {
                     System.out.println("entro");
-                    tableReporteDirectora.getItems().removeAll(listaSolicitud);
+                   if(tableReporteDirectora.getItems().isEmpty()){
+                         sinDatos();
+                    }
+                    else {     
+                       tableReporteDirectora.getItems().removeAll(listaSolicitud);
+                    }
 
                 }
                 em2.getTransaction().commit();
@@ -219,7 +235,12 @@ public class ReporteBajaController implements Initializable {
                         .setParameter("tiposolicitud", "SBA").getResultList();
                 if (listasol.isEmpty()) {
 
-                    tableReporteDirectora.getItems().removeAll(listaSolicitud);
+                    if(tableReporteDirectora.getItems().isEmpty()){
+                         sinDatos();
+                    }
+                    else {     
+                       tableReporteDirectora.getItems().removeAll(listaSolicitud);
+                    }
 
                 }
                 em3.getTransaction().commit();
@@ -343,5 +364,13 @@ public class ReporteBajaController implements Initializable {
 
         }
     }//CONVERTIR IMAGEN 
-
+    
+    private void sinDatos(){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Dialog");
+                        alert.setHeaderText(null);
+                        alert.setContentText("No se encontraron datos");
+                        alert.showAndWait();
+     
+    }
 }
