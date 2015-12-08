@@ -44,6 +44,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -166,6 +167,15 @@ String cuenta="Cantidad de Registros: ";
         em.getTransaction().begin();
         
         listasolicitudes=db.reportePeticionSolicitudesAceptada();
+        if (listasolicitudes.isEmpty()) {
+
+                    if (tableReporteReparacion.getItems().isEmpty()) {
+                        sinDatos();
+                    } else {
+                        tableReporteReparacion.getItems().removeAll(listaSolicitud);
+                    }
+
+                }
         em.getTransaction().commit();
         em.close();
 
@@ -179,6 +189,15 @@ String cuenta="Cantidad de Registros: ";
         em1.getTransaction().begin();
         
         listasolicitudes=db.reportePeticionSolicitudes();
+        if (listasolicitudes.isEmpty()) {
+
+                    if (tableReporteReparacion.getItems().isEmpty()) {
+                        sinDatos();
+                    } else {
+                        tableReporteReparacion.getItems().removeAll(listaSolicitud);
+                    }
+
+                }
         em1.getTransaction().commit();
         em1.close();
 
@@ -191,6 +210,15 @@ String cuenta="Cantidad de Registros: ";
         em2.getTransaction().begin();
         
         listasolicitudes=db.reportePeticionSolicitudesRechazada();
+        if (listasolicitudes.isEmpty()) {
+
+                    if (tableReporteReparacion.getItems().isEmpty()) {
+                        sinDatos();
+                    } else {
+                        tableReporteReparacion.getItems().removeAll(listaSolicitud);
+                    }
+
+                }
         em2.getTransaction().commit();
         em2.close();
 
@@ -204,6 +232,15 @@ String cuenta="Cantidad de Registros: ";
         em3.getTransaction().begin();
         
         listasolicitudes=db.reportePeticionSolicitudesPendiente();
+        if (listasolicitudes.isEmpty()) {
+
+                    if (tableReporteReparacion.getItems().isEmpty()) {
+                        sinDatos();
+                    } else {
+                        tableReporteReparacion.getItems().removeAll(listaSolicitud);
+                    }
+
+                }
         em3.getTransaction().commit();
         em3.close();
 
@@ -356,7 +393,14 @@ String cuenta="Cantidad de Registros: ";
          
          }
     }
+      private void sinDatos() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("No se encontraron datos");
+        alert.showAndWait();
 
+    }
      
 }
 
