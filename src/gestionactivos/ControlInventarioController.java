@@ -280,7 +280,9 @@ for (int i=0;i<datos.size();i++)
          Activo activo =query2.getSingleResult();
          activo.setIdubicacion(results3);
          
-      
+      if(cmbNueva.getValue().toString().startsWith("Bodega"))
+      { activo.setEstadogeneral("DISPONIBLE");}
+       else {activo.setEstadogeneral("EN USO");}
         em1.getTransaction().begin();
         
         em1.getTransaction().commit();
