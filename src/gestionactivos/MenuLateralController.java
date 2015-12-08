@@ -49,7 +49,7 @@ public class MenuLateralController implements Initializable {
     @FXML  Button solicitudesBaja;
     @FXML Button reporteBaja;
     @FXML Button btnAgregarUbi;
-    
+    @FXML Button btnControl;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ingreso.setOnMouseClicked(new EventHandler() {
@@ -143,7 +143,18 @@ public class MenuLateralController implements Initializable {
                 itemSelected(btnAgregarUbi);
             }
         });
-    }    
+     
+      btnControl.setOnMouseClicked(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                itemSelected(btnControl);
+            }
+        });
+    }
+     
+    
+    
 
     public void itemSelected(Button selected) {
        AnchorPane loader= null;
@@ -238,6 +249,13 @@ switch(selected.getText())
              primaryStage.setTitle("Agregar Nueva Ubicación");
             }catch(Exception e){System.out.print(e);}
         break;
+       case "Control de Inventario":
+          try{
+             loader= (AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/controlInventario.fxml"));
+             primaryStage.setTitle("Agregar Nueva Ubicación");
+            }catch(Exception e){System.out.print(e);}
+        break;    
+         
 }
 
    GestionActivos.rootPane.setCenter(loader);

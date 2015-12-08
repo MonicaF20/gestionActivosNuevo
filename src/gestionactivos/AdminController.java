@@ -104,7 +104,8 @@ public class AdminController extends GestionActivos implements Initializable{
        MenuItem item1= new MenuItem("Modificar Rubro");
        MenuItem item2= new MenuItem("Agregar Nuevo Rubro");
        MenuItem item6= new MenuItem("Agregar Ubicación");
-       cm.getItems().addAll(item1,item2,item6);
+       MenuItem item7= new MenuItem("Control de Inventario");
+       cm.getItems().addAll(item1,item2,item6,item7);
      
        mantenimientoRubros.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
         @Override 
@@ -134,6 +135,13 @@ public class AdminController extends GestionActivos implements Initializable{
               @Override
               public void handle(Event event) {
                 imagenSeleccionada="agregarUbicación";
+                  llamarInterfaces();              }
+          });
+        item7.setOnAction(new EventHandler(){
+
+              @Override
+              public void handle(Event event) {
+                imagenSeleccionada="controlInventario";
                   llamarInterfaces();              }
           });
 final ContextMenu cm2= new ContextMenu();
@@ -278,6 +286,13 @@ switch(imagenSeleccionada)
             
             loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/agregarUbicacion.fxml"));
             primaryStage.setTitle("Agregar Ubicación");
+        }catch(Exception e){}
+    break;
+           case "controlInventario":
+        try{
+            
+            loader=(AnchorPane)FXMLLoader.load(getClass().getResource("/gestionactivos/vistas/controlInventario.fxml"));
+            primaryStage.setTitle("Control Inventario");
         }catch(Exception e){}
     break;
    /* //******* Mónica Baja activo **********

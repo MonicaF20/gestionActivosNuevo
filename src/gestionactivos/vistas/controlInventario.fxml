@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/form.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionactivos.ControlInventarioController">
+    <children>
+      <Pane prefHeight="700.0" prefWidth="739.0" AnchorPane.bottomAnchor="-62.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-139.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="3.0" layoutY="14.0" prefHeight="35.0" prefWidth="540.0" text="CONTROL DE INVENTARIO" textAlignment="CENTER" AnchorPane.bottomAnchor="651.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="14.0" />
+            <TableView fx:id="tb_ActPlan" layoutX="21.0" layoutY="159.0" prefHeight="203.0" prefWidth="498.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="328.0">
+              <columns>
+                  <TableColumn fx:id="cl_Fecha" editable="false" prefWidth="78.0" resizable="false" text="Fecha" />
+                  <TableColumn fx:id="cl_Ubicacion" prefWidth="141.0" text="Ubicacion" />
+                <TableColumn fx:id="cl_Rubro" editable="false" prefWidth="86.0" resizable="false" text="Rubro" />
+                <TableColumn fx:id="cl_Codigo" editable="false" minWidth="0.0" prefWidth="98.0" resizable="false" text="Codigo" />
+                  <TableColumn fx:id="cl_Nombre" editable="false" prefWidth="94.0" resizable="false" text="Nombre" />
+              </columns>
+            </TableView>
+            <Pane layoutX="32.0" layoutY="65.0" prefHeight="60.0" prefWidth="452.0" AnchorPane.bottomAnchor="587.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="65.0">
+               <children>
+                  <ComboBox fx:id="cmb_Grado" layoutY="27.0" prefHeight="25.0" prefWidth="184.0" promptText="--Grado y Seccion--" />
+                  <Label prefHeight="21.0" prefWidth="105.0" text="Ubiacion" />
+               </children>
+            </Pane>
+            <Label layoutX="21.0" layoutY="362.0" prefHeight="15.0" prefWidth="391.0" styleClass="opciones" text="*****Haga doble click sobre el activo que desea modificar de Ubicacion" />
+            <Pane fx:id="paneOculto" layoutX="33.0" layoutY="396.0" prefHeight="120.0" prefWidth="474.0" styleClass="menuItem" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="24.0" prefHeight="15.0" prefWidth="91.0" styleClass="opciones" text="Ubicacion Actual" />
+                  <Label fx:id="ubiActual" layoutX="14.0" layoutY="51.0" prefHeight="21.0" prefWidth="122.0" styleClass="opciones" />
+                  <Label layoutX="177.0" layoutY="24.0" styleClass="opciones" text="Nueva Ubicacion" />
+                  <ComboBox fx:id="cmbNueva" layoutX="168.0" layoutY="49.0" prefHeight="25.0" prefWidth="158.0" promptText="Seleccione Ubicacion" />
+                  <Button fx:id="btnActualizar" defaultButton="true" layoutX="360.0" layoutY="20.0" mnemonicParsing="false" onAction="#actualizar" text="Actualizar " />
+                  <Button fx:id="btnCancelar" layoutX="364.0" layoutY="72.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+    
+</AnchorPane>

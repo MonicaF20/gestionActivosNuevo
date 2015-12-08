@@ -115,6 +115,7 @@ public class ReporteIngresoController implements Initializable {
    List<Activo> results;
    List<String> listaRubros= FXCollections.observableArrayList();
    List<Activo> mesAux;
+    SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");
     String cuenta="Cantidad de Registros: ";
     byte[] imagenMostrar;
     private ObservableList<String> opciones= FXCollections.observableArrayList("Reporte Diario","Reporte Mensual",
@@ -405,7 +406,7 @@ dtPickerReporte.valueProperty().addListener(new ChangeListener<LocalDate>(){
     tableColActivo.setCellValueFactory(new PropertyValueFactory<>("idactivo"));
     tableColNombre.setCellValueFactory(new PropertyValueFactory<>("nombreactivo"));
     tableColDescrip.setCellValueFactory(new PropertyValueFactory<>("descripcionactivo"));
-    tableColFecha.setCellValueFactory(new PropertyValueFactory<>("fechaingres"));
+   
     tableColEstado.setCellValueFactory(new PropertyValueFactory<>("estadogeneral"));
     tableColRubro.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Activo,String>, ObservableValue<String>>() {
   
@@ -427,9 +428,49 @@ dtPickerReporte.valueProperty().addListener(new ChangeListener<LocalDate>(){
         }
 		});
     
+     tableColFecha.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Activo,String>, ObservableValue<String>>() {
+  
+        @Override
+        public ObservableValue<String> call(CellDataFeatures<Activo, String> param) {
+            SimpleStringProperty sp = new SimpleStringProperty();
+            sp.unbind();
+            sp.bind(new StringBinding() {
+                {
+                param.getValue().getIdrubro();
+                }
+                @Override
+                protected String computeValue() {
+                       return param.getValue().getIdrubro().getIdrubro();
+					}
+                
+            });
+            return sp;
+        }
+		});
     
     
+    tableColFecha.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Activo,String>, ObservableValue<String>>() {
+
+       @Override
+     public ObservableValue<String> call(CellDataFeatures<Activo, String> param) {
+          SimpleStringProperty sp = new SimpleStringProperty();
+           sp.unbind();
+            sp.bind(new StringBinding() {
+                {
+              // param.getValue().getFechaingres();
+                }
+                @Override
+                protected String computeValue() {
+                    ;
+                       return formatter.format(param.getValue().getFechaingres());
+					}
+                
+            });
+            return sp;
+       }
+   });
     
+
     
     }//fin del if
         
@@ -484,7 +525,7 @@ dtPickerReporte.valueProperty().addListener(new ChangeListener<LocalDate>(){
                table.addCell(results.get(i).getIdactivo().toString());
                table.addCell(results.get(i).getNombreactivo().toString());
                table.addCell(results.get(i).getDescripcionactivo().toString());
-               table.addCell(results.get(i).getFechaingres().toString());
+               table.addCell(formatter.format(results.get(i).getFechaingres()));
                table.addCell(results.get(i).getEstadogeneral());
                
            }

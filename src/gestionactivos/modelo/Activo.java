@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Activo.findByEstadogeneral", query = "SELECT a FROM Activo a WHERE a.estadogeneral = :estadogeneral"),
     @NamedQuery(name = "Activo.findByNombreactivo", query = "SELECT a FROM Activo a WHERE a.nombreactivo = :nombreactivo"),
     @NamedQuery(name = "Activo.findAllNombres", query = "SELECT distinct a FROM Activo a"),
+    @NamedQuery(name = "Activo.findByUbicacion", query = "SELECT a FROM Activo a WHERE a.idubicacion = :ubicacion"),
     @NamedQuery(name = "Activo.findByIdRubro", query = "SELECT a FROM Activo a WHERE a.idrubro = :idrubro")})
     
 public class Activo implements Serializable {

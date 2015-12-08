@@ -73,6 +73,7 @@
                               <Button fx:id="modificarRubro" mnemonicParsing="false" prefHeight="31.0" prefWidth="220.0" styleClass="menuItem" text="Modificar Rubro" />
                               <Button fx:id="agregarRubro" mnemonicParsing="false" prefHeight="31.0" prefWidth="220.0" styleClass="menuItem" text="Agregar Nuevo Rubro" />
                               <Button fx:id="btnAgregarUbi" mnemonicParsing="false" prefHeight="33.0" prefWidth="220.0" styleClass="menuItem" text="Agregar un Nueva Ubicacion" />
+                              <Button fx:id="btnControl" mnemonicParsing="false" prefHeight="33.0" prefWidth="221.0" styleClass="menuItem" text="Control de Inventario" />
                            </children>
                         </VBox>
                      </children>
