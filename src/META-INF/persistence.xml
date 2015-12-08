@@ -7,6 +7,7 @@
     <class>gestionactivos.modelo.Activo</class>
     <class>gestionactivos.modelo.Usuario</class>
     <class>gestionactivos.modelo.Solicitud</class>
+    <class>gestionactivos.modelo.Registrodeactivobaja</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/activosfijos"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

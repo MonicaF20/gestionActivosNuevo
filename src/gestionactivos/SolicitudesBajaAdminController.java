@@ -6,6 +6,7 @@
 package gestionactivos;
 
 import gestionactivos.modelo.Activo;
+import gestionactivos.modelo.Registrodeactivobaja;
 import gestionactivos.modelo.Solicitud;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -60,9 +61,14 @@ public class SolicitudesBajaAdminController implements Initializable {
     Solicitud sol = new Solicitud();
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionActivosPU");
     EntityManager em = emf.createEntityManager();
+    EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("GestionActivosPU");
+    EntityManager em2 = emf2.createEntityManager();
     Date date = new Date();
+    Date fechaBaja= new Date();
     SimpleDateFormat formatoF = new SimpleDateFormat("dd-MM-yyyy");
     Activo activo = new Activo();
+    Registrodeactivobaja registrobaja= new Registrodeactivobaja();
+    Registrodeactivobaja registrobaux= new Registrodeactivobaja();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -89,7 +95,7 @@ public class SolicitudesBajaAdminController implements Initializable {
                 String fecha=formatoF.format(date);
                 txtFechaS.setText(fecha);
                 txtDescriS.setText(sol.getDescripcionsolicitud());
-                
+               
                 
             }
         
@@ -104,8 +110,16 @@ public class SolicitudesBajaAdminController implements Initializable {
                  //System.out.println(activo.getEstadogeneral().toString());
                  activo.setEstadogeneral("NO DISPONIBLE");
                  sol.setEstadosolicitud("EJECUTADA");
+                 //registrobaja.set
+                 
+                 registrobaja.setFechabaja(fechaBaja);
+                 registrobaja.setIdsolicitud(sol.getIdsolicitud());
                  em.getTransaction().commit();
                  em.close();
+                em2.getTransaction().begin();
+                em2.persist(registrobaja);
+                em2.getTransaction().commit();
+                em2.close();
                  JOptionPane.showMessageDialog(null, "Activo dado de Baja ");
                 refresh();
              }

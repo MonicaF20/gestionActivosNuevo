@@ -19,10 +19,13 @@ import gestionactivos.modelo.Activo;
 import gestionactivos.modelo.Solicitud;
 import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -48,7 +51,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -66,8 +71,12 @@ public class ReportesBajaAdminController implements Initializable {
     @FXML private TableColumn tableColActivo;
     @FXML private TableColumn tableColNombre;
     @FXML private TableColumn tableColCausaBaja;
+    @FXML private TableColumn tableColFecha;
     @FXML private Button btnImprimir;
     @FXML private Label lblTituloReporte; 
+    @FXML private Label lblNota;
+    int rowIndex;
+    byte[] imagenMostrar;
     
     
    BDConexion db=BDConexion.getInstance();
@@ -106,6 +115,7 @@ public class ReportesBajaAdminController implements Initializable {
           tableColNombre.setCellValueFactory(new PropertyValueFactory<>("nombreactivio"));
           tableColRubro.setCellValueFactory(new PropertyValueFactory<>("idrubro"));
           tableColCausaBaja.setCellValueFactory(new PropertyValueFactory<>("descripcionsol"));
+          tableColFecha.setCellValueFactory(new PropertyValueFactory<>("fechabaja"));
           
           btnImprimir.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -122,26 +132,33 @@ public class ReportesBajaAdminController implements Initializable {
                   }
               }
           });
-//           tableColRubro.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Activo,String>, ObservableValue<String>>() {
-//  
-//        @Override
-//        public ObservableValue<String> call(TableColumn.CellDataFeatures<Activo, String> param) {
-//            SimpleStringProperty sp = new SimpleStringProperty();
-//            sp.unbind();
-//            sp.bind(new StringBinding() {
-//                {
-//                param.getValue().getIdrubro();
-//                }
-//                @Override
-//                protected String computeValue() {
-//                       return param.getValue().getIdrubro().getIdrubro();
-//					}
-//                
-//            });
-//            return sp;
-//        }
-//		});
+         
         }//for
+        
+          tableReporteBaja.setOnMouseClicked(new EventHandler<MouseEvent>() {
+       
+           @Override
+           public void handle(MouseEvent event) {
+               
+               if(event.getClickCount()==2)
+               {
+               rowIndex= tableReporteBaja.getSelectionModel().getSelectedIndex();
+               imagenMostrar=listActivosRB.get(rowIndex).getImagensolicitud();
+               if(imagenMostrar==null){
+               String nota=" IMAGEN DE ACTIVO NO DISPONIBLE";
+               lblNota.setText(nota);
+               }
+               else{
+               try {
+                   lblNota.setText("");
+                   ConvertirImagen(imagenMostrar);
+                 } catch (IOException ex) {
+                   Logger.getLogger(ReporteIngresoController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               }//else
+               }//if
+           }//mouse event 
+       });
         
     }    
      public void generarPDF() throws DocumentException, TransformerException, IOException{
@@ -166,13 +183,14 @@ public class ReportesBajaAdminController implements Initializable {
            document.add(new Paragraph("\n"));
            document.add(new Paragraph(lblTituloReporte.getText(),FontFactory.getFont(FontFactory.TIMES_BOLD,14,BaseColor.BLUE)));
            document.add(new Paragraph("\n\n\n"));
-           PdfPTable table= new PdfPTable(4);
+           PdfPTable table= new PdfPTable(5);
            
           // Encabezados
            table.addCell(tableColRubro.getText());
            table.addCell(tableColActivo.getText());
            table.addCell(tableColNombre.getText());
            table.addCell(tableColCausaBaja.getText());
+           table.addCell(tableColFecha.getText());
            
            
            
@@ -182,6 +200,7 @@ public class ReportesBajaAdminController implements Initializable {
                table.addCell(listActivosRB.get(i).getIdactivo());
                table.addCell(listActivosRB.get(i).getNombreactivio());
                table.addCell(listActivosRB.get(i).getDescripcionsol());
+               table.addCell(listActivosRB.get(i).getFechabaja());
                
                
            }
@@ -204,17 +223,42 @@ public class ReportesBajaAdminController implements Initializable {
     
     }
     
-    
-//    public int convertirFechaString(Date date){
-//  
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//        String reportDate = df.format(date);
-//        int retorna=0;
-//     
-//        retorna=Integer.parseInt(reportDate.substring(0,4)); 
-//        //System.out.println("año:" +retorna);
-//         return  retorna;
-//      
-//     }
+     private void ConvertirImagen(byte[] bytes) throws IOException {
+	// convert byte array back to BufferedImage
+       /*  ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+         BufferedImage bufferedImage = ImageIO.read(bis);
+         WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+         FileOutputStream labels= null;
+         try {  */
+        //creando un directorio para guardar las etiquetas
+        String ruta = System.getProperty("user.home");
+        File dir = new File(System.getProperty(ruta, "ActivosImagenes"));
+        if (!dir.exists() && !dir.mkdirs()) {
+            try {
+                throw new IOException("Unable to create " + dir.getAbsolutePath());
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        ruta = dir + ".png";
+
+        if (bytes != null) {
+            try {
+
+                InputStream in = new ByteArrayInputStream(bytes);
+                BufferedImage bImageFromConvert = ImageIO.read(in);
+                ImageIO.write(bImageFromConvert, "png", new File(ruta));
+
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        if (bytes != null) {
+            Desktop desktop = Desktop.getDesktop();
+            desktop.open(new File(ruta));
+
+        }
+    }//CONVERTIR IMAGEN    
     
 }

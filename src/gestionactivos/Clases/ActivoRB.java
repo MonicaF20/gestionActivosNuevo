@@ -14,6 +14,8 @@ public class ActivoRB {
     private String idrubro;
     private String nombreactivio;
     private String descripcionsol;
+    private byte[] imagensolicitud;
+    private String fechabaja;
 
     public String getIdactivo() {
         return idactivo;
@@ -46,8 +48,21 @@ public class ActivoRB {
     public void setDescripcionsol(String descripcionsol) {
         this.descripcionsol = descripcionsol;
     }
+
+    public byte[] getImagensolicitud() {
+        return imagensolicitud;
+    }
     
+    public void setImagensolicitud(byte[] imagensolicitud) {
+        this.imagensolicitud = imagensolicitud;
+    }
     
+    public String getFechabaja() {
+        return fechabaja;
+    }
     
+    public void setFechabaja(String fechabaja) {
+        this.fechabaja = fechabaja;
+    }
     
-}
+    }

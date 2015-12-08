@@ -661,7 +661,9 @@ public class BDConexion {
         
         Statement stmt = null;
 
-        String query = "select a.idactivo ,a.nombreactivo,a.idrubro,s.descripcionsolicitud,s.fecharegistrasoli from activo a join solicitud s on s.idactivo=a.idactivo where a.estadogeneral='NO DISPONIBLE' and s.estadosolicitud='EJECUTADA';";
+        String query = "select a.idactivo ,a.nombreactivo,a.idrubro,s.descripcionsolicitud,s.imagensolicitud,rb.fechabaja from activo a join solicitud s on s.idactivo=a.idactivo join registrodeactivobaja rb on s.idsolicitud=rb.idsolicitud where a.estadogeneral='NO DISPONIBLE' and s.estadosolicitud='EJECUTADA';";
+                
+                //"select a.idactivo ,a.nombreactivo,a.idrubro,s.descripcionsolicitud,s.fecharegistrasoli,s.imagensolicitud from activo a join solicitud s on s.idactivo=a.idactivo where a.estadogeneral='NO DISPONIBLE' and s.estadosolicitud='EJECUTADA';";
         try {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -671,6 +673,8 @@ public class BDConexion {
                 activo.setIdrubro(rs.getString("idrubro"));
                 activo.setNombreactivio(rs.getString("nombreactivo"));
                 activo.setDescripcionsol(rs.getString("descripcionsolicitud"));
+                activo.setImagensolicitud(rs.getBytes("imagensolicitud"));
+                activo.setFechabaja(rs.getString("fechabaja"));
                 solicitudBaja.add(activo);
                 //System.out.println(idactivos);
 
@@ -844,6 +848,5 @@ public class BDConexion {
             e.printStackTrace();
         }
         return idactivos;
-    }
-      
+    }   
 }
