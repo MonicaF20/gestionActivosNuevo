@@ -220,7 +220,7 @@ String cuenta="Cantidad de Registros: ";
            document.add(new Paragraph("Generado: "+ new Date().toString()));
            document.close();
            try {
-         File path = new File ("reporteIngreso.pdf");
+         File path = new File ("reporteReparacion.pdf");
          Desktop.getDesktop().open(path);
 }catch (IOException ex) {
      ex.printStackTrace();
